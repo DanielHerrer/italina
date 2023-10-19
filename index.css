@@ -20,8 +20,6 @@
 /* ------------------------- */
 
 * {
-  /* font-family: 'Rubik', sans-serif; */
-  /* font-family: 'PT Sans', sans-serif; */
   font-family: 'Nunito', sans-serif;
 }
 
@@ -61,7 +59,6 @@ body {
 }
 
 #encabezado .encabezado-marca .encabezado-titulo {
-  /* font-family: 'Autour One', sans-serif; */
   color: var(--white);
   font-weight: 600 !important;
   font-size: calc(1.3rem + .6vw) !important;
@@ -124,6 +121,10 @@ body {
   margin-bottom: 4rem;
 }
 
+.carousel-control-next, .carousel-control-prev {
+  width: 10% !important;
+}
+
 .carousel-item {
   z-index: -1;
   height: 32rem;
@@ -161,21 +162,25 @@ body {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
 
-#contenedor-tarjetas {
+.contenedor-caja {
+  text-align: center;
+}
+
+.caja-tarjetas {
   background: linear-gradient(8deg, var(--primary), var(--lightbody));
-  margin: 0 1rem;
-  width: auto;
-  padding: 1.5rem;
+  padding: 2rem 1rem;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  max-width: 100%;
 }
 
 .grilla-tarjetas {
-  justify-content: space-evenly;
   max-width: 100%;
-  flex-wrap: wrap;
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .columna-tarjeta { 
@@ -223,11 +228,9 @@ body {
   user-select: none;
 }
 
-.navegador-footer {
+.footer-navegador {
   display: flex;
-  flex-wrap: wrap;
   padding-left: 0;
-  margin-bottom: 0;
   list-style: none;
   /* ----------- */
   margin-right: 1rem!important;
@@ -246,7 +249,7 @@ body {
   --bs-nav-pills-link-active-bg: var(--white) !important;
 }
 
-.navegador-footer .navegador-item .navegador-link {
+.footer-navegador .navegador-item .navegador-link {
   color: var(--undergray) !important;
   display: block;
   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
@@ -258,8 +261,14 @@ body {
   border-radius: var(--bs-nav-pills-border-radius);
 }
 
-.navegador-footer .navegador-item .navegador-link.active {
+.footer-navegador .navegador-item .navegador-link.active {
   color: var(--primary) !important;
+}
+
+.footer-logo {
+  height: 3rem !important; 
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 /* ---------------------------------------------- ESTILOS PERSONALIZADOS (productos) ----------------------------------------------- */
@@ -331,6 +340,7 @@ body {
 
   #encabezado {
     justify-content: center;
+    gap: 0.5rem;
   }
 
   #encabezado .encabezado-marca {
@@ -343,18 +353,89 @@ body {
     margin-right: 0.5rem;
   }
 
+  #encabezado .navegador {
+    margin-right: 0 !important;
+  }
+
+  /* ------------- */
+
+  .caja-tarjetas {
+    margin: 0 1rem;
+  }
+
+  .grilla-tarjetas {
+    gap: 0.25;
+  }
+
+  .columna-tarjeta { 
+    width: 17rem;
+  }
+
+  .tarjeta-detalle .texto-detalle {
+    bottom: -23.5rem;
+    padding: 1rem!important;
+  }
+
+  .tarjeta-detalle .texto-detalle > p {
+    margin-top: 40px;
+    font-size: 1.20rem !important;  
+  }
+
+  .info-logo {
+    padding: 5rem;
+  }
+
+  .footer-crezcosiendo {
+    gap: 1.25rem;
+  }
+
+  .footer-navegador {
+    margin-left: 3rem;
+    margin-right: 0rem !important;
+  }
+
+  .footer-logo {
+    height: 3rem !important; 
+    margin-right: 0rem !important;
+  }
+
 }
 
 /* Tabletas y pantallas medianas: Consultas para pantallas con un ancho entre 576 y 991 píxeles. */
 @media (min-width: 576px) and (max-width: 991px) {
+
+  .caja-tarjetas {
+    margin: 0 2rem;
+  }
+
+  .tarjeta-detalle .texto-detalle {
+    bottom: -21rem;
+  }
+
+  .tarjeta-detalle .texto-detalle > p {
+    margin-top: 45px;
+    font-size: 1.20rem !important;  
+  }
+
+  .info-logo {
+    padding: 5rem;
+  }
+
+  .footer-logo {
+    height: 3rem !important; 
+    margin-right: 0rem !important;
+  }
 
 }
 
 /* Pantallas grandes (escritorio): Consultas para pantallas con un ancho igual o superior a 992 píxeles. */
 @media (min-width: 992px) {
 
+  
+  
 }
 
+/* -------------- Responsive bootstrap --------------- */
 
 @media (min-width: 40em) {
   /* Bump up size of carousel content */
