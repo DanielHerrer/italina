@@ -20,8 +20,6 @@
 /* ------------------------- */
 
 * {
-  /* font-family: 'Rubik', sans-serif; */
-  /* font-family: 'PT Sans', sans-serif; */
   font-family: 'Nunito', sans-serif;
 }
 
@@ -61,7 +59,6 @@ body {
 }
 
 #encabezado .encabezado-marca .encabezado-titulo {
-  /* font-family: 'Autour One', sans-serif; */
   color: var(--white);
   font-weight: 600 !important;
   font-size: calc(1.3rem + .6vw) !important;
@@ -124,6 +121,10 @@ body {
   margin-bottom: 4rem;
 }
 
+.carousel-control-next, .carousel-control-prev {
+  width: 10% !important;
+}
+
 .carousel-item {
   z-index: -1;
   height: 32rem;
@@ -161,21 +162,25 @@ body {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
 
-#contenedor-tarjetas {
+.contenedor-caja {
+  text-align: center;
+}
+
+.caja-tarjetas {
   background: linear-gradient(8deg, var(--primary), var(--lightbody));
-  margin: 0 1rem;
-  width: auto;
-  padding: 1.5rem;
+  padding: 2rem 1rem;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  max-width: 100%;
 }
 
 .grilla-tarjetas {
-  justify-content: space-evenly;
   max-width: 100%;
-  flex-wrap: wrap;
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .columna-tarjeta { 
@@ -223,11 +228,9 @@ body {
   user-select: none;
 }
 
-.navegador-footer {
+.footer-navegador {
   display: flex;
-  flex-wrap: wrap;
   padding-left: 0;
-  margin-bottom: 0;
   list-style: none;
   /* ----------- */
   margin-right: 1rem!important;
@@ -246,7 +249,7 @@ body {
   --bs-nav-pills-link-active-bg: var(--white) !important;
 }
 
-.navegador-footer .navegador-item .navegador-link {
+.footer-navegador .navegador-item .navegador-link {
   color: var(--undergray) !important;
   display: block;
   padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
@@ -258,14 +261,48 @@ body {
   border-radius: var(--bs-nav-pills-border-radius);
 }
 
-.navegador-footer .navegador-item .navegador-link.active {
+.footer-navegador .navegador-item .navegador-link.active {
   color: var(--primary) !important;
+}
+
+.footer-logo {
+  height: 3rem !important; 
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 /* ---------------------------------------------- ESTILOS PERSONALIZADOS (productos) ----------------------------------------------- */
 
-#producto-item h2 {
+.main-productos {
+  padding: 0 3rem;
+  margin: 3rem 3rem;
+}
+
+#producto-item {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 3rem;
+  margin: 0 0;
+}
+
+.producto-caja-info {
+  width: 70%;
+  padding: 0 1rem;
+  line-height: 1.2;
+}
+
+.titulo-item {
   letter-spacing: -.05rem;
+}
+
+.producto-caja-vista {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+
+.producto-vista {
+  position: relative;
 }
 
 .marco-disponible {
@@ -286,13 +323,21 @@ body {
   background-origin: border-box;
 }
 
+.producto-botones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  top: -7%;
+}
+
 .boton-producto {
   background-color: var(--terciary);
   color: var(--primary);
   border: none;
-  border-radius: 25px;
+  border-radius: 100px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
   text-decoration: none;
   position: absolute;
@@ -305,12 +350,12 @@ body {
 }
 
 .boton-producto-ver {
-  margin: 20.5rem 4.75rem;
+  position: relative;
   padding: 12px 30px;
 }
 
 .boton-producto-carrito {
-  margin: 20.5rem 14.5rem;
+  position: relative;
   padding: 12px 15px;
 }
 
@@ -329,8 +374,11 @@ body {
 /* Pantallas pequeñas (móviles): Consultas para pantallas con un ancho menor a 576 píxeles. */
 @media (max-width: 575px) {
 
+  /* header */
+
   #encabezado {
     justify-content: center;
+    gap: 0.5rem;
   }
 
   #encabezado .encabezado-marca {
@@ -343,18 +391,171 @@ body {
     margin-right: 0.5rem;
   }
 
+  #encabezado .navegador {
+    margin-right: 0 !important;
+  }
+
+  /* index */
+
+  .caja-tarjetas {
+    margin: 0 1rem !important;
+    padding: 2rem 0 !important;
+  }
+
+  .grilla-tarjetas {
+    gap: 0.25;
+  }
+
+  .columna-tarjeta { 
+    width: 90%
+  }
+
+  .tarjeta-detalle .texto-detalle {
+    bottom: -23.5rem;
+    padding: 1rem!important;
+  }
+
+  .tarjeta-detalle .texto-detalle > p {
+    margin-top: 40px;
+    font-size: 1.20rem !important;  
+  }
+
+  .info-logo {
+    padding: 5rem;
+  }
+
+  /* productos */
+
+  .main-productos {
+    padding: 0;
+    margin: 0 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  #producto-item {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .producto-caja-info {
+    width: 100%;
+  }
+
+  .producto-caja-vista {
+    width: 100%;
+  }
+
+  .producto-botones {
+    gap: 15px;
+  }
+
+  .boton-producto {
+    font-size: 22.5px;
+  }
+  
+  .boton-producto-ver {
+    padding: 15px 35px;
+  }
+  
+  .boton-producto-carrito {
+    padding: 15px 20px;
+  }
+
+  /* footer */
+
+  .footer-crezcosiendo {
+    gap: 1.25rem;
+  }
+
+  .footer-navegador {
+    margin-left: 3rem;
+    margin-right: 0rem !important;
+  }
+
+  .footer-logo {
+    height: 3rem !important; 
+    margin-right: 0rem !important;
+  }
+
 }
 
 /* Tabletas y pantallas medianas: Consultas para pantallas con un ancho entre 576 y 991 píxeles. */
 @media (min-width: 576px) and (max-width: 991px) {
+
+  /* index */
+
+  .caja-tarjetas {
+    margin: 0 2rem;
+  }
+
+  .tarjeta-detalle .texto-detalle {
+    bottom: -21rem;
+  }
+
+  .tarjeta-detalle .texto-detalle > p {
+    margin-top: 45px;
+    font-size: 1.20rem !important;  
+  }
+
+  .info-logo {
+    padding: 5rem;
+  }
+
+  /* productos */
+
+  #producto-item {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .producto-caja-info {
+    width: 100%;
+  }
+
+  .producto-caja-vista {
+    width: 100%;
+  }
+
+  .producto-botones {
+    gap: 30px;
+    top: -7%;
+  }
+  
+  .boton-producto {
+    font-size: 30px;
+  }
+  
+  .boton-producto-ver {
+    padding: 17.5px 37.5px;
+  }
+  
+  .boton-producto-carrito {
+    padding: 17.5px 22.5px;
+  }
+
+  .texto-item {
+    font-size: 25px !important;
+  }
+
+  /* footer */
+
+  .footer-logo {
+    height: 3rem !important; 
+    margin-right: 0rem !important;
+  }
 
 }
 
 /* Pantallas grandes (escritorio): Consultas para pantallas con un ancho igual o superior a 992 píxeles. */
 @media (min-width: 992px) {
 
+  
+  
 }
 
+/* -------------- Responsive bootstrap --------------- */
 
 @media (min-width: 40em) {
   /* Bump up size of carousel content */
