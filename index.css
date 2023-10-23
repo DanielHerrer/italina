@@ -273,8 +273,36 @@ body {
 
 /* ---------------------------------------------- ESTILOS PERSONALIZADOS (productos) ----------------------------------------------- */
 
-#producto-item h2 {
+.main-productos {
+  padding: 0 3rem;
+  margin: 3rem 3rem;
+}
+
+#producto-item {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 3rem;
+  margin: 0 0;
+}
+
+.producto-caja-info {
+  width: 70%;
+  padding: 0 1rem;
+  line-height: 1.2;
+}
+
+.titulo-item {
   letter-spacing: -.05rem;
+}
+
+.producto-caja-vista {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+
+.producto-vista {
+  position: relative;
 }
 
 .marco-disponible {
@@ -295,13 +323,21 @@ body {
   background-origin: border-box;
 }
 
+.producto-botones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  top: -7%;
+}
+
 .boton-producto {
   background-color: var(--terciary);
   color: var(--primary);
   border: none;
-  border-radius: 25px;
+  border-radius: 100px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
   text-decoration: none;
   position: absolute;
@@ -314,12 +350,12 @@ body {
 }
 
 .boton-producto-ver {
-  margin: 20.5rem 4.75rem;
+  position: relative;
   padding: 12px 30px;
 }
 
 .boton-producto-carrito {
-  margin: 20.5rem 14.5rem;
+  position: relative;
   padding: 12px 15px;
 }
 
@@ -337,6 +373,8 @@ body {
 
 /* Pantallas pequeñas (móviles): Consultas para pantallas con un ancho menor a 576 píxeles. */
 @media (max-width: 575px) {
+
+  /* header */
 
   #encabezado {
     justify-content: center;
@@ -357,10 +395,11 @@ body {
     margin-right: 0 !important;
   }
 
-  /* ------------- */
+  /* index */
 
   .caja-tarjetas {
-    margin: 0 1rem;
+    margin: 0 1rem !important;
+    padding: 2rem 0 !important;
   }
 
   .grilla-tarjetas {
@@ -368,7 +407,7 @@ body {
   }
 
   .columna-tarjeta { 
-    width: 17rem;
+    width: 90%
   }
 
   .tarjeta-detalle .texto-detalle {
@@ -384,6 +423,46 @@ body {
   .info-logo {
     padding: 5rem;
   }
+
+  /* productos */
+
+  .main-productos {
+    padding: 0;
+    margin: 0 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  #producto-item {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .producto-caja-info {
+    width: 100%;
+  }
+
+  .producto-caja-vista {
+    width: 100%;
+  }
+
+  .producto-botones {
+    gap: 15px;
+  }
+
+  .boton-producto {
+    font-size: 22.5px;
+  }
+  
+  .boton-producto-ver {
+    padding: 15px 35px;
+  }
+  
+  .boton-producto-carrito {
+    padding: 15px 20px;
+  }
+
+  /* footer */
 
   .footer-crezcosiendo {
     gap: 1.25rem;
@@ -404,6 +483,8 @@ body {
 /* Tabletas y pantallas medianas: Consultas para pantallas con un ancho entre 576 y 991 píxeles. */
 @media (min-width: 576px) and (max-width: 991px) {
 
+  /* index */
+
   .caja-tarjetas {
     margin: 0 2rem;
   }
@@ -420,6 +501,45 @@ body {
   .info-logo {
     padding: 5rem;
   }
+
+  /* productos */
+
+  #producto-item {
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .producto-caja-info {
+    width: 100%;
+  }
+
+  .producto-caja-vista {
+    width: 100%;
+  }
+
+  .producto-botones {
+    gap: 30px;
+    top: -7%;
+  }
+  
+  .boton-producto {
+    font-size: 30px;
+  }
+  
+  .boton-producto-ver {
+    padding: 17.5px 37.5px;
+  }
+  
+  .boton-producto-carrito {
+    padding: 17.5px 22.5px;
+  }
+
+  .texto-item {
+    font-size: 25px !important;
+  }
+
+  /* footer */
 
   .footer-logo {
     height: 3rem !important; 
