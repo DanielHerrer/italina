@@ -228,8 +228,28 @@ body {
   user-select: none;
 }
 
+.footer-info #btn-modal-login {
+  margin-right: 10px;
+  padding: 5px 15px;
+  border-radius: 10px;
+  border-style: none;
+  background-color: var(--primary);
+  color: var(--white);
+  transition: 0.5s;
+}
+
+.footer-info #btn-modal-login:hover {
+  background-color: var(--terciary);
+}
+
+.footer-info .info-creador {
+  margin: 0 !important;
+  align-self: center;
+}
+
 .footer-navegador {
   display: flex;
+  align-items: center;
   padding-left: 0;
   list-style: none;
   /* ----------- */
@@ -269,6 +289,51 @@ body {
   height: 3rem !important; 
   margin-right: 1rem;
   margin-left: 1rem;
+}
+
+#modal {
+  width: 30%;
+  border-radius: 25px;
+  border-style: none;
+}
+
+#modal #btn-cerrar-modal {
+  border-style: none;
+  float: right;
+  border-radius: 5px;
+}
+
+#modal .modal-title {
+  margin-bottom: 15px;
+}
+
+#modal .modal-content {
+  padding: 0 50px 25px 50px;
+  text-align: center;
+}
+
+#modal .modal-content input {
+  width: 100%;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+#modal .modal-content .btn-login {
+  margin-top: 10px;
+  padding: 5px 20px;
+  border-radius: 15px;
+  border-style: none;
+  background-color: var(--success);
+  color: var(--white);
+  transition: 0.5s;
+}
+
+#modal .modal-content .btn-login:hover {
+  background-color: #6bd183;
+}
+
+#modal::backdrop {
+  background-color: rgba(0,0,0,0.55);
 }
 
 /* ---------------------------------------------- ESTILOS PERSONALIZADOS (productos) ----------------------------------------------- */
@@ -392,7 +457,8 @@ body {
   }
 
   #encabezado .navegador {
-    margin-right: 0 !important;
+    /* margin-right: 0 !important; */
+    margin: 0 2rem !important;
   }
 
   /* index */
@@ -407,12 +473,16 @@ body {
   }
 
   .columna-tarjeta { 
-    width: 90%
+    max-width: 90%
   }
 
   .tarjeta-detalle .texto-detalle {
-    bottom: -23.5rem;
-    padding: 1rem!important;
+    bottom: -25rem;
+    padding: 1.5rem!important;
+  }
+
+  .tarjeta-detalle:hover .texto-detalle {
+    bottom: -9rem;
   }
 
   .tarjeta-detalle .texto-detalle > p {
@@ -482,6 +552,28 @@ body {
 
 /* Tabletas y pantallas medianas: Consultas para pantallas con un ancho entre 576 y 991 píxeles. */
 @media (min-width: 576px) and (max-width: 991px) {
+
+  /* header */
+
+  #encabezado {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  #encabezado .encabezado-marca {
+    margin-left: -1.5rem;
+  }
+
+  #encabezado .encabezado-marca img {
+    height: 3rem;
+    margin-left: 2rem;
+    margin-right: 0.5rem;
+  }
+
+  #encabezado .navegador {
+    margin-right: 0 !important;
+  }
+
 
   /* index */
 
