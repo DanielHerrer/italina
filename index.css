@@ -97,11 +97,21 @@ h3 {
   background: 0 0;
   border: 0;
   border-radius: var(--bs-nav-pills-border-radius);
+  transition: 0.3s ease;
 }
 
-.navegador .navegador-item .navegador-link.active {
+.navegador .navegador-item .active {
   color: var(--white) !important;
   background-color: var(--primary) !important;
+}
+
+.navegador .navegador-item .active:hover {
+  background-color: var(--white) !important;
+  color: var(--primary) !important;
+}
+
+.navegador .navegador-item .no-activo:hover {
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 .navegador .boton-navegador-carrito {

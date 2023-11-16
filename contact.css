@@ -11,7 +11,7 @@
     padding-bottom: 8rem !important;
 }
 
-.banner-rojo {
+.banner-rosa {
     width: 100%;
     height: 325px;
     background-image: url(/img/back_1_clip.jpg);
@@ -19,23 +19,23 @@
     box-shadow: 0px 0px 15px #000;
 }
 
-.banner-rojo .info-banner {
-    width: 30%;
+.banner-rosa .info-banner {
+    width: 40%;
     color: var(--white);
     padding: 15px 0 0 100px;
 }
 
-.banner-rojo .info-banner h4 {
+.banner-rosa .info-banner h4 {
     width: 100%;
     margin: 30px 0 5px 0;
     text-align: left;
 }
 
-.banner-rojo .info-banner h4 i {
+.banner-rosa .info-banner h4 i {
     margin-right: 10px;
 }
 
-.banner-rojo .info-banner h5 {
+.banner-rosa .info-banner h5 {
     margin: 0 0 30px 50px;
 }
 
@@ -52,6 +52,10 @@
     box-shadow: 0px 0px 5px #000;
     text-align: center;
 }
+
+/* .caja-contacto .titulo-contacto {
+    font-size: 25px;
+} */
 
 #formulario .form-group {
     margin: 1rem 0 1rem 0;
@@ -81,10 +85,87 @@
 -------------------------------------------------- */
 
 /* Pantallas pequeñas (móviles): Consultas para pantallas con un ancho menor a 576 píxeles. */
-@media (max-width: 575px) {}
+@media (max-width: 575px) {
+
+    .banner-rosa {
+        height: 660px;
+    }
+
+    .banner-rosa .info-banner {
+        width: 100%;
+        padding: 23.5rem 3rem 0 5.5rem;
+    }
+
+    .banner-rosa .info-banner h4 {
+        margin: 30px 0 5px 0;
+        font-size: 20px;
+    }
+
+    .banner-rosa .info-banner h4 i {
+        margin-right: 10px;
+    }
+
+    .banner-rosa .info-banner h5 {
+        margin: 0 0 30px 50px;
+    }
+
+    .caja-contacto {
+        /* position: absolute; */
+        right: 50%;
+        transform: translateX(50%);
+        width: 90%;
+        margin: -4rem 0 0 0;
+        padding: 25px 25px 25px 25px;
+        border-radius: 2.5px;
+    }
+
+    .caja-contacto .titulo-contacto {
+        font-size: 30px;
+    }
+
+}
 
 /* Tabletas y pantallas medianas: Consultas para pantallas con un ancho entre 576 y 991 píxeles. */
-@media (min-width: 576px) and (max-width: 991px) {}
+@media (min-width: 576px) and (max-width: 991px) {
+
+    .banner-rosa {
+        height: 325px;
+    }
+
+    .banner-rosa .info-banner {
+        width: 50%;
+        padding: 0 0 0 3rem;
+    }
+
+    .banner-rosa .info-banner h4 {
+        margin: 30px 0 5px 0;
+        font-size: 20px;
+    }
+
+    .banner-rosa .info-banner h4 i {
+        margin-right: 10px;
+    }
+
+    .banner-rosa .info-banner h5 {
+        margin: 0 0 30px 50px;
+    }
+
+    .caja-contacto {
+        right: 0;
+        width: 40%;
+        /* margin-left: 2rem; */
+        margin-right: 2.5rem;
+        margin-top: -4rem;
+        padding: 25px 25px 25px 25px;
+        border-radius: 2.5px;
+    }
+
+    .caja-contacto .titulo-contacto {
+        font-size: 20px;
+    }
+
+
+}
 
 /* Pantallas grandes (escritorio): Consultas para pantallas con un ancho igual o superior a 992 píxeles. */
 @media (min-width: 992px) {}
