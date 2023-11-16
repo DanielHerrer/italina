@@ -1,0 +1,235 @@
+/* ------------------------------------------ ESTILOS PERSONALIZADOS (home) ----------------------------------------------------- */
+
+/* ---------------------------------- Carrusel ---------------------------------- */
+
+
+#myCarousel {
+    margin-bottom: 4rem;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    width: 10% !important;
+}
+
+.carousel-item {
+    z-index: -1;
+    height: 32rem;
+}
+
+.carousel-item .capa-oscura {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.carousel-item .bd-placeholder-img {
+    font-size: 1.125rem !important;
+    text-anchor: middle !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    user-select: none !important;
+}
+
+.carousel-item .carousel-caption {
+    bottom: 0.5rem;
+    z-index: 10;
+}
+
+.carousel-item .carousel-caption .text-shadow {
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+.carousel-item .btn-carousel {
+    background-color: var(--primary);
+    border-color: var(--lightbody);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+/* ---------------------------------- Tarjetas ---------------------------------- */
+
+.contenedor-caja {
+    text-align: center;
+}
+
+.caja-tarjetas {
+    background: linear-gradient(8deg, var(--primary), var(--lightbody));
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    max-width: 100%;
+}
+
+.grilla-tarjetas {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.columna-tarjeta {
+    padding-right: 15px;
+    padding-left: 15px;
+    position: relative;
+    width: 25rem;
+    min-height: 1px;
+    height: 30rem;
+}
+
+.tarjeta-detalle {
+    border: none;
+    border-radius: 1rem;
+    background-color: var(--white);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
+.tarjeta-detalle .texto-detalle {
+    position: relative;
+    bottom: -20rem;
+    padding: 3rem !important;
+}
+
+.tarjeta-detalle .texto-detalle>p {
+    margin-top: 35px;
+    font-size: 1.20rem !important;
+    text-align: center;
+}
+
+.tarjeta-detalle:hover .texto-detalle {
+    position: relative;
+    bottom: -2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    transition: 2s;
+}
+
+/* ---------------------------------- Info ---------------------------------- */
+
+.info-texto {
+    user-select: none;
+}
+
+/* ---------------------------------- Modal Login ---------------------------------- */
+
+#modal-login {
+    width: 30%;
+    border-radius: 25px;
+    border-style: none;
+}
+
+#modal-login #btn-cerrar-modal {
+    border-style: none;
+    float: right;
+    border-radius: 5px;
+}
+
+#modal-login .modal-title {
+    margin-bottom: 15px;
+}
+
+#modal-login .modal-content {
+    padding: 0 50px 25px 50px;
+    text-align: center;
+}
+
+#modal-login .modal-content input {
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+#modal-login .modal-content .btn-login {
+    margin-top: 10px;
+    padding: 5px 20px;
+    border-radius: 15px;
+    border-style: none;
+    background-color: var(--success);
+    color: var(--white);
+    transition: 0.5s;
+}
+
+#modal-login .modal-content .btn-login:hover {
+    background-color: #6bd183;
+}
+
+#modal-login::backdrop {
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+/* Pantallas pequeñas (móviles): Consultas para pantallas con un ancho menor a 576 píxeles. */
+@media (max-width: 575px) {
+
+    /* home */
+
+    .caja-tarjetas {
+        margin: 0 1rem !important;
+        padding: 2rem 0 !important;
+    }
+
+    .grilla-tarjetas {
+        gap: 0.25;
+    }
+
+    .columna-tarjeta {
+        max-width: 90%
+    }
+
+    .tarjeta-detalle .texto-detalle {
+        bottom: -25rem;
+        padding: 1.5rem !important;
+    }
+
+    .tarjeta-detalle:hover .texto-detalle {
+        bottom: -9rem;
+    }
+
+    .tarjeta-detalle .texto-detalle>p {
+        margin-top: 40px;
+        font-size: 1.20rem !important;
+    }
+
+    .info-logo {
+        padding: 5rem;
+    }
+
+}
+
+/* Tabletas y pantallas medianas: Consultas para pantallas con un ancho entre 576 y 991 píxeles. */
+@media (min-width: 576px) and (max-width: 991px) {
+
+    /* home */
+
+    .caja-tarjetas {
+        margin: 0 2rem;
+    }
+
+    .tarjeta-detalle .texto-detalle {
+        bottom: -21rem;
+    }
+
+    .tarjeta-detalle .texto-detalle>p {
+        margin-top: 45px;
+        font-size: 1.20rem !important;
+    }
+
+    .info-logo {
+        padding: 5rem;
+    }
+
+}
+
+/* Pantallas grandes (escritorio): Consultas para pantallas con un ancho igual o superior a 992 píxeles. */
+@media (min-width: 992px) {}
