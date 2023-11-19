@@ -42,12 +42,15 @@ h3 {
 #encabezado {
   background: linear-gradient(8deg, var(--primary), var(--lightbody));
   box-shadow: 0 0 15px #000;
-  z-index: 2;
+  position: relative;
+  z-index: 100;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.85);
+  /* Sombra interna en la parte superior */
 }
 
 #encabezado .encabezado-marca {
@@ -131,6 +134,22 @@ h3 {
   background-color: var(--white);
   color: var(--primary);
   transition: 0.3s;
+}
+
+.navegador .carrito-contador {
+  display: none;
+  position: absolute;
+  /* right: 0; */
+  margin-top: -45px;
+  margin-left: 17.5px;
+  background-color: red;
+  color: #fff;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  font-size: 0.85em;
+  border-radius: 100%;
+  text-align: center;
 }
 
 .footer-crezcosiendo {
