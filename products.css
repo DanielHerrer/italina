@@ -20,6 +20,12 @@
 
 .titulo-item {
     letter-spacing: -.05rem;
+    font-size: 50px;
+    margin-top: 2rem;
+}
+
+.texto-item {
+    margin-top: 1rem;
 }
 
 .producto-caja-vista {
@@ -33,7 +39,7 @@
 }
 
 .marco-disponible {
-    border: 1rem solid transparent;
+    border: 0.75rem solid transparent;
     background: linear-gradient(white, white),
         url(/img/back_1_clip.jpg);
     background-clip: padding-box, border-box;
@@ -42,7 +48,7 @@
 }
 
 .marco-no-disponible {
-    border: 1rem solid transparent;
+    border: 0.75rem solid transparent;
     background: linear-gradient(white, white),
         url(/img/back_0_clip.jpg);
     background-clip: padding-box, border-box;

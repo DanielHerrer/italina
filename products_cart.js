@@ -57,12 +57,24 @@ function mostrarCarrito() {
     carrito.forEach(item => {
         const itemHTML = `
         <div class="item-carrito">
-          <img src="${item.imagen}" alt="${item.titulo}">
-          <p>${item.titulo} - Cantidad: ${item.cantidad}</p>
-          <button onclick="agregarAlCarrito(${item.id})">+</button>
-          <button onclick="reducirAlCarrito(${item.id})">-</button>
-
-          <button onclick="quitarDelCarrito(${item.id})">Quitar</button>
+            <div class="item-carrito-producto">
+                <img class="item-img" src="${item.imagen}" alt="${item.titulo}">
+                <p class="item-titulo">${item.titulo}</p>
+            </div>
+            <div class="item-carrito-precio">
+                <p class="item-precio">$${item.precio} ARS</p>
+            </div>
+            <div class="item-carrito-cantidad">
+                <button class="btn-carrito btn-mas" onclick="agregarAlCarrito(${item.id})"><i class="fa-solid fa-plus"></i></button>
+                <p class="num-cantidad">Cantidad: ${item.cantidad}</p>
+                <button class="btn-carrito btn-menos" onclick="reducirAlCarrito(${item.id})"><i class="fa-solid fa-minus"></i></button>
+            </div>
+            <div class="item-carrito-subtotal">
+                <p class="item-subtotal">$${item.precio * item.cantidad} ARS</p>
+            </div>
+            <div class="item-carrito-borrar">
+                <button class="btn-carrito item-btn-remover" onclick="quitarDelCarrito(${item.id})"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
         </div>
         
       `;

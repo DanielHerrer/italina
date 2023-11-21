@@ -81,6 +81,15 @@
     border: none;
 } */
 
+#formulario .boton-wpp {
+    background-color: rgb(52, 182, 101);
+    border: 0;
+}
+
+#formulario .boton-wpp:hover {
+    background-color: rgb(40, 144, 79);
+}
+
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 

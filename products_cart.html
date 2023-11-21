@@ -51,11 +51,19 @@
 
         <main id="main-carrito">
 
-            <h2>Carrito de Compras</h2>
+            <h2 class="titulo-carrito"><i class="fa-solid fa-basket-shopping"></i> Mi Carrito de compras</h2>
+            <div class="encabezado-carrito">
+                <p class="titulo">Producto</p>
+                <p class="precio">Precio</p>
+                <p class="cantidad">Cantidad</p>
+                <p class="subtotal">Subtotal</p>
+                <p></p>
+            </div>
             <div id="listaCarrito">
                 <!-- Aquí se mostrarán los productos en el carrito -->
             </div>
-            <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+            <button class="boton-carrito carrito-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
+            <button class="boton-carrito carrito-comprar">Realizar Compra</button>
 
         </main>
 

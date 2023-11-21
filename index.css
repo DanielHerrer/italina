@@ -15,7 +15,6 @@
 
 .featurette-divider {
   margin: 4rem 0;
-  /* Space out the Bootstrap <hr> more */
 }
 
 /* ------------------------- */
@@ -320,13 +319,4 @@ h3 {
     line-height: 1.4;
   }
 
-  .featurette-heading {
-    font-size: 50px;
-  }
-}
-
-@media (min-width: 62em) {
-  .featurette-heading {
-    margin-top: 7rem;
-  }
 }

@@ -26,10 +26,9 @@ formulario.addEventListener('submit', (event) => {
         let nombre = document.querySelector('#name').value
         let email = document.querySelector('#email').value
         let number = document.querySelector('#number').value
-        let date = document.querySelector('#subject').value
         let comment = document.querySelector('#message').value
 
-        let mensaje = 'send?phone=' + phone + '&text=*Nombre*: %0A' + nombre + '%0A*Teléfono*: %0A' + number + '%0A*Correo Electrónico*: %0A' + email + '%0A*Fecha de entrega*: %0A' + date + '%0A*Descripción*: %0A' + comment + ''
+        let mensaje = 'send?phone=' + phone + '&text=*Nombre*: %0A' + nombre + '%0A*Teléfono*: %0A' + number + (email === "" ? "" : '%0A*Correo Electrónico*: %0A' + email) + '%0A_Mensaje_: %0A' + comment + ''
 
         window.open(urlDesktop + mensaje, '_blank')
 

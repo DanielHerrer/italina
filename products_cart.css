@@ -1,6 +1,106 @@
-.item-carrito {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
+#main-carrito {
+    padding: 0;
+    margin: 0;
     text-align: center;
+}
+
+.titulo-carrito {
+    padding: 2rem 0 1.75rem 0;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.encabezado-carrito {
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #ddd;
+}
+
+.encabezado-carrito {
+    margin: 0;
+    padding: 15px 8rem 0 8rem;
+    display: grid;
+    grid-template-columns: 40% 15% 20% 15% 10%;
+    color: #747474;
+}
+
+.item-carrito {
+    display: grid;
+    text-align: center;
+    align-items: center;
+    grid-template-columns: 40% 15% 20% 15% 10%;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 8rem;
+    margin: 0;
+}
+
+.item-carrito .item-carrito-producto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.item-carrito .item-carrito-producto .item-img {
+    width: 85px;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    background: linear-gradient(white, white),
+        url(/img/back_1_clip.jpg);
+    background-clip: padding-box, border-box;
+    background-size: cover;
+    background-origin: border-box;
+}
+
+.item-carrito .item-titulo {
+    font-size: 25px;
+    margin: 0;
+}
+
+.item-carrito .item-precio {
+    margin: 0;
+}
+
+.item-carrito .btn-carrito {
+    border: 0;
+    width: 40px;
+    height: 40px;
+    color: var(--white);
+    border-radius: 50%;
+}
+
+.item-carrito .item-carrito-cantidad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-carrito .item-carrito-cantidad .btn-mas {
+    background-color: rgb(75, 199, 91);
+}
+
+.item-carrito .item-carrito-cantidad .num-cantidad {
+    margin: 0 10px 0 10px;
+}
+
+.item-carrito .item-carrito-cantidad .btn-menos {
+    background-color: rgb(47, 138, 196);
+}
+
+.item-carrito .item-subtotal {
+    margin: 0;
+}
+
+.item-carrito .item-btn-remover {
+    background-color: rgb(223, 64, 75);
+    width: auto;
+    height: 60px;
+    padding: 7.5px 20px 7.5px 20px;
+    font-size: 17.5px;
+    border-radius: 10px;
+}
+
+#main-carrito .boton-carrito {
+    margin-top: 1.5rem;
 }

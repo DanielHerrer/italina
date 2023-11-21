@@ -26,10 +26,12 @@ function actualizarContadorCarrito() {
 
     if (cantidadItems > 0) {
         contadorCarrito.style.display = 'block';
-        contadorCarrito.innerHTML = `${cantidadItems}`;
+        if (cantidadItems < 10) {
+            contadorCarrito.innerHTML = `${cantidadItems}`;
+        } else {
+            contadorCarrito.innerHTML = `+9`;
+        }
     } else {
         contadorCarrito.style.display = 'none';
     }
 }
-
-
