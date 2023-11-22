@@ -1,0 +1,273 @@
+/* ---------------------------------------------- ESTILOS PERSONALIZADOS (productos) ----------------------------------------------- */
+
+#main-productos {
+    padding: 0 3rem;
+    margin: 3rem 3rem;
+}
+
+#producto-item {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 3rem;
+    margin: 0 0;
+}
+
+.producto-caja-info {
+    width: 70%;
+    padding: 0 1rem;
+    line-height: 1.2;
+}
+
+.titulo-item {
+    letter-spacing: -.05rem;
+    font-size: 50px;
+    margin-top: 2rem;
+}
+
+.texto-item {
+    margin-top: 1rem;
+}
+
+.producto-caja-vista {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.producto-vista {
+    position: relative;
+}
+
+.marco-disponible {
+    border: 0.75rem solid transparent;
+    background: linear-gradient(white, white),
+        url(/img/back_1_clip.jpg);
+    background-clip: padding-box, border-box;
+    background-size: cover;
+    background-origin: border-box;
+}
+
+.marco-no-disponible {
+    border: 0.75rem solid transparent;
+    background: linear-gradient(white, white),
+        url(/img/back_0_clip.jpg);
+    background-clip: padding-box, border-box;
+    background-size: cover;
+    background-origin: border-box;
+}
+
+.producto-botones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    top: -7%;
+}
+
+.boton-producto {
+    background-color: var(--terciary);
+    color: var(--primary);
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    position: absolute;
+}
+
+.boton-producto:hover {
+    background-color: darkred;
+    color: var(--white);
+    transition: 0.3s;
+}
+
+.boton-producto-ver {
+    position: relative;
+    padding: 12px 30px;
+}
+
+.boton-producto-carrito {
+    position: relative;
+    padding: 12px 15px;
+}
+
+.boton-no-disponible {
+    background-color: #6c757d;
+    color: var(--white);
+}
+
+.boton-no-disponible:hover {
+    background-color: #53575a;
+}
+
+.notificacion {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    /* background-color: #4CAF50; */
+    color: white;
+    text-align: center;
+    padding: 15px;
+    z-index: 15;
+    transition: all 0.5s ease-in-out;
+}
+
+.notificacion.mostrar {
+    display: block;
+    background-color: var(--primary);
+    transform: translateY(0);
+}
+
+/* ---------------------------------- Modal Detalles Producto ---------------------------------- */
+
+#modal-producto {
+    border-radius: 20px;
+    border-style: none;
+}
+
+
+#modal-producto #btn-cerrar-modal {
+    border-style: none;
+    float: right;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+#modal-producto .modal-producto-content {
+    display: flex;
+    gap: 25px;
+}
+
+.modal-producto-content .fotos-producto {
+    width: 350px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fotos-producto .foto-max {
+    width: 100%;
+    object-fit: cover;
+}
+
+.fotos-producto .barra-fotos {
+    width: 350px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.fotos-producto .barra-fotos .foto-min {
+    /* overflow: hidden; */
+    padding: 2px 1px 0 1px;
+    width: 100%;
+    object-fit: cover;
+    transition: all 0.7s;
+}
+
+.fotos-producto .barra-fotos .foto-min:hover {
+    filter: brightness(1.4);
+    cursor: pointer;
+}
+
+.modal-producto-content .descripcion-producto {
+    width: 350px;
+    margin-top: 25px;
+}
+
+#modal-producto::backdrop {
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+/* Pantallas pequeñas (móviles): Consultas para pantallas con un ancho menor a 576 píxeles. */
+@media (max-width: 575px) {
+
+    /* productos */
+
+    #main-productos {
+        padding: 0;
+        margin: 0 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    #producto-item {
+        display: flex;
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .producto-caja-info {
+        width: 100%;
+    }
+
+    .producto-caja-vista {
+        width: 100%;
+    }
+
+    .producto-botones {
+        gap: 15px;
+    }
+
+    .boton-producto {
+        font-size: 22.5px;
+    }
+
+    .boton-producto-ver {
+        padding: 15px 35px;
+    }
+
+    .boton-producto-carrito {
+        padding: 15px 20px;
+    }
+
+}
+
+/* Tabletas y pantallas medianas: Consultas para pantallas con un ancho entre 576 y 991 píxeles. */
+@media (min-width: 576px) and (max-width: 991px) {
+
+    /* productos */
+
+    #producto-item {
+        display: flex;
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .producto-caja-info {
+        width: 100%;
+    }
+
+    .producto-caja-vista {
+        width: 100%;
+    }
+
+    .producto-botones {
+        gap: 30px;
+        top: -7%;
+    }
+
+    .boton-producto {
+        font-size: 30px;
+    }
+
+    .boton-producto-ver {
+        padding: 17.5px 37.5px;
+    }
+
+    .boton-producto-carrito {
+        padding: 17.5px 22.5px;
+    }
+
+    .texto-item {
+        font-size: 25px !important;
+    }
+
+
+}
+
+/* Pantallas grandes (escritorio): Consultas para pantallas con un ancho igual o superior a 992 píxeles. */
+@media (min-width: 992px) {}
