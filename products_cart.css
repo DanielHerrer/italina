@@ -25,6 +25,10 @@
     color: #747474;
 }
 
+.encabezado-carrito>p:first-child {
+    padding-left: 100px;
+}
+
 .item-carrito {
     display: grid;
     text-align: center;
@@ -48,6 +52,17 @@
     border: 5px solid transparent;
     background: linear-gradient(white, white),
         url(/img/back_1_clip.jpg);
+    background-clip: padding-box, border-box;
+    background-size: cover;
+    background-origin: border-box;
+}
+
+.item-carrito .item-carrito-producto .item-sin-img {
+    width: 85px;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    background: linear-gradient(white, white),
+        url(/img/back_0_clip.jpg);
     background-clip: padding-box, border-box;
     background-size: cover;
     background-origin: border-box;
@@ -101,6 +116,26 @@
     border-radius: 10px;
 }
 
-#main-carrito .boton-carrito {
+.total-carrito {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 75% 15% 10%;
+    padding: 20px 8rem;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+
+.total-carrito .total {
+    text-align: end;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+}
+
+.total-carrito #precio {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.boton-carrito {
     margin-top: 1.5rem;
 }

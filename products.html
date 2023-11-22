@@ -53,7 +53,7 @@
 
             <!-- =========================== PRODUCTOS =========================== -->
 
-            <!-- los productos se añadiran aquí  -->
+            <!-- Los productos se añadiran aquí  -->
 
             <!-- =========================== NOTIFICACION =========================== -->
 
@@ -63,22 +63,13 @@
 
             <dialog id="modal-producto">
 
-                <button id="btn-cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="cerrarDetalles();" class="cerrar-modal" id="btn-cerrar-modal"><i
+                        class="fa-solid fa-xmark"></i></button>
 
-                <div class="modal-content">
-                    <div class="fotos-producto">
-                        <h2 class="titulo-producto">Titulo de producto</h2>
-                        <img class="foto-principal" src="" alt="">
-                        <div class="barra-fotos">
-                            <img class="foto-min" src="" alt="">
-                            <img class="foto-min" src="" alt="">
-                            <img class="foto-min" src="" alt="">
-                            <img class="foto-min" src="" alt="">
-                        </div>
-                    </div>
-                    <div class="descripcion-producto">
-                        <p></p>
-                    </div>
+                <div class="modal-producto-content">
+
+                    <!-- Los detalles del producto se cargarán aquí -->
+
                 </div>
 
             </dialog>
@@ -101,6 +92,33 @@
                 <img src="/img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
             </ul>
         </footer>
+
+        <!-- =========================== MODAL =========================== -->
+
+        <dialog id="modal-producto">
+
+            <button id="btn-cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="modal-content">
+                <div class="content-imgs">
+                    <div class="max-img">
+                        <img class="img-pri" src="" alt="">
+                    </div>
+                    <div class="barra-imgs">
+                        <img class="img-sec" src="" alt="">
+                        <img class="img-sec" src="" alt="">
+                        <img class="img-sec" src="" alt="">
+                        <img class="img-sec" src="" alt="">
+                    </div>
+                </div>
+                <div class="content-info">
+                    <h2 class="modal-title">Producto</h2>
+                    <p class="">asdasdasdasdasdasdasdasdasdasdasdasdadasdasdasdasdasdasd</p>
+                </div>
+            </div>
+
+        </dialog>
+
     </div>
 
     <script src="index.js"></script>

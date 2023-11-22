@@ -121,6 +121,65 @@
     transform: translateY(0);
 }
 
+/* ---------------------------------- Modal Detalles Producto ---------------------------------- */
+
+#modal-producto {
+    border-radius: 20px;
+    border-style: none;
+}
+
+
+#modal-producto #btn-cerrar-modal {
+    border-style: none;
+    float: right;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+#modal-producto .modal-producto-content {
+    display: flex;
+    gap: 25px;
+}
+
+.modal-producto-content .fotos-producto {
+    width: 350px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fotos-producto .foto-max {
+    width: 100%;
+    object-fit: cover;
+}
+
+.fotos-producto .barra-fotos {
+    width: 350px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.fotos-producto .barra-fotos .foto-min {
+    /* overflow: hidden; */
+    padding: 2px 1px 0 1px;
+    width: 100%;
+    object-fit: cover;
+    transition: all 0.7s;
+}
+
+.fotos-producto .barra-fotos .foto-min:hover {
+    filter: brightness(1.4);
+    cursor: pointer;
+}
+
+.modal-producto-content .descripcion-producto {
+    width: 350px;
+    margin-top: 25px;
+}
+
+#modal-producto::backdrop {
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
