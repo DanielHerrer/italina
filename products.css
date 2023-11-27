@@ -12,51 +12,53 @@
     margin: 0 0;
 }
 
-.producto-caja-info {
+#producto-item .producto-caja-info {
     width: 70%;
     padding: 0 1rem;
     line-height: 1.2;
 }
 
-.titulo-item {
+#producto-item .producto-caja-info .titulo-item {
     letter-spacing: -.05rem;
     font-size: 50px;
     margin-top: 2rem;
 }
 
-.texto-item {
+#producto-item .producto-caja-info .texto-item {
     margin-top: 1rem;
 }
 
-.producto-caja-vista {
+#producto-item .producto-caja-vista {
     width: 30%;
     display: flex;
     justify-content: center;
 }
 
-.producto-vista {
+#producto-item .producto-caja-vista .producto-vista {
     position: relative;
 }
 
-.marco-disponible {
+.producto-caja-vista .producto-vista .producto-vista-imagen {}
+
+.producto-caja-vista .producto-vista .marco-disponible {
     border: 0.75rem solid transparent;
     background: linear-gradient(white, white),
-        url(/img/back_1_clip.jpg);
+        url(./img/back_1_clip.jpg);
     background-clip: padding-box, border-box;
     background-size: cover;
     background-origin: border-box;
 }
 
-.marco-no-disponible {
+.producto-caja-vista .producto-vista .marco-no-disponible {
     border: 0.75rem solid transparent;
     background: linear-gradient(white, white),
-        url(/img/back_0_clip.jpg);
+        url(./img/back_0_clip.jpg);
     background-clip: padding-box, border-box;
     background-size: cover;
     background-origin: border-box;
 }
 
-.producto-botones {
+.producto-caja-vista .producto-vista .producto-botones {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -64,7 +66,7 @@
     top: -7%;
 }
 
-.boton-producto {
+.producto-caja-vista .producto-vista .producto-botones .boton-producto {
     background-color: var(--terciary);
     color: var(--primary);
     border: none;
@@ -76,30 +78,32 @@
     position: absolute;
 }
 
-.boton-producto:hover {
+.producto-caja-vista .producto-vista .producto-botones .boton-producto:hover {
     background-color: darkred;
     color: var(--white);
     transition: 0.3s;
 }
 
-.boton-producto-ver {
+.producto-caja-vista .producto-vista .producto-botones .boton-producto-ver {
     position: relative;
     padding: 12px 30px;
 }
 
-.boton-producto-carrito {
+.producto-caja-vista .producto-vista .producto-botones .boton-producto-carrito {
     position: relative;
     padding: 12px 15px;
 }
 
-.boton-no-disponible {
+.producto-caja-vista .producto-vista .producto-botones .boton-no-disponible {
     background-color: #6c757d;
     color: var(--white);
 }
 
-.boton-no-disponible:hover {
+.producto-caja-vista .producto-vista .producto-botones .boton-no-disponible:hover {
     background-color: #53575a;
 }
+
+/* ------------------------ Notificaciones Producto Agregado al Carrito ---------------------------------- */
 
 .notificacion {
     display: none;
@@ -136,6 +140,10 @@
     margin: 0 5px;
 }
 
+#modal-producto #btn-cerrar-modal:hover {
+    filter: brightness(0.8);
+}
+
 #modal-producto .modal-producto-content {
     display: flex;
     gap: 25px;
@@ -147,18 +155,18 @@
     overflow: hidden;
 }
 
-.fotos-producto .foto-max {
+.modal-producto-content .fotos-producto .foto-max {
     width: 100%;
     object-fit: cover;
 }
 
-.fotos-producto .barra-fotos {
+.modal-producto-content .fotos-producto .barra-fotos {
     width: 350px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.fotos-producto .barra-fotos .foto-min {
+.modal-producto-content .fotos-producto .barra-fotos .foto-min {
     /* overflow: hidden; */
     padding: 2px 1px 0 1px;
     width: 100%;
@@ -166,7 +174,7 @@
     transition: all 0.7s;
 }
 
-.fotos-producto .barra-fotos .foto-min:hover {
+.modal-producto-content .fotos-producto .barra-fotos .foto-min:hover {
     filter: brightness(1.4);
     cursor: pointer;
 }
@@ -174,6 +182,7 @@
 .modal-producto-content .descripcion-producto {
     width: 350px;
     margin-top: 25px;
+    overflow: hidden;
 }
 
 #modal-producto::backdrop {
@@ -201,11 +210,11 @@
     }
 
     .producto-caja-info {
-        width: 100%;
+        width: 100% !important;
     }
 
     .producto-caja-vista {
-        width: 100%;
+        width: 100% !important;
     }
 
     .producto-botones {
@@ -238,11 +247,11 @@
     }
 
     .producto-caja-info {
-        width: 100%;
+        width: 100% !important;
     }
 
     .producto-caja-vista {
-        width: 100%;
+        width: 100% !important;
     }
 
     .producto-botones {
@@ -251,7 +260,7 @@
     }
 
     .boton-producto {
-        font-size: 30px;
+        font-size: 30px !important;
     }
 
     .boton-producto-ver {

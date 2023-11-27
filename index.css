@@ -24,8 +24,7 @@
 }
 
 body {
-  /* padding-top: 3rem; */
-  /* padding-bottom: 3rem; */
+  width: 100%;
   color: rgb(var(--bs-tertiary-color-rgb));
 }
 
@@ -226,43 +225,6 @@ h3 {
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.35));
 }
 
-.boton-producto {
-  background-color: var(--terciary);
-  color: var(--primary);
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 18px;
-  text-align: center;
-  text-decoration: none;
-  position: absolute;
-}
-
-.boton-producto:hover {
-  background-color: darkred;
-  color: var(--white);
-  transition: 0.3s;
-}
-
-.boton-producto-ver {
-  margin: 20.5rem 4.75rem;
-  padding: 12px 30px;
-}
-
-.boton-producto-carrito {
-  margin: 20.5rem 14.5rem;
-  padding: 12px 15px;
-}
-
-.boton-no-disponible {
-  background-color: #6c757d;
-  color: var(--white);
-}
-
-.boton-no-disponible:hover {
-  background-color: #53575a;
-}
-
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
@@ -288,7 +250,7 @@ h3 {
 
   #encabezado .navegador {
     /* margin-right: 0 !important; */
-    margin: 0 2rem !important;
+    margin: 0 0.5rem !important;
   }
 
   /* footer */
@@ -316,7 +278,7 @@ h3 {
 
   #encabezado {
     justify-content: center;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   #encabezado .encabezado-marca {
@@ -335,7 +297,11 @@ h3 {
 
   /* footer */
 
-  .footer-logo {
+  .footer-navegador {
+    margin-right: 0 !important;
+  }
+
+  .footer-navegador .footer-logo {
     height: 3rem !important;
     margin-right: 0rem !important;
   }

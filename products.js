@@ -3,9 +3,9 @@
 // Traer datos de los productos
 // ( descripcion (Max. 800 caracteres) / imagenes: (Max. 4 fotos) )
 const productos = [
-    { id: 1, disponible: 'disponible', titulo: 'Kit Set completo de baño', precio: 5500, imagenes: ['img/product_set.jpg', 'img/product_set02.jpg', 'img/product_set03.jpg', 'img/product_set04.jpg'], descripcion: 'El kit Set de Baño incluye una toalla suave de mano, pads quita maquillaje reutilizables, vincha para cabello y turbante absorbente.<br> Experimenta comodidad y funcionalidad en cada paso de tu rutina de cuidado personal. Un conjunto diseñado para mejorar tu experiencia despues de un baño. <ul class="texto-item fw-bold fs-5" style="list-style-type: circle;"><li>Turbante para cabello</li><li>Toalla de mano</li><li>Pads quita maquillaje</li><li>Vincha de pelo</li></ul>' },
-    { id: 2, disponible: 'disponible', titulo: 'Bata de toalla para baño', precio: 10500, imagenes: ['img/product_bata.jpg', 'img/product_bata02.jpg', 'img/product_bata03.jpg', 'img/product_bata04.jpg'], descripcion: '<span style="text-decoration: underline;">Absorción superior</span>: La bata de baño está hecha de materiales altamente absorbentes que te ayudarán a secarte rápidamente después de bañarte. <br><span style="text-decoration: underline;">Comodidad en el diseño</span>: Su diseño espacioso y corte relajado brindan una sensación de comodidad y libertad de movimiento. <br> <span style="text-decoration: underline;">Durabilidad</span>: Utilizamos materiales de alta calidad para garantizar que nuestras batas sean duraderas y resistan el desgaste constante. Puedes confiar en la calidad y la resistencia de nuestras batas para que te acompañen durante mucho tiempo.' },
-    { id: 3, disponible: 'no-disponible', titulo: 'Funda de toalla almohada ', precio: 2900, imagenes: ['img/product_almohada.jpg'], descripcion: '<span style="text-decoration: underline;">Compatibilidad rizado</span>: Recomendada especialmente para cabello rizado y ondulado, estas fundas son la respuesta al frizz no deseado. Ayudan a que tus rizos mantengan su forma y evitan el envejecimiento prematuro de tu cabello, preservando la integridad de tu peinado mientras se seca. <br><span style="text-decoration: underline;">Protección nocturna</span>: Nuestra funda de almohada está cuidadosamente diseñada para proteger tanto tu cabello como tu almohada mientras disfrutas de un sueño reparador con el cabello mojado.' },
+    { id: 1, disponible: true, titulo: 'Kit Set completo de baño', precio: 5500, imagenes: ['./img/product_set.jpg', './img/product_set02.jpg', './img/product_set03.jpg', './img/product_set04.jpg'], descripcion: 'El kit Set de Baño incluye una toalla suave de mano, pads quita maquillaje reutilizables, vincha para cabello y turbante absorbente.<br> Experimenta comodidad y funcionalidad en cada paso de tu rutina de cuidado personal. Un conjunto diseñado para mejorar tu experiencia despues de un baño. <ul class="texto-item fw-bold fs-5" style="list-style-type: circle;"><li>Turbante para cabello</li><li>Toalla de mano</li><li>Pads quita maquillaje</li><li>Vincha de pelo</li></ul>' },
+    { id: 2, disponible: true, titulo: 'Bata de toalla para baño', precio: 10500, imagenes: ['./img/product_bata.jpg', './img/product_bata02.jpg', './img/product_bata03.jpg', './img/product_bata04.jpg'], descripcion: '<span style="text-decoration: underline;">Absorción superior</span>: La bata de baño está hecha de materiales altamente absorbentes que te ayudarán a secarte rápidamente después de bañarte. <br><span style="text-decoration: underline;">Comodidad en el diseño</span>: Su diseño espacioso y corte relajado brindan una sensación de comodidad y libertad de movimiento. <br> <span style="text-decoration: underline;">Durabilidad</span>: Utilizamos materiales de alta calidad para garantizar que nuestras batas sean duraderas y resistan el desgaste constante. Puedes confiar en la calidad y la resistencia de nuestras batas para que te acompañen durante mucho tiempo.' },
+    { id: 3, disponible: false, titulo: 'Funda de toalla almohada ', precio: 2900, imagenes: ['./img/product_almohada.jpg', './img/product_almohada.jpg', './img/product_almohada.jpg', './img/product_almohada.jpg'], descripcion: '<span style="text-decoration: underline;">Compatibilidad rizado</span>: Recomendada especialmente para cabello rizado y ondulado, estas fundas son la respuesta al frizz no deseado. Ayudan a que tus rizos mantengan su forma y evitan el envejecimiento prematuro de tu cabello, preservando la integridad de tu peinado mientras se seca. <br><span style="text-decoration: underline;">Protección nocturna</span>: Nuestra funda de almohada está cuidadosamente diseñada para proteger tanto tu cabello como tu almohada mientras disfrutas de un sueño reparador con el cabello mojado.' },
 ];
 
 // Función para mostrar productos en la página
@@ -13,7 +13,7 @@ function mostrarProductos() {
     const contenedorProductos = document.getElementById('main-productos');
     productos.forEach(producto => {
         let productoHTML = ``;
-        if (producto.disponible === 'disponible') {
+        if (producto.disponible) {
             productoHTML = `
                 <div id="producto-item">
                     <div class="producto-caja-info">
@@ -23,8 +23,8 @@ function mostrarProductos() {
                     <div class="producto-caja-vista">
                         <div class="producto-vista">
                             <img src="${producto.imagenes[0]}" alt="${producto.titulo}" class="marco-disponible 
-                            featurette-image img-fluid mx-auto" width="500" height="500" role="img"
-                                preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+                            producto-vista-imagen featurette-image img-fluid mx-auto" role="img"
+                                preserveAspectRatio="xMidYMid slice" focusable="false" width="500" height="500"></img>
                             <div class="producto-botones">
                                 <button onclick="modalDetalles(${producto.id});" class="boton-producto boton-producto-ver"><i
                                             class="fa-solid fa-circle-info"></i> Detalles</button>
@@ -49,8 +49,8 @@ function mostrarProductos() {
                     <div class="producto-caja-vista">
                         <div class="producto-vista">
                             <img src="${producto.imagenes[0]}" alt="${producto.titulo}" class="marco-no-disponible 
-                            featurette-image img-fluid mx-auto" width="500" height="500" role="img"
-                                preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+                            producto-vista-imagen featurette-image img-fluid mx-auto" role="img"
+                                preserveAspectRatio="xMidYMid slice" focusable="false" width="500" height="500"></img>
                             <div class="producto-botones">
                                 <button class="boton-producto boton-producto-ver boton-no-disponible"><i
                                             class="fa-solid fa-circle-info"></i> Detalles</button>
@@ -159,10 +159,10 @@ function modalDetalles(id) {
         <div class="fotos-producto">
             <img class="foto-max" src="${producto.imagenes[0]}" alt="">
             <div class="barra-fotos">
-                <img class="foto-min" src="${producto.imagenes[0]}" alt="">
-                <img class="foto-min" src="${producto.imagenes[1]}" alt="">
-                <img class="foto-min" src="${producto.imagenes[2]}" alt="">
-                <img class="foto-min" src="${producto.imagenes[3]}" alt="">
+                <img class="foto-min" src="${producto.imagenes[0]}" onclick="actualizarFoto('${producto.imagenes[0]}');" alt="">
+                <img class="foto-min" src="${producto.imagenes[1]}" onclick="actualizarFoto('${producto.imagenes[1]}');" alt="">
+                <img class="foto-min" src="${producto.imagenes[2]}" onclick="actualizarFoto('${producto.imagenes[2]}');" alt="">
+                <img class="foto-min" src="${producto.imagenes[3]}" onclick="actualizarFoto('${producto.imagenes[3]}');" alt="">
             </div>
         </div>
         <div class="descripcion-producto">
@@ -171,6 +171,11 @@ function modalDetalles(id) {
         </div>
     `;
 
+}
+
+function actualizarFoto(url) {
+    const fotoMax = document.querySelector(".foto-max");
+    fotoMax.src = url;
 }
 
 function cerrarDetalles() {

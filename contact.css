@@ -1,28 +1,63 @@
 .body-contacto {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
         url(img/slide_1.jpg);
-    /* background-repeat: no-repeat; */
-    background-size: contain;
+    backdrop-filter: blur(4px);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .main-contacto {
+    padding-top: 0rem !important;
+    padding-bottom: 10rem !important;
+}
+
+.red-contacto {
+    padding-top: 3rem !important;
+    padding-bottom: 11rem !important;
+}
+
+.red-contacto .caja-red {
+    position: absolute;
+    right: 0;
+    width: 30%;
+    margin-right: 8rem;
     display: flex;
-    padding-top: 8rem !important;
-    padding-bottom: 8rem !important;
+    justify-content: center;
+}
+
+.red-contacto .caja-red .btn-instagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background: linear-gradient(25deg, rgb(255, 255, 0), rgb(214, 71, 71), rgb(212, 82, 114), rgb(243, 72, 243));
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    font-size: 50px;
+    transition: 0.5s;
+}
+
+.red-contacto .caja-red .btn-instagram:hover {
+    background: linear-gradient(0, #fff, #fff);
+    color: rgb(212, 82, 114);
 }
 
 .banner-rosa {
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 325px;
-    background-image: url(/img/back_1_clip.jpg);
-    /* background: linear-gradient(8deg, var(--primary), var(--lightbody)); */
+    background-image: url(./img/back_1_clip.jpg);
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.75);
 }
 
 .banner-rosa .info-banner {
     width: 40%;
     color: var(--white);
-    padding: 15px 0 0 100px;
+    padding: 0 0 0 100px;
 }
 
 .banner-rosa .info-banner h4 {
@@ -53,9 +88,9 @@
     text-align: center;
 }
 
-/* .caja-contacto .titulo-contacto {
-    font-size: 25px;
-} */
+.titulo-contacto {
+    text-align: center;
+}
 
 #formulario .form-group {
     margin: 1rem 0 1rem 0;
@@ -72,18 +107,10 @@
     border-bottom: 1px solid #000;
 }
 
-/* #formulario .form-input:active, .form-text:active {
-    border: none;
-}
-
-#formulario input:focus {
-    outline: none;
-    border: none;
-} */
-
 #formulario .boton-wpp {
     background-color: rgb(52, 182, 101);
     border: 0;
+    transition: 0.3s;
 }
 
 #formulario .boton-wpp:hover {
@@ -96,13 +123,44 @@
 /* Pantallas pequeñas (móviles): Consultas para pantallas con un ancho menor a 576 píxeles. */
 @media (max-width: 575px) {
 
+    .main-contacto {
+        padding: 0rem 0 4rem 0 !important;
+    }
+
+    .red-contacto .caja-red {
+        width: 90%;
+        right: 50%;
+        transform: translateX(50%);
+        margin-right: 0;
+    }
+
+    .red-contacto .caja-red .btn-instagram {
+        width: 70px;
+        height: 70px;
+        border-radius: 50px;
+        font-size: 50px;
+    }
+
+    .caja-contacto {
+        right: 50%;
+        transform: translateX(50%);
+        width: 90%;
+        margin: -4rem 0 0 0;
+        padding: 25px 25px 25px 25px;
+        border-radius: 2.5px;
+    }
+
+    .caja-contacto .titulo-contacto {
+        font-size: 30px;
+    }
+
     .banner-rosa {
-        height: 660px;
+        height: 700px;
     }
 
     .banner-rosa .info-banner {
         width: 100%;
-        padding: 23.5rem 3rem 0 5.5rem;
+        padding: 23.5rem 3rem 0 3rem;
     }
 
     .banner-rosa .info-banner h4 {
@@ -118,24 +176,26 @@
         margin: 0 0 30px 50px;
     }
 
-    .caja-contacto {
-        /* position: absolute; */
-        right: 50%;
-        transform: translateX(50%);
-        width: 90%;
-        margin: -4rem 0 0 0;
-        padding: 25px 25px 25px 25px;
-        border-radius: 2.5px;
-    }
-
-    .caja-contacto .titulo-contacto {
-        font-size: 30px;
-    }
-
 }
 
 /* Tabletas y pantallas medianas: Consultas para pantallas con un ancho entre 576 y 991 píxeles. */
 @media (min-width: 576px) and (max-width: 991px) {
+
+
+    .red-contacto .caja-red {
+        width: 40%;
+        margin-right: 2.5rem;
+    }
+
+    .caja-contacto {
+        width: 40%;
+        margin-right: 2.5rem;
+        padding: 25px 25px 25px 25px;
+    }
+
+    .caja-contacto .titulo-contacto {
+        font-size: 20px;
+    }
 
     .banner-rosa {
         height: 325px;
@@ -158,21 +218,6 @@
     .banner-rosa .info-banner h5 {
         margin: 0 0 30px 50px;
     }
-
-    .caja-contacto {
-        right: 0;
-        width: 40%;
-        /* margin-left: 2rem; */
-        margin-right: 2.5rem;
-        margin-top: -4rem;
-        padding: 25px 25px 25px 25px;
-        border-radius: 2.5px;
-    }
-
-    .caja-contacto .titulo-contacto {
-        font-size: 20px;
-    }
-
 
 }
 

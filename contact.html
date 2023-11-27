@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto · CrezcoSiendo</title>
-    <link rel="website icon" type="png" href="/img/logo_marca.png">
+    <link rel="website icon" type="png" href="./img/logo_marca.png">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="contact.css">
     <!-- Bootstrap -->
@@ -28,8 +28,8 @@
     <!-- =========================== ENCABEZADO =========================== -->
 
     <header id="encabezado">
-        <a href="/" class="encabezado-marca">
-            <img src="/img/logo_marca.png" alt="Logo Crezcosiendo">
+        <a href="home.html" class="encabezado-marca">
+            <img src="./img/logo_marca.png" alt="Logo Crezcosiendo">
             <span class="encabezado-titulo">CREZCOSIENDO</span>
         </a>
         <ul class="navegador">
@@ -46,46 +46,54 @@
     <main class="main-contacto">
 
         <!-- =========================== CONTACTO =========================== -->
-        <div class="">
-            <div class="caja-contacto">
-                <h3 class="titulo-contacto fw-bold">CONTÁCTENOS</h3>
-                <form id="formulario">
-                    <div class="form-group">
-                        <!-- <label for="name"></label> -->
-                        <input class="form-input" type="text" placeholder="Nombre completo" class="form-control"
-                            id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <!-- <label for="email"></label> -->
-                        <input class="form-input" type="email" placeholder="Correo electrónico" class="form-control"
-                            id="email">
-                    </div>
-                    <div class="form-group">
-                        <!-- <label for="number"></label> -->
-                        <input class="form-input" type="text" placeholder="Número de teléfono" class="form-control"
-                            id="number" required>
-                    </div>
-                    <div class="form-group">
-                        <!-- <label for="message"></label> -->
-                        <textarea class="form-text" class="form-control" placeholder="Ingrese su mensaje" id="message"
-                            rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="boton-wpp btn btn-primary mt-3" id="submit">
-                        <i class="fa-brands fa-whatsapp m-1"></i> Enviar WhatsApp
-                    </button>
-                </form>
+
+        <div class="red-contacto">
+            <div class="caja-red">
+                <a class="btn-instagram" href="https://www.instagram.com/crezcosiendo/" target="_blank"
+                    rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
+
+        <div class="caja-contacto">
+            <h3 class="titulo-contacto fw-bold">CONTÁCTENOS</h3>
+            <form id="formulario">
+                <div class="form-group">
+                    <!-- <label for="name"></label> -->
+                    <input class="form-input" type="text" placeholder="Nombre completo" class="form-control" id="name"
+                        required>
+                </div>
+                <div class="form-group">
+                    <!-- <label for="email"></label> -->
+                    <input class="form-input" type="email" placeholder="Correo electrónico" class="form-control"
+                        id="email">
+                </div>
+                <div class="form-group">
+                    <!-- <label for="number"></label> -->
+                    <input class="form-input" type="text" placeholder="Número de teléfono" class="form-control"
+                        id="number" required>
+                </div>
+                <div class="form-group">
+                    <!-- <label for="message"></label> -->
+                    <textarea class="form-text" class="form-control" placeholder="Ingrese su mensaje" id="message"
+                        rows="4" required></textarea>
+                </div>
+                <button type="submit" class="boton-wpp btn btn-primary mt-3" id="submit">
+                    <i class="fa-brands fa-whatsapp m-1"></i> Enviar WhatsApp
+                </button>
+            </form>
+        </div>
+
         <div class="banner-rosa">
             <div class="info-banner">
-                <h4><i class="fa-solid fa-location-dot"></i>UBICACION</h4>
-                <h5>Lamadrir 2452</h5>
-                <h4><i class="fa-solid fa-clock"></i>HORARIOS</h4>
-                <h5>16:00hs - 20:00hs</h5>
                 <h4><i class="fa-solid fa-phone"></i>NUMERO TELEFONO</h4>
-                <h5>1234-5678</h5>
+                <h5>+54 9 223 590-1382</h5>
+                <h4><i class="fa-solid fa-clock"></i>HORARIOS DE ATENCION</h4>
+                <h5>11:00hs - 17:00hs</h5>
+                <h4><i class="fa-solid fa-location-dot"></i>UBICACION DE RETIRO</h4>
+                <h5>Buenos Aires, Mar del Plata, Gascón 2169</h5>
             </div>
         </div>
+
     </main>
 
     <!-- =========================== PIE DE PAGINA =========================== -->
@@ -101,7 +109,7 @@
             <li class="navegador-item"><a href="home.html" class="navegador-link px-2">Inicio</a></li>
             <li class="navegador-item"><a href="products.html" class="navegador-link px-2">Productos</a></li>
             <li class="navegador-item"><a href="#" class="navegador-link active px-2">Contacto</a></li>
-            <img src="/img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
+            <img src="./img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
         </ul>
     </footer>
 

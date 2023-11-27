@@ -2,7 +2,6 @@
 
 /* ---------------------------------- Carrusel ---------------------------------- */
 
-
 #myCarousel {
     margin-bottom: 4rem;
 }
@@ -60,6 +59,9 @@
 /* ---------------------------------- Tarjetas ---------------------------------- */
 
 .contenedor-caja {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
@@ -127,6 +129,44 @@
     user-select: none;
 }
 
+.info-texto-pri {
+    text-align: left;
+    font-size: 22px;
+    align-self: center;
+}
+
+.info-texto-pri>p {
+    margin-bottom: 0;
+
+}
+
+.info-texto-img {
+    padding: 1.5rem 0 !important;
+    display: flex;
+    justify-content: center;
+}
+
+.info-texto-img .info-logo {
+    padding: 0;
+    width: 100%;
+}
+
+.info-texto .info-logo:hover {
+    filter: brightness(1.35);
+    transition: 0.5s;
+}
+
+.info-texto-seg {
+    text-align: right;
+    font-size: 22px;
+    align-self: center;
+}
+
+.info-texto-seg>p {
+    margin-bottom: 0;
+
+}
+
 /* ---------------------------------- Modal Login ---------------------------------- */
 
 #modal-login {
@@ -183,8 +223,8 @@
     /* home */
 
     .caja-tarjetas {
-        margin: 0 1rem !important;
-        padding: 2rem 0 !important;
+        margin: 0 0 !important;
+        padding: 1rem 0 !important;
     }
 
     .grilla-tarjetas {
@@ -192,7 +232,13 @@
     }
 
     .columna-tarjeta {
-        max-width: 90%
+        max-width: auto;
+    }
+
+    .caja-tarjetas {
+        background: linear-gradient(8deg, var(--primary), var(--lightbody));
+        padding: 2rem 0;
+        border-radius: 0;
     }
 
     .tarjeta-detalle .texto-detalle {
@@ -209,8 +255,15 @@
         font-size: 1.20rem !important;
     }
 
-    .info-logo {
-        padding: 5rem;
+    .info-texto-img {
+        padding: 1.5rem 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .info-texto-img .info-logo {
+        padding: 0;
+        width: 250px;
     }
 
 }
@@ -221,7 +274,15 @@
     /* home */
 
     .caja-tarjetas {
-        margin: 0 2rem;
+        margin: 0 1rem;
+    }
+
+    .grilla-tarjetas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+
     }
 
     .tarjeta-detalle .texto-detalle {
@@ -233,8 +294,15 @@
         font-size: 1.20rem !important;
     }
 
-    .info-logo {
-        padding: 5rem;
+    .info-texto-img {
+        padding: 1.5rem 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .info-texto-img .info-logo {
+        padding: 0;
+        width: 350px;
     }
 
 }

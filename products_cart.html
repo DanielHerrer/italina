@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras · CrezcoSiendo</title>
-    <link rel="website icon" type="png" href="img/logo_marca.png">
+    <link rel="website icon" type="png" href="./img/logo_marca.png">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="products_cart.css">
     <!-- Bootstrap -->
@@ -31,7 +31,7 @@
 
         <header id="encabezado">
             <a href="/" class="encabezado-marca">
-                <img src="/img/logo_marca.png" alt="Logo Crezcosiendo">
+                <img src="./img/logo_marca.png" alt="Logo Crezcosiendo">
                 <span class="encabezado-titulo">CREZCOSIENDO</span>
             </a>
             <ul class="navegador">
@@ -53,6 +53,7 @@
 
             <h2 class="titulo-carrito"><i class="fa-solid fa-basket-shopping"></i> Mi Carrito de compras</h2>
             <div class="encabezado-carrito">
+                <p></p>
                 <p class="titulo">Producto</p>
                 <p class="precio">Precio</p>
                 <p class="cantidad">Cantidad</p>
@@ -66,8 +67,10 @@
                 <p class="total">TOTAL VALOR DE COMPRA =</p>
                 <p id="precio"></p>
             </div>
-            <button class="boton-carrito carrito-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
-            <button class="boton-carrito carrito-comprar">Realizar Compra</button>
+            <div class="botones-carrito">
+                <button class="boton-carrito carrito-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
+                <button class="boton-carrito carrito-comprar">Realizar Compra</button>
+            </div>
 
         </main>
 
@@ -83,7 +86,7 @@
                 <li class="navegador-item"><a href="home.html" class="navegador-link px-2">Inicio</a></li>
                 <li class="navegador-item"><a href="products.html" class="navegador-link active px-2">Productos</a></li>
                 <li class="navegador-item"><a href="contact.html" class="navegador-link px-2">Contacto</a></li>
-                <img src="/img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
+                <img src="./img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
             </ul>
         </footer>
     </div>

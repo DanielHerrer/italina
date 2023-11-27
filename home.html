@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio · CrezcoSiendo</title>
-    <link rel="website icon" type="png" href="img/logo_marca.png">
+    <link rel="website icon" type="png" href="./img/logo_marca.png">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="home.css">
     <!-- Bootstrap -->
@@ -25,225 +25,219 @@
 </head>
 
 <body>
-    <div class="">
-        <!-- =========================== ENCABEZADO =========================== -->
+    <!-- =========================== ENCABEZADO =========================== -->
 
-        <header id="encabezado">
-            <a href="/" class="encabezado-marca">
-                <img src="/img/logo_marca.png" alt="Logo Crezcosiendo">
-                <span class="encabezado-titulo">CREZCOSIENDO</span>
-            </a>
-            <ul class="navegador">
-                <li class="navegador-item"><a href="#" class="navegador-link active" aria-current="page">Inicio</a></li>
-                <li class="navegador-item"><a href="products.html" class="navegador-link no-activo">Productos</a></li>
-                <li class="navegador-item"><a href="contact.html" class="navegador-link no-activo">Contacto</a></li>
-                <a href="products_cart.html"><button class="boton-navegador-carrito">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <p class="carrito-contador"></p>
-                    </button></a>
-            </ul>
-        </header>
+    <header id="encabezado">
+        <a href="home.html" class="encabezado-marca">
+            <img src="./img/logo_marca.png" alt="Logo Crezcosiendo">
+            <span class="encabezado-titulo">CREZCOSIENDO</span>
+        </a>
+        <ul class="navegador">
+            <li class="navegador-item"><a href="#" class="navegador-link active" aria-current="page">Inicio</a></li>
+            <li class="navegador-item"><a href="products.html" class="navegador-link no-activo">Productos</a></li>
+            <li class="navegador-item"><a href="contact.html" class="navegador-link no-activo">Contacto</a></li>
+            <a href="products_cart.html"><button class="boton-navegador-carrito">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <p class="carrito-contador"></p>
+                </button></a>
+        </ul>
+    </header>
 
-        <!-- =========================== CARRUSEL =========================== -->
+    <!-- =========================== CARRUSEL =========================== -->
 
-        <main class="main-index">
-            <div id="myCarousel" class="carousel slide mb-0" data-bs-ride="carousel">
+    <main class="main-index">
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+        <div id="myCarousel" class="carousel slide mb-0" data-bs-ride="carousel">
 
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
 
-                <div class="carousel-inner">
-
-                    <div class="carousel-item active">
-                        <div class="capa-oscura"></div>
-                        <img src="/img/slide_1.jpg" class="bd-placeholder-img object-fit-cover" width="100%"
-                            height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice"
-                            focusable="false"></img>
-                        <div class="container">
-                            <div class="carousel-caption text-start">
-                                <h1 class="text-shadow">Productos</h1>
-                                <p class="text-shadow">Revisa nuestro catalogo de productos seleccionados.</p>
-                                <p><a class="btn-carousel btn btn-lg" href="products.html">Acceder</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="capa-oscura"></div>
-                        <img src="/img/slide_2.jpg" class="object-fit-cover bd-placeholder-img" width="100%"
-                            height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice"
-                            focusable="false"></img>
-                        <div class="container">
-                            <div class="carousel-caption">
-                                <h1 class="text-shadow">Batas de baño</h1>
-                                <p class="text-shadow">Cómodas y ajustables batas de toalla, <span
-                                        class="fw-bold">confeccionadas a pedido</span>.</p>
-                                <p><a class="btn-carousel btn btn-lg" href="products.html">Realizar
-                                        pedido</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="capa-oscura"></div>
-                        <img src="img/slide_3.jpg" class="object-fit-cover bd-placeholder-img" width="100%"
-                            height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice"
-                            focusable="false"></img>
-                        <div class="container">
-                            <div class="carousel-caption text-end">
-                                <h1 class="text-shadow">Reacondicionamiento de ropa</h1>
-                                <p class="text-shadow">Trabajos de reformas especializados acorde a la indumentaria del
-                                    cliente.</p>
-                                <p><a class="btn-carousel btn btn-lg" href="contact.html">Contactar</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
 
-            <hr class="featurette-divider">
+            <div class="carousel-inner">
 
-            <!-- =========================== TARJETAS =========================== -->
-
-            <div class="contenedor-caja">
-                <div class="caja-tarjetas">
-                    <div class="grilla-tarjetas">
-                        <div class="columna-tarjeta">
-                            <div class="tarjeta-detalle" style="background-image: url(img/feature_suavidad.jpg);">
-                                <div class="texto-detalle">
-                                    <h3 class="titulo-detalle text-center display-6 lh-1 fw-semibold"
-                                        style="z-index: 2;">Textura
-                                        ultrasuave</h3>
-                                    <p class="parrafo-detalle">Descubre la textura ultrasuave que elevará tu
-                                        experiencia. Nuestra tecnología
-                                        innovadora crea una suavidad inigualable para tu piel. Siente el lujo del
-                                        confort de alta calidad. Eleva tu cuidado personal al próximo nivel. ¡Suavidad
-                                        sin igual, para ti!</p>
-                                </div>
-                            </div>
+                <div class="carousel-item active">
+                    <div class="capa-oscura"></div>
+                    <img src="./img/slide_1.jpg" class="bd-placeholder-img object-fit-cover" width="100%" height="100%"
+                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+                    <div class="container">
+                        <div class="carousel-caption text-start">
+                            <h1 class="text-shadow">Productos</h1>
+                            <p class="text-shadow">Revisa nuestro catalogo de productos seleccionados.</p>
+                            <p><a class="btn-carousel btn btn-lg" href="products.html">Acceder</a></p>
                         </div>
-
-                        <div class="columna-tarjeta">
-                            <div class="tarjeta-detalle" style="background-image: url(img/feature_absorbente.jpg);">
-                                <div class="texto-detalle">
-                                    <h3 class="titulo-detalle text-center display-6 lh-1 fw-semibold"
-                                        style="z-index: 2;">Absorción
-                                        superior</h3>
-                                    <p class="parrafo-detalle">Asombrosa absorción que transformará tu experiencia.
-                                        Nuestra dedicación a la
-                                        calidad garantiza un rendimiento excepcional en cada aplicación. Siente la
-                                        excelencia en el cuidado personal elevando tus estandares. ¡Absorción
-                                        insuperable, para ti!</p>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="capa-oscura"></div>
+                    <img src="./img/slide_2.jpg" class="object-fit-cover bd-placeholder-img" width="100%" height="100%"
+                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1 class="text-shadow">Batas de baño</h1>
+                            <p class="text-shadow">Cómodas y ajustables batas de toalla, <span
+                                    class="fw-bold">confeccionadas a pedido</span>.</p>
+                            <p><a class="btn-carousel btn btn-lg" href="products.html">Realizar
+                                    pedido</a></p>
                         </div>
-
-                        <div class="columna-tarjeta">
-                            <div class="tarjeta-detalle" style="background-image: url(img/feature_durabilidad.jpg);">
-                                <div class="texto-detalle">
-                                    <h3 class="titulo-detalle text-center display-6 lh-1 fw-semibold"
-                                        style="z-index: 2;">Materiales
-                                        resistentes</h3>
-                                    <p class="parrafo-detalle">Descubre materiales resistentes que garantizan
-                                        durabilidad. Nuestra innovación
-                                        crea una fortaleza inigualable en cada producto. Confía en la resistencia para
-                                        tus necesidades diarias, confianza al próximo nivel. ¡Resistencia incomparable,
-                                        para ti!</p>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="capa-oscura"></div>
+                    <img src="./img/slide_3.jpg" class="object-fit-cover bd-placeholder-img" width="100%" height="100%"
+                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+                    <div class="container">
+                        <div class="carousel-caption text-end">
+                            <h1 class="text-shadow">Reacondicionamiento de ropa</h1>
+                            <p class="text-shadow">Trabajos de reformas especializados acorde a la indumentaria del
+                                cliente.</p>
+                            <p><a class="btn-carousel btn btn-lg" href="contact.html">Contactar</a></p>
                         </div>
-
                     </div>
                 </div>
             </div>
 
-            <hr class="featurette-divider">
+        </div>
 
-            <!-- =========================== INFO =========================== -->
+        <hr class="featurette-divider">
 
-            <div class="container mb-5 py-5">
-                <div class="info-texto row justify-content-between fs-5">
-                    <div class="col-lg-5">
-                        <p style="text-align: left; padding-right: 15px;">
-                            Hace algunos años, Mabel dio vida a "CrezcoSiendo",
-                            un microemprendimiento centrado en la confección de
-                            artículos de toalla y costura para baño.
-                            Su oferta incluye batas de baño elegantes,
-                            turbantes de toalla, pads quitamaquillaje reutilizables
-                            y fundas de toalla para almohada que añaden estilo
-                            y comodidad.
-                        </p>
-                    </div>
-                    <div class="col-lg-2 m-auto">
-                        <div class="info-logo">
-                            <img src="img/logo_marca.png" alt="Logo CrezcoSiendo" class="w-100">
+        <!-- =========================== TARJETAS =========================== -->
+
+        <div class="contenedor-caja">
+            <div class="caja-tarjetas">
+                <div class="grilla-tarjetas">
+                    <div class="columna-tarjeta">
+                        <div class="tarjeta-detalle" style="background-image: url(./img/feature_suavidad.jpg);">
+                            <div class="texto-detalle">
+                                <h3 class="titulo-detalle text-center display-6 lh-1 fw-semibold" style="z-index: 2;">
+                                    Textura
+                                    ultrasuave</h3>
+                                <p class="parrafo-detalle">Descubre la textura ultrasuave que elevará tu
+                                    experiencia. Nuestra tecnología
+                                    innovadora crea una suavidad inigualable para tu piel. Siente el lujo del
+                                    confort de alta calidad. Eleva tu cuidado personal al próximo nivel. ¡Suavidad
+                                    sin igual, para ti!</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-5">
-                        <p style="text-align: right; padding-left: 15px;">
-                            Además, ofrece servicios de refacción de ropa a medida. Con esmero y dedicación,
-                            Mabel ha forjado una marca que no solo se destaca por la calidad de sus productos,
-                            sino también por la atención personalizada que brinda a sus clientes. "CrezcoSiendo"
-                            es un testimonio de su pasión por la costura y su compromiso con la excelencia.
-                        </p>
+
+                    <div class="columna-tarjeta">
+                        <div class="tarjeta-detalle" style="background-image: url(./img/feature_absorbente.jpg);">
+                            <div class="texto-detalle">
+                                <h3 class="titulo-detalle text-center display-6 lh-1 fw-semibold" style="z-index: 2;">
+                                    Absorción
+                                    superior</h3>
+                                <p class="parrafo-detalle">Asombrosa absorción que transformará tu experiencia.
+                                    Nuestra dedicación a la
+                                    calidad garantiza un rendimiento excepcional en cada aplicación. Siente la
+                                    excelencia en el cuidado personal elevando tus estandares. ¡Absorción
+                                    insuperable, para ti!</p>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="columna-tarjeta">
+                        <div class="tarjeta-detalle" style="background-image: url(./img/feature_durabilidad.jpg);">
+                            <div class="texto-detalle">
+                                <h3 class="titulo-detalle text-center display-6 lh-1 fw-semibold" style="z-index: 2;">
+                                    Materiales
+                                    resistentes</h3>
+                                <p class="parrafo-detalle">Descubre materiales resistentes que garantizan
+                                    durabilidad. Nuestra innovación
+                                    crea una fortaleza inigualable en cada producto. Confía en la resistencia para
+                                    tus necesidades diarias, confianza al próximo nivel. ¡Resistencia incomparable,
+                                    para ti!</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+        </div>
 
-        </main>
+        <hr class="featurette-divider">
 
-        <!-- =========================== PIE DE PAGINA =========================== -->
+        <!-- =========================== INFO =========================== -->
 
-        <footer class="footer-crezcosiendo">
-
-            <span class="footer-info d-flex col-md-6 mb-0 text-body-secondary">
-                <button id="btn-modal-login">Login</button>
-                <p class="info-creador"></p>
-            </span>
-
-            <ul class="footer-navegador col-md-4 justify-content-end">
-                <li class="navegador-item"><a href="#" class="navegador-link active px-2">Inicio</a></li>
-                <li class="navegador-item"><a href="products.html" class="navegador-link px-2">Productos</a></li>
-                <li class="navegador-item"><a href="contact.html" class="navegador-link px-2">Contacto</a></li>
-                <img src="/img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
-            </ul>
-        </footer>
-
-        <!-- =========================== MODAL =========================== -->
-
-        <dialog id="modal-login">
-
-            <button id="btn-cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
-
-            <div class="modal-content">
-                <h2 class="modal-title">Login</h2>
-                <form method="dialog" action="">
-                    <label for="">Usuario</label>
-                    <input type="text">
-                    <label for="">Contraseña</label>
-                    <input type="password">
-
-                    <button class="btn-login" type="submit">Ingresar</button>
-                </form>
+        <div class="container mb-5 py-5">
+            <div class="info-texto row justify-content-between fs-5">
+                <div class="info-texto-pri col-lg-5">
+                    <p>
+                        Hace algunos años, Mabel dio vida a "CrezcoSiendo",
+                        un microemprendimiento centrado en la confección de
+                        artículos de toalla y costura para baño.
+                        Su oferta incluye batas de baño elegantes,
+                        turbantes de toalla, pads quitamaquillaje reutilizables
+                        y fundas de toalla para almohada que añaden estilo
+                        y comodidad.
+                    </p>
+                </div>
+                <div class="info-texto-img col-lg-2 m-auto">
+                    <a href="https://www.instagram.com/crezcosiendo/" target="_blank" rel="noopener noreferrer">
+                        <img class="info-logo" src="./img/logo_original.png" alt="Logo CrezcoSiendo" class="w-100">
+                    </a>
+                </div>
+                <div class="info-texto-seg col-lg-5">
+                    <p>
+                        Además, ofrece servicios de refacción de ropa a medida. Con esmero y dedicación,
+                        Mabel ha forjado una marca que no solo se destaca por la calidad de sus productos,
+                        sino también por la atención personalizada que brinda a sus clientes. "CrezcoSiendo"
+                        es un testimonio de su pasión por la costura y su compromiso con la excelencia.
+                    </p>
+                </div>
             </div>
+        </div>
 
-        </dialog>
+    </main>
 
-    </div>
+    <!-- =========================== PIE DE PAGINA =========================== -->
+
+    <footer class="footer-crezcosiendo">
+
+        <span class="footer-info d-flex col-md-6 mb-0 text-body-secondary">
+            <button id="btn-modal-login">Login</button>
+            <p class="info-creador"></p>
+        </span>
+
+        <ul class="footer-navegador col-md-4 justify-content-end">
+            <li class="navegador-item"><a href="#" class="navegador-link active px-2">Inicio</a></li>
+            <li class="navegador-item"><a href="products.html" class="navegador-link px-2">Productos</a></li>
+            <li class="navegador-item"><a href="contact.html" class="navegador-link px-2">Contacto</a></li>
+            <img src="./img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
+        </ul>
+    </footer>
+
+    <!-- =========================== MODAL =========================== -->
+
+    <dialog id="modal-login">
+
+        <button id="btn-cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
+
+        <div class="modal-content">
+            <h2 class="modal-title">Login</h2>
+            <form method="dialog" action="">
+                <label for="">Usuario</label>
+                <input type="text">
+                <label for="">Contraseña</label>
+                <input type="password">
+
+                <button class="btn-login" type="submit">Ingresar</button>
+            </form>
+        </div>
+
+    </dialog>
+
 
     <script src="index.js"></script>
     <script src="home.js"></script>

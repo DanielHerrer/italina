@@ -3,9 +3,9 @@
 // Traer datos de los productos
 // ( descripcion (Max. 800 caracteres) / imagenes: (Max. 4 fotos) )
 const productos = [
-    { id: 1, disponible: 'disponible', titulo: 'Kit Set completo de baño', precio: 5500, imagenes: ['img/product_set.jpg', 'img/product_set02.jpg', 'img/product_set03.jpg', 'img/product_set04.jpg'], descripcion: 'El kit Set de Baño incluye una toalla suave de mano, pads quita maquillaje reutilizables, vincha para cabello y turbante absorbente.<br> Experimenta comodidad y funcionalidad en cada paso de tu rutina de cuidado personal. Un conjunto diseñado para mejorar tu experiencia despues de un baño. <ul class="texto-item fw-bold fs-5" style="list-style-type: circle;"><li>Turbante para cabello</li><li>Toalla de mano</li><li>Pads quita maquillaje</li><li>Vincha de pelo</li></ul>' },
-    { id: 2, disponible: 'disponible', titulo: 'Bata de toalla para baño', precio: 10500, imagenes: ['img/product_bata.jpg', 'img/product_bata02.jpg', 'img/product_bata03.jpg', 'img/product_bata04.jpg'], descripcion: '<span style="text-decoration: underline;">Absorción superior</span>: La bata de baño está hecha de materiales altamente absorbentes que te ayudarán a secarte rápidamente después de bañarte. <br><span style="text-decoration: underline;">Comodidad en el diseño</span>: Su diseño espacioso y corte relajado brindan una sensación de comodidad y libertad de movimiento. <br> <span style="text-decoration: underline;">Durabilidad</span>: Utilizamos materiales de alta calidad para garantizar que nuestras batas sean duraderas y resistan el desgaste constante. Puedes confiar en la calidad y la resistencia de nuestras batas para que te acompañen durante mucho tiempo.' },
-    { id: 3, disponible: 'no-disponible', titulo: 'Funda de toalla almohada ', precio: 2900, imagenes: ['img/product_almohada.jpg'], descripcion: '<span style="text-decoration: underline;">Compatibilidad rizado</span>: Recomendada especialmente para cabello rizado y ondulado, estas fundas son la respuesta al frizz no deseado. Ayudan a que tus rizos mantengan su forma y evitan el envejecimiento prematuro de tu cabello, preservando la integridad de tu peinado mientras se seca. <br><span style="text-decoration: underline;">Protección nocturna</span>: Nuestra funda de almohada está cuidadosamente diseñada para proteger tanto tu cabello como tu almohada mientras disfrutas de un sueño reparador con el cabello mojado.' },
+    { id: 1, disponible: true, titulo: 'Kit Set completo de baño', precio: 5500, imagenes: ['./img/product_set.jpg', './img/product_set02.jpg', './img/product_set03.jpg', './img/product_set04.jpg'], descripcion: 'El kit Set de Baño incluye una toalla suave de mano, pads quita maquillaje reutilizables, vincha para cabello y turbante absorbente.<br> Experimenta comodidad y funcionalidad en cada paso de tu rutina de cuidado personal. Un conjunto diseñado para mejorar tu experiencia despues de un baño. <ul class="texto-item fw-bold fs-5" style="list-style-type: circle;"><li>Turbante para cabello</li><li>Toalla de mano</li><li>Pads quita maquillaje</li><li>Vincha de pelo</li></ul>' },
+    { id: 2, disponible: true, titulo: 'Bata de toalla para baño', precio: 10500, imagenes: ['./img/product_bata.jpg', './img/product_bata02.jpg', './img/product_bata03.jpg', './img/product_bata04.jpg'], descripcion: '<span style="text-decoration: underline;">Absorción superior</span>: La bata de baño está hecha de materiales altamente absorbentes que te ayudarán a secarte rápidamente después de bañarte. <br><span style="text-decoration: underline;">Comodidad en el diseño</span>: Su diseño espacioso y corte relajado brindan una sensación de comodidad y libertad de movimiento. <br> <span style="text-decoration: underline;">Durabilidad</span>: Utilizamos materiales de alta calidad para garantizar que nuestras batas sean duraderas y resistan el desgaste constante. Puedes confiar en la calidad y la resistencia de nuestras batas para que te acompañen durante mucho tiempo.' },
+    { id: 3, disponible: false, titulo: 'Funda de toalla almohada ', precio: 2900, imagenes: ['./img/product_almohada.jpg', './img/product_almohada.jpg', './img/product_almohada.jpg', './img/product_almohada.jpg'], descripcion: '<span style="text-decoration: underline;">Compatibilidad rizado</span>: Recomendada especialmente para cabello rizado y ondulado, estas fundas son la respuesta al frizz no deseado. Ayudan a que tus rizos mantengan su forma y evitan el envejecimiento prematuro de tu cabello, preservando la integridad de tu peinado mientras se seca. <br><span style="text-decoration: underline;">Protección nocturna</span>: Nuestra funda de almohada está cuidadosamente diseñada para proteger tanto tu cabello como tu almohada mientras disfrutas de un sueño reparador con el cabello mojado.' },
 ];
 
 // Función para agregar productos al carrito
@@ -63,8 +63,10 @@ function mostrarCarrito() {
         carrito.forEach(item => {
             const itemHTML = `
             <div class="item-carrito">
-                <div class="item-carrito-producto">
+                <div class="item-carrito-foto">
                     <img class="item-img" src="${item.imagenes[0]}" alt="${item.titulo}">
+                </div>
+                <div class="item-carrito-producto">
                     <p class="item-titulo">${item.titulo}</p>
                 </div>
                 <div class="item-carrito-precio">
@@ -89,8 +91,10 @@ function mostrarCarrito() {
     } else {
         const itemHTML = `
             <div class="item-carrito" style="color: #747474;">
-                <div class="item-carrito-producto">
+                <div class="item-carrito-foto">
                     <img class="item-sin-img" src="./img/question-secondary.png" style="filter: brightness(1.1);" alt="Item producto">
+                </div>
+                <div class="item-carrito-producto">
                     <p class="item-titulo">Ingrese aquí su producto</p>
                 </div>
                 <div class="item-carrito-precio">
