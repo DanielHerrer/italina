@@ -172,8 +172,56 @@
     filter: brightness(1.2);
 }
 
-/* RESPONSIVE CSS
--------------------------------------------------- */
+/* ---------------------------------- Modal Confirmar Compra ---------------------------------- */
+
+#modal-confirmar {
+    border-radius: 20px;
+    border-style: none;
+}
+
+
+#modal-confirmar .cerrar-modal {
+    border-style: none;
+    float: right;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+#modal-confirmar .cerrar-modal:hover {
+    filter: brightness(0.8);
+}
+
+#modal-confirmar .modal-content .content-info {
+    margin: 0 1rem;
+}
+
+#modal-confirmar .modal-content .content-btn {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#modal-confirmar .modal-content .content-btn .btn-volver {
+    background-color: rgb(199, 121, 121);
+    color: var(--white);
+    border: 0;
+    border-radius: 5px;
+    padding: 7.5px 25px;
+}
+
+#modal-confirmar .modal-content .content-btn .btn-comprar {
+    background-color: rgb(112, 151, 112);
+    color: var(--white);
+    border: 0;
+    border-radius: 5px;
+    padding: 7.5px 25px;
+}
+
+#modal-confirmar::backdrop {
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+/* -------------------------- RESPONSIVE CSS -------------------------------------------------- */
 
 /* Pantallas pequeñas (móviles): Consultas para pantallas con un ancho menor a 576 píxeles. */
 @media (max-width: 575px) {
@@ -274,10 +322,6 @@
 
     .item-carrito .item-carrito-producto .item-titulo {
         font-size: 20px;
-    }
-
-    .item-carrito .item-carrito-precio {
-        /* word-wrap: break-word; */
     }
 
     .item-carrito .item-carrito-cantidad {

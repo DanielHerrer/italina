@@ -69,10 +69,34 @@
             </div>
             <div class="botones-carrito">
                 <button class="boton-carrito carrito-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
-                <button class="boton-carrito carrito-comprar">Realizar Compra</button>
+                <button onclick="modalConfirmarCompra();" class="boton-carrito carrito-comprar">Orden de
+                    Compra</button>
             </div>
 
         </main>
+
+        <!-- =========================== MODAL =========================== -->
+
+        <dialog id="modal-confirmar">
+
+            <button onclick="cerrarConfirmar();" class="cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="modal-content">
+                <div class="content-info">
+                    <h1 class="modal-precio"></h1>
+                    <h2 class="modal-title">Confirma la compra?</h2>
+                    <p class="modal-sub">*Cualquier precio mostrado puede estar sujeto a cambios o modificaciones.</p>
+                    <p class="modal-sub">Consultar por privado para más información.</p>
+                </div>
+                <div class="content-btn">
+                    <button onclick="cerrarConfirmar();" class="btn-volver"><i class="fa-solid fa-arrow-left"></i>
+                        Volver</button>
+                    <button onclick="enviarOrden();" class="btn-comprar"><i class="fa-brands fa-whatsapp m-1"></i>
+                        Realizar Orden</button>
+                </div>
+            </div>
+
+        </dialog>
 
         <!-- =========================== PIE DE PAGINA =========================== -->
 

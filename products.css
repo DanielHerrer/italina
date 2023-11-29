@@ -38,7 +38,7 @@
     position: relative;
 }
 
-.producto-caja-vista .producto-vista .producto-vista-imagen {}
+/* .producto-caja-vista .producto-vista .producto-vista-imagen {} */
 
 .producto-caja-vista .producto-vista .marco-disponible {
     border: 0.75rem solid transparent;
@@ -133,14 +133,14 @@
 }
 
 
-#modal-producto #btn-cerrar-modal {
+#modal-producto .cerrar-modal {
     border-style: none;
     float: right;
     border-radius: 5px;
     margin: 0 5px;
 }
 
-#modal-producto #btn-cerrar-modal:hover {
+#modal-producto .cerrar-modal:hover {
     filter: brightness(0.8);
 }
 
