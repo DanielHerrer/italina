@@ -167,53 +167,6 @@
 
 }
 
-/* ---------------------------------- Modal Login ---------------------------------- */
-
-#modal-login {
-    width: 30%;
-    border-radius: 25px;
-    border-style: none;
-}
-
-#modal-login #btn-cerrar-modal {
-    border-style: none;
-    float: right;
-    border-radius: 5px;
-}
-
-#modal-login .modal-title {
-    margin-bottom: 15px;
-}
-
-#modal-login .modal-content {
-    padding: 0 50px 25px 50px;
-    text-align: center;
-}
-
-#modal-login .modal-content input {
-    width: 100%;
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-#modal-login .modal-content .btn-login {
-    margin-top: 10px;
-    padding: 5px 20px;
-    border-radius: 15px;
-    border-style: none;
-    background-color: var(--success);
-    color: var(--white);
-    transition: 0.5s;
-}
-
-#modal-login .modal-content .btn-login:hover {
-    background-color: #6bd183;
-}
-
-#modal-login::backdrop {
-    background-color: rgba(0, 0, 0, 0.55);
-}
-
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 

@@ -255,4 +255,5 @@ window.onload = function () {
     actualizarContadorCarrito();
     mostrarCarrito();
     actualizarPrecioTotal();
+    comprobarSesion();
 };

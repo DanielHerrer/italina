@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin · CrezcoSiendo</title>
+    <link rel="website icon" type="png" href="./img/logo_marca.png">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="admin.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fuentes de Google : Nunito -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <!-- Fuentes de Google : Comfortaa -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- =========================== ENCABEZADO =========================== -->
+    <header id="encabezado">
+        <a href="home.html" class="encabezado-marca">
+            <img src="./img/logo_marca.png" alt="Logo Crezcosiendo">
+            <span class="encabezado-titulo">CREZCOSIENDO</span>
+        </a>
+        <ul class="navegador">
+            <li class="navegador-item"><a href="home.html" class="navegador-link no-activo">Inicio</a></li>
+            <li class="navegador-item"><a href="products.html" class="navegador-link no-activo">Productos</a></li>
+            <li class="navegador-item"><a href="contact.html" class="navegador-link no-activo">Contacto</a></li>
+            <a href="products_cart.html"><button class="boton-navegador-carrito">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <p class="carrito-contador"></p>
+                </button></a>
+        </ul>
+    </header>
+
+    <!-- ADMIN -->
+    <header id="encabezado-admin">
+        <div class="encabezado-usuario">
+            <a href="admin.html"><button id="perfil-admin"><i class="fa-solid fa-user"></i></button></a>
+            <h3 class="encabezado-titulo">Hola de nuevo</h3>
+        </div>
+        <div class="encabezado-botones">
+            <button onclick="abrirProductoCrear();" id="agregar-producto">Agregar Producto <i
+                    class="fa-solid fa-file-circle-plus"></i></button>
+            <button onclick="abrirContacto();" id="modificar-contacto">Modificar Contacto <i
+                    class="fa-solid fa-address-book"></i></button>
+            <button onclick="cerrarSesion();" id="cerrar-sesion">Cerrar sesion <i
+                    class="fa-solid fa-door-open"></i></button>
+        </div>
+    </header>
+
+    <div id="contenido-admin">
+
+        <!-- ---------------------- Modal ---------------------- -->
+        <div id="addProductModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeAddProductModalBtn">&times;</span>
+                <h2>Agregar Producto</h2>
+                <form id="addProductForm">
+                    <label for="productTitle">Título:</label>
+                    <input type="text" id="productTitle" name="productTitle" required>
+                    <label for="productDescription">Descripción:</label>
+                    <textarea id="productDescription" name="productDescription" required></textarea>
+                    <label for="productImage">Imagen:</label>
+                    <input type="file" id="productImage" name="productImage" accept="image/*" required>
+                    <button type="submit">Agregar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- =========================== MODAL CONTACTO =========================== -->
+
+        <dialog id="modal-editar-contacto">
+
+            <button onclick="cerrarConfirmar();" class="cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="modal-content">
+                <div class="content-info">
+                    <h1 class="modal-precio"></h1>
+                    <h2 class="modal-title">Confirma la compra?</h2>
+                    <p class="modal-sub">*Cualquier precio mostrado puede estar sujeto a cambios o modificaciones.</p>
+                    <p class="modal-sub">Consultar por privado para más información.</p>
+                </div>
+                <div class="content-btn">
+                    <button onclick="cerrarConfirmar();" class="btn-volver"><i class="fa-solid fa-arrow-left"></i>
+                        Volver</button>
+                    <button onclick="enviarOrden();" class="btn-comprar"><i class="fa-brands fa-whatsapp m-1"></i>
+                        Realizar Orden</button>
+                </div>
+                <form id="addProductForm">
+                    <label for="productTitle">Título:</label>
+                    <input type="text" id="productTitle" name="productTitle" required>
+                    <label for="productDescription">Descripción:</label>
+                    <textarea id="productDescription" name="productDescription" required></textarea>
+                    <label for="productImage">Imagen:</label>
+                    <input type="file" id="productImage" name="productImage" accept="image/*" required>
+                    <button type="submit">Agregar</button>
+                </form>
+            </div>
+
+        </dialog>
+
+        <!-- =========================== CUERPO =========================== -->
+        <div class="contenedor-cards">
+            <!-- Nueva tarjeta -->
+            <div class="card">
+                <h1 class="card-title">Una bata hermosa</h1>
+                <img class="card-image" src="./img/products/product_bata.jpg" alt="Producto">
+                <p class="card-description">Descripción del producto bla bla bla lababjebaouee.</p>
+                <div class="card-buttons">
+                    <button onclick="abrirProductoEditar();" class="edit-button"><i class="fa-solid fa-pen"></i>
+                        Editar</button>
+                    <button onclick="abrirProductoEliminar();" class="delete-button"><i class="fa-solid fa-trash"></i>
+                        Eliminar</button>
+                </div>
+            </div>
+            <div class="card">
+                <h1 class="card-title">Una bata hermosa</h1>
+                <img class="card-image" src="./img/products/product_bata.jpg" alt="Producto">
+                <p class="card-description">Descripción del producto bla bla bla lababjebaouee.</p>
+                <div class="card-buttons">
+                    <button onclick="abrirProductoEditar();" class="edit-button"><i class="fa-solid fa-pen"></i>
+                        Editar</button>
+                    <button onclick="abrirProductoEliminar();" class="delete-button"><i class="fa-solid fa-trash"></i>
+                        Eliminar</button>
+                </div>
+            </div>
+            <div class="card">
+                <h1 class="card-title">Una bata hermosa</h1>
+                <img class="card-image" src="./img/products/product_bata.jpg" alt="Producto">
+                <p class="card-description">Descripción del producto bla bla bla lababjebaouee.</p>
+                <div class="card-buttons">
+                    <button class="edit-button" onclick="openEditModal()"><i class="fa-solid fa-pen"></i>
+                        Editar</button>
+                    <button class="delete-button"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- =========================== PIE DE PAGINA =========================== -->
+
+    <footer
+        class="footer-crezcosiendo d-flex flex-wrap justify-content-between align-items-center py-3 px-4 my-4 border-top">
+        <span class="footer-info d-flex col-md-6 mb-0 text-body-secondary">
+            <button id="btn-modal-login"><i class="fa-solid fa-key"></i> Login</button>
+            <p class="info-creador"></p>
+        </span>
+
+        <ul class="footer-navegador col-md-4 justify-content-end">
+            <li class="navegador-item"><a href="#" class="navegador-link active px-2">Inicio</a></li>
+            <li class="navegador-item"><a href="products.html" class="navegador-link px-2">Productos</a></li>
+            <li class="navegador-item"><a href="contact.html" class="navegador-link px-2">Contacto</a></li>
+            <img src="img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
+        </ul>
+    </footer>
+
+    <!-- =========================== MODAL LOGIN =========================== -->
+
+    <dialog id="modal-login">
+
+        <button id="btn-cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
+
+        <div class="modal-content">
+            <h2 class="modal-title">Login</h2>
+            <form id="form-login" method="dialog" action="">
+                <label for="">Usuario</label>
+                <input type="text" name="usuario" id="usuario">
+                <label for="">Contraseña</label>
+                <input type="password" name="clave" id="clave">
+
+                <button class="btn-login" type="submit" onclick="ingresar();">Ingresar</button>
+                <p id="info-login"></p>
+            </form>
+        </div>
+
+    </dialog>
+
+    <script src="index.js"></script>
+    <script src="admin-modal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

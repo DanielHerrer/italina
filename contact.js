@@ -80,4 +80,5 @@ formulario.addEventListener('submit', (event) => {
 window.onload = function () {
     actualizarContadorCarrito();
     actualizarInformacion();
+    comprobarSesion();
 };

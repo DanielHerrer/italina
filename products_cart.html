@@ -8,6 +8,7 @@
     <link rel="website icon" type="png" href="./img/logo_marca.png">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="products_cart.css">
+    <link rel="stylesheet" href="admin.css">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -30,7 +31,7 @@
         <!-- =========================== ENCABEZADO =========================== -->
 
         <header id="encabezado">
-            <a href="/" class="encabezado-marca">
+            <a href="home.html" class="encabezado-marca">
                 <img src="./img/logo_marca.png" alt="Logo Crezcosiendo">
                 <span class="encabezado-titulo">CREZCOSIENDO</span>
             </a>
@@ -45,6 +46,18 @@
                         <p class="carrito-contador"></p>
                     </button></a>
             </ul>
+        </header>
+
+        <!-- ADMIN -->
+        <header id="encabezado-admin">
+            <div class="encabezado-usuario">
+                <a href="admin.html"><button id="perfil-admin"><i class="fa-regular fa-user"></i></button></a>
+                <h3 class="encabezado-titulo">Hola de nuevo</h3>
+            </div>
+            <div class="encabezado-botones">
+                <button onclick="cerrarSesion();" id="cerrar-sesion">Cerrar sesion <i
+                        class="fa-solid fa-door-open"></i></button>
+            </div>
         </header>
 
         <!-- =========================== CARRITO =========================== -->
@@ -103,6 +116,7 @@
         <footer class="footer-crezcosiendo">
 
             <span class="footer-info d-flex col-md-6 mb-0 text-body-secondary">
+                <button id="btn-modal-login"><i class="fa-solid fa-key"></i> Login</button>
                 <p class="info-creador"></p>
             </span>
 
@@ -115,8 +129,29 @@
         </footer>
     </div>
 
-    <script src="products_cart.js"></script>
+    <!-- =========================== MODAL LOGIN =========================== -->
+
+    <dialog id="modal-login">
+
+        <button id="btn-cerrar-login"><i class="fa-solid fa-xmark"></i></button>
+
+        <div class="modal-content">
+            <h2 class="modal-title">Login</h2>
+            <form id="form-login" method="dialog" action="">
+                <label for="">Usuario</label>
+                <input type="text" name="usuario" id="usuario">
+                <label for="">Contraseña</label>
+                <input type="password" name="clave" id="clave">
+
+                <button class="btn-login" type="submit" onclick="ingresar();">Ingresar</button>
+                <p id="info-login"></p>
+            </form>
+        </div>
+
+    </dialog>
+
     <script src="index.js"></script>
+    <script src="products_cart.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"

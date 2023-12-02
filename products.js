@@ -168,11 +168,11 @@ function cerrarDetalles() {
     modalProducto.close();
 }
 
-
 // ------------ Evento para cargar el carrito al cargar la página
 
 window.onload = function () {
     cargarCarritoDesdeLocalStorage();
     actualizarContadorCarrito();
     mostrarProductos();
+    comprobarSesion();
 };
