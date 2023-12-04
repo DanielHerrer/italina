@@ -78,15 +78,6 @@ document.getElementById("form-login").addEventListener("submit", function (event
     var password = document.getElementById("clave").value;
     var info = document.getElementById("info-login");
 
-    if (usuario === "usuarioValido" && clave === "claveValida") {
-        // Inicio de sesión correcto
-        document.getElementById("info-login").innerText = "Inicio de sesión correcto.";
-        // Puedes cerrar el modal aquí o realizar otras acciones necesarias
-    } else {
-        // Inicio de sesión incorrecto
-        document.getElementById("info-login").innerText = "";
-    }
-
     if (administrador.usuario == user && administrador.clave == password) {
 
         // Registra localmente que esta logueado
@@ -100,17 +91,29 @@ document.getElementById("form-login").addEventListener("submit", function (event
     }
 });
 
+// Muestra u Oculta la barra de administracion
 function comprobarSesion() {
 
     const btnLogin = document.getElementById("btn-modal-login");
     const headerAdmin = document.getElementById("encabezado-admin");
+    const userAdmin = document.getElementById("usuario-nombre");
     const contenidoAdmin = document.getElementById("contenido-admin");
 
+    // Si esta logueado
     // Verificar si la clave "usuarioSession" existe en localStorage
     if (localStorage.getItem("usuarioSession") == "true") {
-
+        // Se oculta el boton de login
         btnLogin.style.display = "none";
-        headerAdmin.style.display = "flex";
+        // Muestra la barra de administracion
+        // Si la ancho del dispositivo es igual o menor que 991px
+        if (window.innerWidth <= 991) {
+            headerAdmin.style.display = "block";
+        } else {
+            headerAdmin.style.display = "flex";
+        }
+        // Asigna el nombre del administrador
+        userAdmin.innerText = "Bienvenid@ " + obtenerPrimerNombre(administrador.nombre);
+        // Muestra el contenido del catalogo
         contenidoAdmin.style.display = "block";
     }
 }
@@ -120,4 +123,11 @@ function cerrarSesion() {
     localStorage.removeItem("usuarioSession");
     window.location.href = "home.html";
     console.log("Sesión cerrada correctamente.");
+}
+
+function obtenerPrimerNombre(nombreCompleto) {
+    // Dividir la cadena en palabras usando un espacio como separador
+    const palabras = nombreCompleto.split(' ');
+    // Devolver la primera palabra
+    return palabras[0];
 }

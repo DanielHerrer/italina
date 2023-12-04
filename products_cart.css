@@ -193,9 +193,25 @@
 
 #modal-confirmar .modal-content .content-info {
     margin: 0 1rem;
+    text-align: center;
+
+}
+
+#modal-confirmar .modal-content .content-info .modal-title {
+    margin: 0 0 5px 0;
+}
+
+#modal-confirmar .modal-content .content-info .modal-precio {
+    margin: 0;
+}
+
+#modal-confirmar .modal-content .content-info .modal-sub {
+    margin: 0;
+    color: #747474;
 }
 
 #modal-confirmar .modal-content .content-btn {
+    margin: 20px 0 0 0;
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -232,12 +248,6 @@
 
     .item-carrito {
         padding: 10px 0;
-    }
-
-    .item-carrito .item-carrito-foto .item-img {
-        width: 85px;
-        border-radius: 0 35% 35% 0;
-        border-left: 0;
     }
 
     .item-carrito .item-carrito-producto {
@@ -301,6 +311,12 @@
         padding-right: 0;
         display: flex;
         justify-content: center;
+    }
+
+    /* modal confirmar compra */
+
+    #modal-confirmar .modal-content .content-info .modal-sub {
+        font-size: 12px;
     }
 
 }

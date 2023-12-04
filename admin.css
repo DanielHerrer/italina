@@ -6,7 +6,7 @@
 
 #encabezado-admin {
     background-color: #5e2c3f;
-    padding: 10px 5rem;
+    padding: 10px 4rem;
     color: #fff;
     display: none;
     justify-content: space-between;
@@ -29,6 +29,11 @@
 
 #encabezado-admin .encabezado-usuario .encabezado-titulo {
     margin: 10px 0 0 0 !important;
+}
+
+#encabezado-admin .encabezado-botones {
+    display: flex;
+    gap: 7px;
 }
 
 #encabezado-admin button {
@@ -156,3 +161,89 @@
     max-width: 300px;
     box-sizing: border-box;
 }
+
+
+
+/* <!-- =========================== MODAL AÑADIR PRODUCTO =========================== --> */
+
+.cerrar-modal {
+    border-style: none;
+    float: right;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.cerrar-modal:hover {
+    filter: brightness(0.8);
+}
+
+#modal-producto-create {
+    width: 60%;
+    border-radius: 20px;
+    border-style: none;
+}
+
+#modal-producto-create label,
+input,
+textarea {
+    width: 100%;
+}
+
+
+#modal-producto-create .label-disponible {
+    width: fit-content;
+}
+
+#modal-producto-create #disponible {
+    width: fit-content;
+}
+
+#modal-producto-create::backdrop {
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+/* Pantallas pequeñas (móviles): Consultas para pantallas con un ancho menor a 576 píxeles. */
+@media (max-width: 575px) {
+
+    /* --------------------------- encabezado admin --------------------------- */
+
+    #encabezado-admin {
+        padding: 10px 1rem;
+    }
+
+    #encabezado-admin .encabezado-botones {
+        display: block;
+    }
+
+    #encabezado-admin .encabezado-botones button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+}
+
+/* Tabletas y pantallas medianas: Consultas para pantallas con un ancho entre 576 y 991 píxeles. */
+@media (min-width: 576px) and (max-width: 991px) {
+
+    /* --------------------------- encabezado admin --------------------------- */
+
+    #encabezado-admin {
+        padding: 10px 1rem;
+    }
+
+    #encabezado-admin .encabezado-botones {
+        display: flex;
+        justify-content: flex-end !important;
+        gap: 10px;
+    }
+
+    /* #encabezado-admin .encabezado-botones button {} */
+
+}
+
+/* Pantallas grandes (escritorio): Consultas para pantallas con un ancho igual o superior a 992 píxeles. */
+@media (min-width: 992px) {}

@@ -150,6 +150,7 @@ h3 {
   text-align: center;
 }
 
+
 .footer-crezcosiendo {
   background-color: var(--white);
   border-top: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
@@ -162,13 +163,17 @@ h3 {
 }
 
 .footer-info #btn-modal-login {
-  margin-right: 10px;
+  margin-right: 15px;
   padding: 5px 15px;
   border-radius: 10px;
   border-style: none;
   background-color: var(--primary);
   color: var(--white);
   transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
 }
 
 .footer-info #btn-modal-login:hover {
@@ -244,7 +249,7 @@ h3 {
 }
 
 #modal-login .modal-content {
-  padding: 0 50px 25px 50px;
+  padding: 0 50px 0 50px;
   text-align: center;
 }
 
@@ -255,7 +260,7 @@ h3 {
 }
 
 #modal-login .modal-content .btn-login {
-  margin-top: 10px;
+  margin: 10px 0 15px 0;
   padding: 5px 20px;
   border-radius: 15px;
   border-style: none;
@@ -281,18 +286,18 @@ h3 {
   /* header */
 
   #encabezado {
-    justify-content: center;
-    gap: 0.5rem;
+    justify-content: center !important;
+    gap: 0.5rem !important;
   }
 
   #encabezado .encabezado-marca {
-    margin-left: -1.5rem;
+    margin-left: -1.5rem !important;
   }
 
   #encabezado .encabezado-marca img {
-    height: 3rem;
-    margin-left: 0;
-    margin-right: 0.5rem;
+    height: 3rem !important;
+    margin-left: 0 !important;
+    margin-right: 0.5rem !important;
   }
 
   #encabezado .navegador {
@@ -303,17 +308,28 @@ h3 {
   /* footer */
 
   .footer-crezcosiendo {
-    gap: 1.25rem;
+    gap: 1.25rem !important;
   }
 
   .footer-navegador {
-    margin-left: 3rem;
+    margin-left: 3rem !important;
     margin-right: 0rem !important;
   }
 
   .footer-logo {
     height: 3rem !important;
     margin-right: 0rem !important;
+  }
+
+  /* ---------------------------------- Modal Login ---------------------------------- */
+
+  #modal-login {
+    width: 100% !important;
+    border-radius: 25px !important;
+  }
+
+  #modal-login .modal-content {
+    padding: 0 30px 0 30px !important;
   }
 
 }
@@ -324,18 +340,18 @@ h3 {
   /* header */
 
   #encabezado {
-    justify-content: center;
-    gap: 1rem;
+    justify-content: center !important;
+    gap: 1rem !important;
   }
 
   #encabezado .encabezado-marca {
-    margin-left: -1.5rem;
+    margin-left: -1.5rem !important;
   }
 
   #encabezado .encabezado-marca img {
-    height: 3rem;
-    margin-left: 2rem;
-    margin-right: 0.5rem;
+    height: 3rem !important;
+    margin-left: 2rem !important;
+    margin-right: 0.5rem !important;
   }
 
   #encabezado .navegador {
@@ -351,6 +367,13 @@ h3 {
   .footer-navegador .footer-logo {
     height: 3rem !important;
     margin-right: 0rem !important;
+  }
+
+  /* ---------------------------------- Modal Login ---------------------------------- */
+
+  #modal-login {
+    width: 50% !important;
+    border-radius: 25px !important;
   }
 
 }

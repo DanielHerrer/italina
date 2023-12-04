@@ -22,6 +22,7 @@ function mostrarProductos() {
                     </div>
                     <div class="producto-caja-vista">
                         <div class="producto-vista">
+                            <div class="producto-vista-precio">$${producto.precio}</div>
                             <img src="${producto.fotos[0]}" alt="${producto.titulo}" class="marco-disponible 
                             producto-vista-imagen featurette-image img-fluid mx-auto" role="img"
                                 preserveAspectRatio="xMidYMid slice" focusable="false" width="500" height="500"></img>
@@ -140,6 +141,7 @@ function modalDetalles(id) {
     modalProducto.showModal();
 
     modalContenido.innerHTML = `
+        <div class="precio-producto">$${producto.precio}</div>
         <div class="fotos-producto">
             <img class="foto-max" src="${producto.fotos[0]}" alt="">
             <div class="barra-fotos">
@@ -151,7 +153,7 @@ function modalDetalles(id) {
         </div>
         <div class="descripcion-producto">
             <h2 class="titulo-producto">${producto.titulo}</h2>
-            <p>${producto.descripcion}</p>
+            <p class="parrafo-producto">${producto.descripcion}</p>
         </div>
     `;
 

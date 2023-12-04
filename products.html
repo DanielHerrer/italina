@@ -47,11 +47,11 @@
             </ul>
         </header>
 
-        <!-- ADMIN -->
+        <!-- =========================== ADMINISTRADOR =========================== -->
         <header id="encabezado-admin">
             <div class="encabezado-usuario">
                 <a href="admin.html"><button id="perfil-admin"><i class="fa-regular fa-user"></i></button></a>
-                <h3 class="encabezado-titulo">Hola de nuevo</h3>
+                <h3 id="usuario-nombre" class="encabezado-titulo">Hola de nuevo</h3>
             </div>
             <div class="encabezado-botones">
                 <button onclick="cerrarSesion();" id="cerrar-sesion">Cerrar sesion <i
@@ -61,27 +61,13 @@
 
         <main id="main-productos">
 
-            <!-- =========================== PRODUCTOS =========================== -->
+            <!-- =========================== LISTA DE PRODUCTOS =========================== -->
 
             <!-- Los productos se añadiran aquí  -->
 
-            <!-- =========================== NOTIFICACION =========================== -->
+            <!-- =========================== NOTIFICACION AÑADIDO AL CARRITO =========================== -->
 
             <div id="carrito-notificacion" class="notificacion"></div>
-
-            <!-- =========================== MODAL =========================== -->
-
-            <dialog id="modal-producto">
-
-                <button onclick="cerrarDetalles();" class="cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
-
-                <div class="modal-producto-content">
-
-                    <!-- Los detalles del producto se cargarán aquí -->
-
-                </div>
-
-            </dialog>
 
         </main>
 
@@ -89,7 +75,7 @@
 
         <footer class="footer-crezcosiendo">
 
-            <span class="footer-info d-flex col-md-6 mb-0 text-body-secondary">
+            <span class="footer-info d-flex col-md-7 mb-0 text-body-secondary">
                 <button id="btn-modal-login"><i class="fa-solid fa-key"></i> Login</button>
                 <p class="info-creador"></p>
             </span>
@@ -101,34 +87,21 @@
                 <img src="./img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
             </ul>
         </footer>
-
-        <!-- =========================== MODAL =========================== -->
-
-        <dialog id="modal-producto">
-
-            <button id="btn-cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
-
-            <div class="modal-content">
-                <div class="content-imgs">
-                    <div class="max-img">
-                        <img class="img-pri" src="" alt="Imagen principal del producto">
-                    </div>
-                    <div class="barra-imgs">
-                        <img class="img-sec" src="" alt="Vista previa del producto">
-                        <img class="img-sec" src="" alt="Vista previa del producto">
-                        <img class="img-sec" src="" alt="Vista previa del producto">
-                        <img class="img-sec" src="" alt="Vista previa del producto">
-                    </div>
-                </div>
-                <div class="content-info">
-                    <h2 class="modal-title">Titulo</h2>
-                    <p class="">Descripcion</p>
-                </div>
-            </div>
-
-        </dialog>
-
     </div>
+
+    <!-- =========================== MODAL PRODUCTO DETALLE =========================== -->
+
+    <dialog id="modal-producto">
+
+        <button onclick="cerrarDetalles();" class="cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
+
+        <div class="modal-producto-content">
+
+            <!-- Los detalles del producto se cargarán aquí -->
+
+        </div>
+
+    </dialog>
 
     <!-- =========================== MODAL LOGIN =========================== -->
 
