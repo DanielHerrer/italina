@@ -2,11 +2,11 @@
 
 <img src="/img/logo_original.png" width="300px" alt="Imagen emprendimiento Crezcosiendo">
 
-### :bookmark_tabs: Descripcion
+## :bookmark_tabs: Descripcion
 
 Proyecto de página web e-commerce con el nombre del emprendimiento 'Crezcosiendo' del área de productos textiles para nuestra usuaria. El desarrollo fue junto a CONSTANA en el marco de "MDP Programa".
 
-- ### :computer: Tecnologías utilizadas:
+## :computer: Tecnologías utilizadas:
 
     - [Visual Studio Code](https://code.visualstudio.com/)
     - [HTML5](https://lenguajehtml.com/html/)
@@ -25,7 +25,9 @@ Proyecto de página web e-commerce con el nombre del emprendimiento 'Crezcosiend
 
 ## 📝 Información sobre el Proyecto Final
 
-# Convocatoria a 100 Comercios
+<img src="/constana.jpg" width="600px" alt="Imagen logo constana">
+
+### Convocatoria a 100 Comercios
 
 Puntos Generales
 
