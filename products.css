@@ -168,11 +168,11 @@
     background-color: rgb(190, 26, 26);
     border-radius: 10px;
     color: var(--white);
-    font-size: 20px;
+    font-size: 23px;
     padding: 0 0 0 0;
-    margin: 0 0 5px 0;
-    width: 100px;
-    position: absolute;
+    margin: 5px 0 5px 0;
+    width: 120px;
+    position: relative;
 }
 
 .modal-producto-content .fotos-producto {
@@ -207,8 +207,13 @@
 
 .modal-producto-content .descripcion-producto {
     width: 400px;
-    margin-top: 25px;
+    margin-top: 0;
     overflow: hidden;
+}
+
+.modal-producto-content .descripcion-producto .titulo-producto {
+    margin-top: 25px;
+    font-weight: bold;
 }
 
 #modal-producto::backdrop {

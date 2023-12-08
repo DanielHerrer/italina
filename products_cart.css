@@ -218,19 +218,27 @@
 }
 
 #modal-confirmar .modal-content .content-btn .btn-volver {
-    background-color: rgb(199, 121, 121);
+    background-color: rgb(216, 105, 105);
     color: var(--white);
     border: 0;
     border-radius: 5px;
     padding: 7.5px 25px;
 }
 
+#modal-confirmar .modal-content .content-btn .btn-volver:hover {
+    background-color: rgb(199, 49, 49);
+}
+
 #modal-confirmar .modal-content .content-btn .btn-comprar {
-    background-color: rgb(112, 151, 112);
+    background-color: rgb(52, 182, 101);
     color: var(--white);
     border: 0;
     border-radius: 5px;
     padding: 7.5px 25px;
+}
+
+#modal-confirmar .modal-content .content-btn .btn-comprar:hover {
+    background-color: rgb(40, 144, 79);
 }
 
 #modal-confirmar::backdrop {

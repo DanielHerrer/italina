@@ -61,7 +61,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
-    max-width: 400px;
+    width: 375px;
     margin: 20px auto;
 }
 
@@ -162,9 +162,112 @@
     box-sizing: border-box;
 }
 
+/* =========================== MODAL ADMIN PRODUCTO =========================== */
+
+.modal-admin {
+    width: 60%;
+    border-radius: 20px;
+    border-style: none;
+}
+
+.label-modal {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.label-text {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.label-input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.label-textarea {
+    height: 100px;
+}
+
+.label-stack {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.label-fotos {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+
+.label-fotos .foto-min {
+    width: 50px;
+    border-radius: 2px;
+}
+
+.input-lista-fotos {
+    list-style-type: decimal;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 5px;
+}
+
+.boton-form {
+    background-color: var(--primary);
+    color: var(--white);
+    border-radius: 7px;
+    border: 0;
+    float: right;
+    padding: 7px 45px;
+}
+
+.boton-form:hover {
+    background-color: var(--secondary);
+    transition: 0.3s;
+}
 
 
-/* <!-- =========================== MODAL AÑADIR PRODUCTO =========================== --> */
+.modal-admin::backdrop {
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+/* =========================== MODAL ELIMINAR PRODUCTO =========================== */
+
+.modal-delete {
+    width: 30%;
+    border-radius: 20px;
+    border-style: none;
+    text-align: center;
+}
+
+.modal-delete::backdrop {
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+/* =========================== MODAL EDITAR CONTACTO =========================== */
+
+.modal-contact {
+    /* width: 30%; */
+    border-radius: 20px;
+    border-style: none;
+    text-align: center;
+}
+
+.modal-contact::backdrop {
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+/* BOTON cerrar modal */
 
 .cerrar-modal {
     border-style: none;
@@ -176,32 +279,6 @@
 .cerrar-modal:hover {
     filter: brightness(0.8);
 }
-
-#modal-producto-create {
-    width: 60%;
-    border-radius: 20px;
-    border-style: none;
-}
-
-#modal-producto-create label,
-input,
-textarea {
-    width: 100%;
-}
-
-
-#modal-producto-create .label-disponible {
-    width: fit-content;
-}
-
-#modal-producto-create #disponible {
-    width: fit-content;
-}
-
-#modal-producto-create::backdrop {
-    background-color: rgba(0, 0, 0, 0.55);
-}
-
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
@@ -224,6 +301,46 @@ textarea {
         margin-top: 10px;
     }
 
+    /* --------------------------- contenedor cards --------------------------- */
+
+    .contenedor-cards {
+        margin: 0 1rem;
+    }
+
+    /* --------------------------- modales --------------------------- */
+
+    .modal-admin {
+        width: 100%;
+    }
+
+    .label-stack {
+        display: block;
+    }
+
+    #hrInicio {
+        margin-bottom: 10px;
+    }
+
+    .label-textarea {
+        height: 50px;
+    }
+
+    .label-fotos {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .input-lista-fotos {
+        padding: 0;
+        margin-left: 35px;
+    }
+
+    /* =========================== MODAL EDITAR CONTACTO =========================== */
+
+    .modal-contact {
+        width: 100%;
+    }
+
 }
 
 /* Tabletas y pantallas medianas: Consultas para pantallas con un ancho entre 576 y 991 píxeles. */
@@ -241,7 +358,15 @@ textarea {
         gap: 10px;
     }
 
-    /* #encabezado-admin .encabezado-botones button {} */
+    /* --------------------------- contenedor cards --------------------------- */
+
+    .contenedor-cards {
+        margin: 0 1rem;
+    }
+
+    .modal-admin {
+        width: 80%;
+    }
 
 }
 

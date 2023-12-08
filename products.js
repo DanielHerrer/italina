@@ -1,19 +1,23 @@
+// ============================ BASE DE DATOS ============================
+
+// La informacion de productos, administrador y contacto viene desde index.js !!!!!!
+
 // --------------------------------------------------------------
 
-// Traer datos de los productos
-// ( descripcion (Max. 800 caracteres) / fotos: (Max. 4 fotos) )
-const productos = [
-    { id: 1, disponible: true, titulo: 'Kit Set completo de baño', precio: 5500, fotos: ['./img/products/product_set.jpg', './img/products/product_set02.jpg', './img/products/product_set03.jpg', './img/products/product_set04.jpg'], descripcion: 'El kit Set de Baño incluye una toalla suave de mano, pads quita maquillaje reutilizables, vincha para cabello y turbante absorbente.<br> Experimenta comodidad y funcionalidad en cada paso de tu rutina de cuidado personal. Un conjunto diseñado para mejorar tu experiencia despues de un baño. <ul class="texto-item fw-bold fs-5" style="list-style-type: circle;"><li>Turbante para cabello</li><li>Toalla de mano</li><li>Pads quita maquillaje</li><li>Vincha de pelo</li></ul>' },
-    { id: 2, disponible: true, titulo: 'Bata de toalla para baño', precio: 10500, fotos: ['./img/products/product_bata.jpg', './img/products/product_bata02.jpg', './img/products/product_bata03.jpg', './img/products/product_bata04.jpg'], descripcion: '<span style="text-decoration: underline;">Absorción superior</span>: La bata de baño está hecha de materiales altamente absorbentes que te ayudarán a secarte rápidamente después de bañarte. <br><span style="text-decoration: underline;">Comodidad en el diseño</span>: Su diseño espacioso y corte relajado brindan una sensación de comodidad y libertad de movimiento. <br> <span style="text-decoration: underline;">Durabilidad</span>: Utilizamos materiales de alta calidad para garantizar que nuestras batas sean duraderas y resistan el desgaste constante. Puedes confiar en la calidad y la resistencia de nuestras batas para que te acompañen durante mucho tiempo.' },
-    { id: 3, disponible: false, titulo: 'Funda de toalla almohada ', precio: 2900, fotos: ['./img/products/product_almohada.jpg', './img/products/product_almohada.jpg', './img/products/product_almohada.jpg', './img/products/product_almohada.jpg'], descripcion: '<span style="text-decoration: underline;">Compatibilidad rizado</span>: Recomendada especialmente para cabello rizado y ondulado, estas fundas son la respuesta al frizz no deseado. Ayudan a que tus rizos mantengan su forma y evitan el envejecimiento prematuro de tu cabello, preservando la integridad de tu peinado mientras se seca. <br><span style="text-decoration: underline;">Protección nocturna</span>: Nuestra funda de almohada está cuidadosamente diseñada para proteger tanto tu cabello como tu almohada mientras disfrutas de un sueño reparador con el cabello mojado.' },
-];
+// =================================== PRODUCTOS ===================================
 
 // Función para mostrar productos en la página
 function mostrarProductos() {
+
+    // Recibe el elemento contenedor
     const contenedorProductos = document.getElementById('main-productos');
+
+    // Va insertando cada producto alojado en el array 'productos'
     productos.forEach(producto => {
         let productoHTML = ``;
+
         if (producto.disponible) {
+            // VISTA DE PRODUCTO DISPONIBLE 
             productoHTML = `
                 <div id="producto-item">
                     <div class="producto-caja-info">
@@ -40,6 +44,7 @@ function mostrarProductos() {
                 <hr class="featurette-divider">
             `;
         } else {
+            // VISTA DE PRODUCTO NO DISPONIBLE 
             productoHTML = `
                 <div id="producto-item">
                     <div class="producto-caja-info">
@@ -67,20 +72,27 @@ function mostrarProductos() {
             `;
         }
 
+        // CONCATENA AL CONTENEDOR EL PRODUCTO
         contenedorProductos.innerHTML += productoHTML;
     });
 }
 
 // Función para agregar productos al carrito
 function agregarAlCarrito(id) {
+    // Busca el producto por ID
     const producto = productos.find(p => p.id === id);
+    // Si el producto existe en la base de datos
     if (producto) {
+        // Si el producto ya esta previamente añadido al carrito
         const existente = carrito.find(item => item.id === id);
         if (existente) {
+            // Entonces le suma +1 a su cantidad
             existente.cantidad++;
         } else {
+            // Sino entonces lo añade al carrito
             carrito.push({ ...producto, cantidad: 1 });
         }
+        // Guarda los datos del carrito en el localStorage
         guardarCarritoEnLocalStorage();
     }
 }
@@ -100,48 +112,46 @@ function cargarCarritoDesdeLocalStorage() {
 
 // Notificacion añadido al carrito
 function notificacionCarrito(boton, id) {
-
+    // Busca el producto por ID
     const producto = productos.find(p => p.id === id);
-
+    // Recibe el elemento notificacion
     const carritoNotificacion = document.getElementById("carrito-notificacion");
-
-    // Obtener todos los botones de carrito
+    // Obtiene todos los botones de 'agregar al carrito'
     const botonesCarrito = document.querySelectorAll(".boton-producto-carrito");
-
-    // Desactivar todos los botones de carrito temporalmente
+    // Desactiva todos los botones de carrito temporalmente (evita bug)
     botonesCarrito.forEach(boton => {
         boton.disabled = true;
     });
-
+    // Le añade el estilo al elemento notificacion para mostrarlo
     carritoNotificacion.classList.add("mostrar");
-
     carritoNotificacion.innerText = "Producto agregado: '" + producto.titulo + "'";
 
-    // Después de un tiempo, ocultar la notificación
+    // Después de un tiempo, se oculta la notificación
     setTimeout(function () {
         carritoNotificacion.classList.remove("mostrar");
         carritoNotificacion.innerHTML = "";
-
-        // Reactivar todos los botones de carrito
+        // Reactiva todos los botones de carrito
         botonesCarrito.forEach(boton => {
             boton.disabled = false;
         });
     }, 2000); // 2000 milisegundos = 2 segundos
 }
 
-// ------------ Modal Detalles Producto
+// =================================== MODAL DETALLES PRODUCTO ===================================
 
+// Funcion para mostrar el modal detalles de producto
 function modalDetalles(id) {
-
-    const producto = productos.find(p => p.id === id);
-
+    // Busca el producto por ID
+    const producto = productos.find(p => p.id == id);
+    // Recibe el elemento modal de producto detalles
     const modalProducto = document.querySelector("#modal-producto");
+    // Recibe el elemento contenedor
     const modalContenido = document.querySelector(".modal-producto-content");
-
+    // Muestra el modal
     modalProducto.showModal();
 
+    // Concatena al contenido los detalles del producto buscado por ID
     modalContenido.innerHTML = `
-        <div class="precio-producto">$${producto.precio}</div>
         <div class="fotos-producto">
             <img class="foto-max" src="${producto.fotos[0]}" alt="">
             <div class="barra-fotos">
@@ -152,6 +162,7 @@ function modalDetalles(id) {
             </div>
         </div>
         <div class="descripcion-producto">
+            <div class="precio-producto">$${producto.precio}</div>
             <h2 class="titulo-producto">${producto.titulo}</h2>
             <p class="parrafo-producto">${producto.descripcion}</p>
         </div>
@@ -159,22 +170,27 @@ function modalDetalles(id) {
 
 }
 
+// Funcion para mejorar la vista de fotos del modal detalles de producto
 function actualizarFoto(url) {
     const fotoMax = document.querySelector(".foto-max");
     fotoMax.src = url;
 }
 
+// Funcion para cerrar el modal detalles de producto
 function cerrarDetalles() {
-
     const modalProducto = document.querySelector("#modal-producto");
     modalProducto.close();
 }
 
-// ------------ Evento para cargar el carrito al cargar la página
+// =================================== EVENTOS al CARGAR PAGINA =================================== 
 
 window.onload = function () {
+    // Se actualiza la lista de carrito almacenada en localStorage
     cargarCarritoDesdeLocalStorage();
+    // Se actualiza el contador del carrito ubicado en la esquina superior derecha
     actualizarContadorCarrito();
+    // Se refresca y muestra la lista de productos guardados en la base de datos
     mostrarProductos();
+    // Comprueba si el usuario esta logueado como ADMIN y evalua si debe mostrar o no la barra de administracion
     comprobarSesion();
 };
