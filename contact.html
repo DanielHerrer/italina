@@ -51,7 +51,7 @@
             <h3 id="usuario-nombre" class="encabezado-titulo">Hola de nuevo</h3>
         </div>
         <div class="encabezado-botones">
-            <button onclick="cerrarSesion();" id="cerrar-sesion">Cerrar sesion <i
+            <button onclick="cerrarSesion();" id="cerrar-sesion">Cerrar sesión <i
                     class="fa-solid fa-door-open"></i></button>
         </div>
     </header>
@@ -69,7 +69,7 @@
 
         <div class="caja-contacto">
             <h3 class="titulo-contacto fw-bold">CONTÁCTENOS</h3>
-            <form id="formulario">
+            <form id="formulario" action=""> <!-- no requiere action -->
                 <div class="form-group">
                     <!-- <label for="name"></label> -->
                     <input class="form-input" type="text" placeholder="Nombre completo" class="form-control" id="name"
@@ -98,11 +98,17 @@
 
         <div class="banner-rosa">
             <div class="info-banner">
-                <h4><i class="fa-solid fa-phone"></i>NUMERO TELEFONO</h4>
+                <h4 class="d-flex"><i class="fa-solid fa-phone"></i>
+                    <p id="contact-telefono"></p>
+                </h4>
                 <h5 id="numero-telefono"></h5>
-                <h4><i class="fa-solid fa-clock"></i>HORARIOS DE ATENCION</h4>
+                <h4 class="d-flex"><i class="fa-solid fa-clock"></i>
+                    <p id="contact-hrAtencion"></p>
+                </h4>
                 <h5 id="horarios-atencion"></h5>
-                <h4><i class="fa-solid fa-location-dot"></i>UBICACION DE RETIRO</h4>
+                <h4 class="d-flex"><i class="fa-solid fa-location-dot"></i>
+                    <p id="contact-ubicacion"></p>
+                </h4>
                 <h5 id="ubicacion"></h5>
             </div>
         </div>

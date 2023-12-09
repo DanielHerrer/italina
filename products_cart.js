@@ -1,59 +1,63 @@
+// ============================ BASE DE DATOS ============================
+
+// La informacion de productos, administrador y contacto viene desde index.js !!!!!!
+
 // --------------------------------------------------------------
 
-/* datos de contacto */
+// Recibe el atributo 'telefono' alojado en el Contacto de la base de datos
+const phone = contacto.telefono;
 
-const phone = '+54 9 223 590-1382';
-
-function limpiarNumeroTelefono(telefono) {
-    let numeroLimpiado = '';
-    for (let i = 0; i < telefono.length; i++) {
-        const caracter = telefono.charAt(i);
-
-        if (!isNaN(caracter)) {
-            numeroLimpiado += caracter;
-        }
-    }
-    return numeroLimpiado;
-}
-
-// Traer datos de los productos
-// ( descripcion (Max. 800 caracteres) / fotos: (Max. 4 fotos) )
-const productos = [
-    { id: 1, disponible: true, titulo: 'Kit Set completo de baño', precio: 5500, fotos: ['./img/products/product_set.jpg', './img/products/product_set02.jpg', './img/products/product_set03.jpg', './img/products/product_set04.jpg'], descripcion: 'El kit Set de Baño incluye una toalla suave de mano, pads quita maquillaje reutilizables, vincha para cabello y turbante absorbente.<br> Experimenta comodidad y funcionalidad en cada paso de tu rutina de cuidado personal. Un conjunto diseñado para mejorar tu experiencia despues de un baño. <ul class="texto-item fw-bold fs-5" style="list-style-type: circle;"><li>Turbante para cabello</li><li>Toalla de mano</li><li>Pads quita maquillaje</li><li>Vincha de pelo</li></ul>' },
-    { id: 2, disponible: true, titulo: 'Bata de toalla para baño', precio: 10500, fotos: ['./img/products/product_bata.jpg', './img/products/product_bata02.jpg', './img/products/product_bata03.jpg', './img/products/product_bata04.jpg'], descripcion: '<span style="text-decoration: underline;">Absorción superior</span>: La bata de baño está hecha de materiales altamente absorbentes que te ayudarán a secarte rápidamente después de bañarte. <br><span style="text-decoration: underline;">Comodidad en el diseño</span>: Su diseño espacioso y corte relajado brindan una sensación de comodidad y libertad de movimiento. <br> <span style="text-decoration: underline;">Durabilidad</span>: Utilizamos materiales de alta calidad para garantizar que nuestras batas sean duraderas y resistan el desgaste constante. Puedes confiar en la calidad y la resistencia de nuestras batas para que te acompañen durante mucho tiempo.' },
-    { id: 3, disponible: false, titulo: 'Funda de toalla almohada ', precio: 2900, fotos: ['./img/products/product_almohada.jpg', './img/products/product_almohada.jpg', './img/products/product_almohada.jpg', './img/products/product_almohada.jpg'], descripcion: '<span style="text-decoration: underline;">Compatibilidad rizado</span>: Recomendada especialmente para cabello rizado y ondulado, estas fundas son la respuesta al frizz no deseado. Ayudan a que tus rizos mantengan su forma y evitan el envejecimiento prematuro de tu cabello, preservando la integridad de tu peinado mientras se seca. <br><span style="text-decoration: underline;">Protección nocturna</span>: Nuestra funda de almohada está cuidadosamente diseñada para proteger tanto tu cabello como tu almohada mientras disfrutas de un sueño reparador con el cabello mojado.' },
-];
+// =================================== FUNCIONES CARRITO DE COMPRAS ===================================
 
 // Función para agregar productos al carrito
 function agregarAlCarrito(id) {
+    // Busca el producto por ID
     const producto = productos.find(p => p.id === id);
+    // Si el producto existe en la base de datos
     if (producto) {
+        // Si el producto ya esta previamente añadido al carrito
         const existente = carrito.find(item => item.id === id);
         if (existente) {
+            // Entonces le suma +1 a su cantidad
             existente.cantidad++;
         } else {
+            // Sino entonces lo añade al carrito
             carrito.push({ ...producto, cantidad: 1 });
         }
+        // Se refresca y muestra la lista del carrito de compras guardada en localStorage
         mostrarCarrito();
+        // Guarda los datos del carrito en el localStorage
         guardarCarritoEnLocalStorage();
+        // Se actualiza el contador del carrito ubicado en la esquina superior derecha
         actualizarContadorCarrito();
+        // Refresca el precio total segun los items del carrito
         actualizarPrecioTotal();
     }
 }
 
 // Función para reducir productos al carrito
 function reducirAlCarrito(id) {
+    // Busca el producto por ID
     const producto = productos.find(p => p.id === id);
+    // Si el producto existe en la base de datos
     if (producto) {
+        // Si el producto ya esta previamente añadido al carrito
         const existente = carrito.find(item => item.id === id);
+        // Si la cantidad de items del producto es mayor a 1
         if (existente && existente.cantidad > 1) {
+            // Entonces le resta -1 a su cantidad
             existente.cantidad--;
         } else if (existente && existente.cantidad === 1) {
+            // Sino entonces lo remueve del carrito
             quitarDelCarrito(id);
         }
+        // Se refresca y muestra la lista del carrito de compras guardada en localStorage
         mostrarCarrito();
+        // Guarda los datos del carrito en el localStorage
         guardarCarritoEnLocalStorage();
+        // Se actualiza el contador del carrito ubicado en la esquina superior derecha
         actualizarContadorCarrito();
+        // Refresca el precio total segun los items del carrito
         actualizarPrecioTotal();
     }
 }
@@ -73,9 +77,13 @@ function cargarCarritoDesdeLocalStorage() {
 
 // Función para mostrar el carrito en la lista
 function mostrarCarrito() {
+    // Recibe el elemento contenedor del carrito de compras
     const contenedorCarrito = document.getElementById('listaCarrito');
+    // Limpia el contenedor
     contenedorCarrito.innerHTML = '';
+    // Si el carrito posee mas de items
     if (carrito.length > 0) {
+        // Recorre el carrito y concatena cada item al contenedor
         carrito.forEach(item => {
             const itemHTML = `
             <div class="item-carrito">
@@ -105,6 +113,7 @@ function mostrarCarrito() {
             contenedorCarrito.innerHTML += itemHTML;
         });
     } else {
+        // Sino entonces muestra un item default vacio
         const itemHTML = `
             <div class="item-carrito" style="color: #747474;">
                 <div class="item-carrito-foto">
@@ -135,26 +144,36 @@ function mostrarCarrito() {
 
 }
 
-// Función para quitar productos del carrito
+// Función para quitar items del carrito
 function quitarDelCarrito(id) {
+    // Filtra la lista del carrito segun el ID de producto
     carrito = carrito.filter(item => item.id !== id);
+    // Guarda los datos del carrito en el localStorage
     guardarCarritoEnLocalStorage();
+    // Se refresca y muestra la lista del carrito de compras guardada en localStorage
     mostrarCarrito();
+    // Se actualiza el contador del carrito ubicado en la esquina superior derecha
     actualizarContadorCarrito();
+    // Refresca el precio total segun los items del carrito
     actualizarPrecioTotal();
 }
 
+// Funcion para actualizar el precio total segun los items alojados en la lista carrito
 function actualizarPrecioTotal() {
     var valor = 0;
     var precio = document.getElementById('precio');
     precio.innerText = '';
 
+
     if (carrito.length > 0) {
+        // Si hay al menos 1 item alojado en la lista carrito
         carrito.forEach(item => {
+            // Acumula el valor total segun el item * cantidad
             valor += item.precio * item.cantidad;
         });
         precio.innerText = '$ ' + valor + ' ARS*';
     } else {
+        // Sino hay items entonces $ 0
         precio.innerText = '$ 0 ARS';
     }
 }
@@ -162,35 +181,56 @@ function actualizarPrecioTotal() {
 // Función para vaciar el carrito
 function vaciarCarrito() {
     carrito = [];
+    // Guarda los datos del carrito en el localStorage
     guardarCarritoEnLocalStorage();
+    // Se refresca y muestra la lista del carrito de compras guardada en localStorage
     mostrarCarrito();
+    // Se actualiza el contador del carrito ubicado en la esquina superior derecha
     actualizarContadorCarrito();
+    // Refresca el precio total segun los items del carrito
     actualizarPrecioTotal();
 }
 
-// ------------ Modal Confirmar Compra
+// =================================== MODAL CONFIRMAR COMPRA ===================================
 
+// Funcion para mostrar el modal confirmativo de la Orden de Compra
 function modalConfirmarCompra() {
-
+    // Recibe el elemento modal de confirmacion
     const modalConfirmar = document.querySelector("#modal-confirmar");
     const modalPrecio = document.querySelector(".modal-precio");
     const precio = document.querySelector("#precio");
 
+    // Si el carrito posee al menos 1 item entonces muestra el modal
     if (carrito.length > 0) {
         modalConfirmar.showModal();
     }
-
+    // Coloca el valor total de la lista de items 
     modalPrecio.innerText = `${precio.innerText}`;
 }
 
+// Funcion para cerrar el modal confirmativo de la Orden de Compra
 function cerrarConfirmar() {
 
     const modalConfirmar = document.querySelector("#modal-confirmar");
     modalConfirmar.close();
 }
 
-// ------------ Realizar Orden de Compra por WhatsApp
+// =================================== REALIZAR ORDEN DE COMPRA ===================================
 
+// Limpia el numero, ej: (+54 9 223 590-1382) => (5492235901382)
+function limpiarNumeroTelefono(telefono) {
+    let numeroLimpiado = '';
+    for (let i = 0; i < telefono.length; i++) {
+        const caracter = telefono.charAt(i);
+
+        if (!isNaN(caracter)) {
+            numeroLimpiado += caracter;
+        }
+    }
+    return numeroLimpiado;
+}
+
+// Codigo aportado por el Lider Tecnico: Carlos Adrian Manzano
 function isMobile() {
     if (sessionStorage.desktop) {
         return false;
@@ -208,6 +248,7 @@ function isMobile() {
     return false;
 }
 
+// Codigo aportado por el Lider Tecnico: Carlos Adrian Manzano
 function enviarOrden() {
 
     const urlDesktop = 'https://web.whatsapp.com/';
@@ -217,8 +258,6 @@ function enviarOrden() {
 
     buttonComprar.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
     buttonComprar.disabled = true;
-
-    // const precio = document.querySelector("#precio");
 
     setTimeout(() => {
 
@@ -230,8 +269,6 @@ function enviarOrden() {
 
             mensaje += `%0A- *${item.titulo}* Cantidad (${item.cantidad})`;
         }
-
-        // %0A_*Total = ` + precio.innerText + `*
 
         mensaje += `%0A_*Precio sujeto a modificaciones_ %0A Aguardo atentx su respuesta. :)`;
 
@@ -248,12 +285,17 @@ function enviarOrden() {
     }, 3000);
 }
 
-// ------------ Evento para cargar el carrito al cargar la página
+// =================================== EVENTOS al CARGAR PAGINA =================================== 
 
 window.onload = function () {
+    // Se actualiza la lista de carrito almacenada en localStorage
     cargarCarritoDesdeLocalStorage();
+    // Se actualiza el contador del carrito ubicado en la esquina superior derecha
     actualizarContadorCarrito();
+    // Se refresca y muestra la lista del carrito de compras guardada en localStorage
     mostrarCarrito();
+    // Refresca el precio total segun los items del carrito
     actualizarPrecioTotal();
+    // Comprueba si el usuario esta logueado como ADMIN y evalua si debe mostrar o no la barra de administracion
     comprobarSesion();
 };

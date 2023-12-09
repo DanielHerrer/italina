@@ -52,7 +52,7 @@
         <div class="encabezado-botones">
             <button onclick="abrirProductoCrear();" id="agregar-producto">Agregar Producto <i
                     class="fa-solid fa-file-circle-plus"></i></button>
-            <button onclick="abrirContacto();" id="modificar-contacto">Modificar Contacto <i
+            <button onclick="abrirContactoEditar();" id="modificar-contacto">Modificar Contacto <i
                     class="fa-solid fa-address-book"></i></button>
             <button onclick="cerrarSesion();" id="cerrar-sesion">Cerrar sesion <i
                     class="fa-solid fa-door-open"></i></button>
@@ -64,39 +64,9 @@
         <!-- =========================== CATALOGO DE PRODUCTOS =========================== -->
 
         <div class="contenedor-cards">
+
             <!-- Nueva tarjeta -->
-            <div class="card">
-                <h1 class="card-title">Una bata hermosa</h1>
-                <img class="card-image" src="./img/products/product_bata.jpg" alt="Producto">
-                <p class="card-description">Descripción del producto bla bla bla lababjebaouee.</p>
-                <div class="card-buttons">
-                    <button onclick="abrirProductoEditar();" class="edit-button"><i class="fa-solid fa-pen"></i>
-                        Editar</button>
-                    <button onclick="abrirProductoEliminar();" class="delete-button"><i class="fa-solid fa-trash"></i>
-                        Eliminar</button>
-                </div>
-            </div>
-            <div class="card">
-                <h1 class="card-title">Una bata hermosa</h1>
-                <img class="card-image" src="./img/products/product_bata.jpg" alt="Producto">
-                <p class="card-description">Descripción del producto bla bla bla lababjebaouee.</p>
-                <div class="card-buttons">
-                    <button onclick="abrirProductoEditar();" class="edit-button"><i class="fa-solid fa-pen"></i>
-                        Editar</button>
-                    <button onclick="abrirProductoEliminar();" class="delete-button"><i class="fa-solid fa-trash"></i>
-                        Eliminar</button>
-                </div>
-            </div>
-            <div class="card">
-                <h1 class="card-title">Una bata hermosa</h1>
-                <img class="card-image" src="./img/products/product_bata.jpg" alt="Producto">
-                <p class="card-description">Descripción del producto bla bla bla lababjebaouee.</p>
-                <div class="card-buttons">
-                    <button class="edit-button" onclick="openEditModal()"><i class="fa-solid fa-pen"></i>
-                        Editar</button>
-                    <button class="delete-button"><i class="fa-solid fa-trash"></i> Eliminar</button>
-                </div>
-            </div>
+
         </div>
 
     </div>
@@ -120,26 +90,47 @@
 
     <!-- =========================== MODAL AÑADIR PRODUCTO =========================== -->
 
-    <dialog id="modal-producto-create">
+    <dialog id="modal-producto-create" class="modal-admin">
 
         <button onclick="cerrarModal(this);" class="cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
 
         <div class="modal-content">
             <h2>Agregar Producto</h2>
-            <form id="form-producto-create" enctype="multipart/form-data">
-                <label class="label-disponible" for="disponible">Disponible:</label>
-                <input type="checkbox" id="disponible" name="disponible" checked>
-                <label for="precio">Precio:</label>
-                <input type="number" id="precio" name="precio" required>
-                <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" required>
-                <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="4" maxlength="800" style="resize: none;"
-                    required></textarea>
-                <label for="fotos">Fotos (Máximo 4):</label>
-                <input type="file" id="fotos" name="fotos" accept="image/*" multiple required>
-                <p id="info-alerta"></p>
-                <button type="submit">Agregar</button>
+            <form id="form-producto-create" enctype="multipart/form-data" action="">
+                <!--  formulario para agregar producto  -->
+                <div class="label-stack">
+                    <div class="d-flex gap-3">
+                        <label class="label-text" for="disponible">Disponible:</label>
+                        <input type="checkbox" id="disponible" name="disponible" checked>
+                    </div>
+
+                    <div class="d-flex gap-3 align-items-center">
+                        <label class="label-text" for="precio">Precio:</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input class="form-control" type="number" class="label-input" id="precio" name="precio"
+                                required>
+                        </div>
+                    </div>
+                </div>
+
+                <label class="label-modal label-text" for="titulo">Título:</label>
+                <input type="text" class="label-input" id="titulo" name="titulo" required>
+
+                <label class="label-modal label-text" for="descripcion">Descripción:</label>
+                <textarea id="descripcion" class="label-input label-textarea" name="descripcion" maxlength="800"
+                    style="resize: none;" required></textarea>
+
+                <label class="label-modal label-text">Fotos del Producto:</label>
+                <ul class="input-lista-fotos">
+                    <li><input type="file" id="foto-c1" name="fotos[]" accept="image/*" required></li>
+                    <li><input type="file" id="foto-c2" name="fotos[]" accept="image/*" required></li>
+                    <li><input type="file" id="foto-c3" name="fotos[]" accept="image/*" required></li>
+                    <li><input type="file" id="foto-c4" name="fotos[]" accept="image/*" required></li>
+                </ul>
+
+                <button class="boton-form" onclick="" type="submit"><i class="fa-solid fa-file-circle-plus"></i>
+                    Agregar</button>
             </form>
         </div>
 
@@ -147,65 +138,96 @@
 
     <!-- =========================== MODAL EDITAR PRODUCTO =========================== -->
 
-    <dialog id="modal-producto-update">
+    <dialog id="modal-producto-update" class="modal-admin">
 
         <button onclick="cerrarModal(this);" class="cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
 
         <div class="modal-content">
+            <h2>Editar Producto</h2>
+            <form id="form-producto-update" enctype="multipart/form-data" action="">
+                <!--  formulario para editar producto  -->
+                <input type="text" id="productoId" name="productoId" hidden>
 
-        </div>
+                <div class="label-stack">
+                    <div class="d-flex gap-3">
+                        <label class="label-text" for="disponible">Disponible:</label>
+                        <input type="checkbox" id="disponible" name="disponible">
+                    </div>
 
-    </dialog>
+                    <div class="d-flex gap-3 align-items-center">
+                        <label class="label-text" for="precio">Precio:</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input class="form-control" type="number" class="label-input" id="precio" name="precio"
+                                required>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- =========================== MODAL ELIMINAR PRODUCTO =========================== -->
+                <label class="label-modal label-text" for="titulo">Título:</label>
+                <input type="text" class="label-input" id="titulo" name="titulo" required>
 
-    <dialog id="modal-producto-delete">
+                <label class="label-modal label-text" for="descripcion">Descripción:</label>
+                <textarea id="descripcion" class="label-input label-textarea" name="descripcion" maxlength="800"
+                    style="resize: none;" required></textarea>
 
-        <button onclick="cerrarModal(this);" class="cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
+                <div class="label-fotos">
+                    <img class="foto-min" id="foto-min-1" src="" alt="">
+                    <img class="foto-min" id="foto-min-2" src="" alt="">
+                    <img class="foto-min" id="foto-min-3" src="" alt="">
+                    <img class="foto-min" id="foto-min-4" src="" alt="">
+                </div>
 
-        <div class="modal-content">
+                <label class="label-modal label-text">Fotos del Producto:</label>
+                <ul class="input-lista-fotos">
+                    <li><input type="file" id="foto-u1" name="fotos[]" accept="image/*"></li>
+                    <li><input type="file" id="foto-u2" name="fotos[]" accept="image/*"></li>
+                    <li><input type="file" id="foto-u3" name="fotos[]" accept="image/*"></li>
+                    <li><input type="file" id="foto-u4" name="fotos[]" accept="image/*"></li>
+                </ul>
 
+                <button class="boton-form" type="submit"><i class="fa-solid fa-arrows-rotate"></i> Actualizar</button>
+            </form>
         </div>
 
     </dialog>
 
     <!-- =========================== MODAL EDITAR CONTACTO =========================== -->
 
-    <dialog id="modal-editar-contacto">
+    <dialog id="modal-contacto-update" class="modal-contact">
 
         <button onclick="cerrarModal(this);" class="cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
 
         <div class="modal-content">
-            <div class="content-info">
-                <h1 class="modal-precio"></h1>
-                <h2 class="modal-title">Confirma la compra?</h2>
-                <p class="modal-sub">*Cualquier precio mostrado puede estar sujeto a cambios o modificaciones.</p>
-                <p class="modal-sub">Consultar por privado para más información.</p>
-            </div>
-            <div class="content-btn">
-                <button onclick="cerrarConfirmar();" class="btn-volver"><i class="fa-solid fa-arrow-left"></i>
-                    Volver</button>
-                <button onclick="enviarOrden();" class="btn-comprar"><i class="fa-brands fa-whatsapp m-1"></i>
-                    Realizar Orden</button>
-            </div>
-            <form id="addProductForm">
-                <label for="productTitle">Título:</label>
-                <input type="text" id="productTitle" name="productTitle" required>
-                <label for="productDescription">Descripción:</label>
-                <textarea id="productDescription" name="productDescription" required></textarea>
-                <label for="productImage">Imagen:</label>
-                <input type="file" id="productImage" name="productImage" accept="image/*" required>
-                <button type="submit">Agregar</button>
+            <h2 class="modal-title">Editar Contacto</h2>
+            <form id="form-contacto-update" action=""> <!--  formulario para editar contacto  -->
+                <label class="label-text" for="telefono">Telefono:</label>
+                <input type="tel" class="label-input" id="telefono" name="telefono" required>
+                <div class="label-stack">
+                    <div>
+                        <label class="label-text" for="hrInicio">Hora Inicio:</label>
+                        <input type="time" id="hrInicio" name="hrInicio" min="00:00" max="23:59" required>
+                    </div>
+                    <div>
+                        <label class="label-text" for="hrFin">Hora Fin:</label>
+                        <input type="time" id="hrFin" name="hrFin" min="00:00" max="23:59" required>
+                    </div>
+                </div>
+
+                <label class="label-text" for="ubicacion">Ubicación:</label>
+                <input type="text" class="label-input" id="ubicacion" name="ubicacion" required>
+
+                <button type="submit" class="boton-form mt-3"><i class="fa-solid fa-arrows-rotate"></i>
+                    Actualizar</button>
             </form>
         </div>
-
     </dialog>
 
     <!-- =========================== MODAL LOGIN =========================== -->
 
     <dialog id="modal-login">
 
-        <button id="btn-cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="cerrarModal(this);" id="btn-cerrar-login"><i class="fa-solid fa-xmark"></i></button>
 
         <div class="modal-content">
             <h2 class="modal-title">Login</h2>
