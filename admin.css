@@ -242,7 +242,7 @@
 /* =========================== MODAL ELIMINAR PRODUCTO =========================== */
 
 .modal-delete {
-    width: 30%;
+    width: 35%;
     border-radius: 20px;
     border-style: none;
     text-align: center;
@@ -341,6 +341,10 @@
         width: 100%;
     }
 
+    .modal-delete {
+        width: auto;
+    }
+
 }
 
 /* Tabletas y pantallas medianas: Consultas para pantallas con un ancho entre 576 y 991 píxeles. */
@@ -366,6 +370,10 @@
 
     .modal-admin {
         width: 80%;
+    }
+
+    .modal-delete {
+        width: 65%;
     }
 
 }
