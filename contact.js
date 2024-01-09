@@ -1,14 +1,57 @@
 // =================================== BASE DE DATOS ===================================
 
-// La informacion de productos, administrador y contacto viene desde index.js !!!!!!
+document.addEventListener('DOMContentLoaded', function () {
+  const formulario = document.getElementById('formulario');
 
+  formulario.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const telefono = document.getElementById('number').value;
+      const mensaje = document.getElementById('message').value;
+
+      const datosAEnviar = {
+        name: nombre,
+        email: email,
+        number: telefono,
+        message: mensaje,
+    };
+
+      fetch('http://localhost:3500/contact/order', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(datosAEnviar)
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+          limpiarFormulario(); // Llama a la función después de enviar los datos
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
+  });
+
+  // Agrega la función para limpiar el formulario
+  function limpiarFormulario() {
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('number').value = '';
+      document.getElementById('message').value = '';
+  }
+});
+
+  
 // -------------------------------------------------------------------------------------
 
 // Recibe el atributo 'telefono' alojado en el Contacto de la base de datos
 const phone = contacto.telefono;
 
 // =================================== FORMULARIO DE CONTACTO ===================================
-
+/*
 // Recibe los elementos a usar
 const formulario = document.querySelector('#formulario');
 const buttonSubmit = document.querySelector('#submit');
@@ -27,7 +70,7 @@ function limpiarNumeroTelefono(telefono) {
     }
     return numeroLimpiado;
 }
-
+/*
 // Funcion para contactar por whatsapp a traves del formulario
 // Codigo aportado por el Lider Tecnico: Carlos Adrian Manzano
 function isMobile() {
@@ -77,7 +120,7 @@ formulario.addEventListener('submit', (event) => {
         buttonSubmit.disabled = false;
     }, 3000);
 });
-
+*/
 // =================================== INFORMACION DE CONTACTO ===================================
 
 // Funcion para mostrar la informacion de contacto

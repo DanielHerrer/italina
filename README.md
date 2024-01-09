@@ -15,6 +15,8 @@ Proyecto de página web e-commerce con el nombre del emprendimiento 'Crezcosiend
     - React (pendiente)
     - Node.js (pendiente)
 
+
+
 **Developer** :shipit:
 
 <img src="https://media.licdn.com/dms/image/D4D03AQGfvdtFH5rngw/profile-displayphoto-shrink_800_800/0/1695088203489?e=1703116800&v=beta&t=7iFIWF6diC9KBRH6voAP5QcoxzDR7SZJshkH4bDUL2E" width=115>
@@ -25,7 +27,7 @@ Proyecto de página web e-commerce con el nombre del emprendimiento 'Crezcosiend
 
 ## 📝 Información sobre el Proyecto Final
 
-<img src="/img/constana.jpg" width="600px" alt="Imagen logo constana">
+<img src="/img/constana.jpg" width="300px" alt="Imagen logo constana">
 
 ### Convocatoria a 100 Comercios
 

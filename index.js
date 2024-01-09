@@ -23,22 +23,147 @@ let administrador = { // MODIFICAR BASE DE DATOS
     nombre: "Mabel Hortensia Medina"
 };
 
-let contacto = { // MODIFICAR BASE DE DATOS
+/*let contacto = { // MODIFICAR BASE DE DATOS
     id: "5678",
     telefono: "+54 9 223 590-1382",
     horaInicio: '11:00',
     horaFin: '17:00',
     ubicacion: "Buenos Aires, Mar del Plata, Gascón 2169",
     id_admin: "444"
-};
+};*/
 
-const productos = [ // MODIFICAR BASE DE DATOS
+// Variable global para almacenar los productos
+let productos = [];
+
+// Función que obtiene los datos del servidor y actualiza la variable productos
+async function obtenerDatosDeLaBaseDeDatos() {
+    try {
+        // Obtener la respuesta del servidor
+        const response = await fetch('http://localhost:3500/products');
+
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
+        }
+
+        // Transformar los datos y asignar a productos
+        const data = await response.json();
+        console.log('Respuesta del servidor:', data);
+        productos = transformarDatos(data.data);
+
+        return productos;
+    } catch (error) {
+        console.error('Error en la solicitud:', error);
+    }
+}
+
+// Función para mostrar todos los productos en la página
+function mostrarProductosEnPagina() {
+    // Limpiar el contenedor antes de mostrar los productos
+    const contenedorProductos = document.getElementById('main-productos');
+    contenedorProductos.innerHTML = '';
+
+    // Mostrar cada producto en el DOM
+    productos.forEach(mostrarProductoEnDOM);
+}
+
+// Función para transformar los datos del servidor al nuevo formato
+function transformarDatos(datos) {
+    return datos.map(producto => {
+        return {
+            id: producto.id,
+            disponible: producto.disponible,
+            titulo: producto.titulo,
+            precio: producto.precio,
+            fotos: [
+                `http://localhost:3500/${producto.imagen1}`,
+                `http://localhost:3500/${producto.imagen2}`,
+                `http://localhost:3500/${producto.imagen3}`,
+                `http://localhost:3500/${producto.imagen4}`
+            ],
+            descripcion: producto.descripcion
+        };
+    });
+}
+
+
+
+// Función para mostrar un producto en el DOM
+function mostrarProductoEnDOM(producto) {
+    const contenedorProductos = document.getElementById('main-productos');
+
+    const productoHTML = `
+        <div id="producto-item">
+            <div class="producto-caja-info">
+                <h2 class="titulo-item fw-normal lh-1">${producto.titulo}</h2>
+                <p class="texto-item lead">${producto.descripcion}</p>
+            </div>
+            <div class="producto-caja-vista">
+                <div class="producto-vista">
+                    <div class="producto-vista-precio">$${producto.precio}</div>
+                    <img src="${producto.fotos[0]}" alt="${producto.titulo}" class="marco-disponible 
+                    producto-vista-imagen featurette-image img-fluid mx-auto" role="img"
+                        preserveAspectRatio="xMidYMid slice" focusable="false" width="500" height="500"></img>
+                    <div class="producto-botones">
+                        <button onclick="modalDetalles(${producto.id});" class="boton-producto boton-producto-ver">
+                            <i class="fa-solid fa-circle-info"></i> Detalles
+                        </button>
+                        <button onclick="agregarAlCarrito(${producto.id}); notificacionCarrito(this, ${producto.id}); actualizarContadorCarrito();" 
+                            class="boton-producto boton-producto-carrito">
+                            <i class="fa-solid fa-cart-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="featurette-divider">
+    `;
+
+    // Inserta el producto en el contenedor
+    contenedorProductos.innerHTML += productoHTML;
+}
+
+// Evento que se dispara al cargar la página
+document.addEventListener('DOMContentLoaded', async () => {
+    // Cargar productos desde el servidor al iniciar la página
+    await obtenerDatosDeLaBaseDeDatos();
+    // Mostrar productos en la página después de la carga completa
+    mostrarProductosEnPagina();
+});
+
+
+
+// Función para mostrar todos los productos en la página
+function mostrarProductosEnPagina() {
+    // Limpiar el contenedor antes de mostrar los productos
+    const contenedorProductos = document.getElementById('main-productos');
+    if (!contenedorProductos) {
+        console.error("No se encontró el contenedor de productos en el DOM.");
+        return;
+    }
+
+    contenedorProductos.innerHTML = '';
+
+    // Mostrar cada producto en el DOM
+    productos.forEach(mostrarProductoEnDOM);
+}
+
+// Evento que se dispara al cargar la página
+document.addEventListener('DOMContentLoaded', async () => {
+    // Cargar productos desde el servidor al iniciar la página
+    await obtenerDatosDeLaBaseDeDatos();
+});
+
+ 
+/*
+const productos=[ // MODIFICAR BASE DE DATOS
     { id: 1, disponible: true, titulo: 'Kit Set completo de baño', precio: 5500, fotos: ['./img/products/product_set.jpg', './img/products/product_set02.jpg', './img/products/product_set03.jpg', './img/products/product_set04.jpg'], descripcion: 'El kit Set de Baño incluye una toalla suave de mano, pads quita maquillaje reutilizables, vincha para cabello y turbante absorbente.<br> Experimenta comodidad y funcionalidad en cada paso de tu rutina de cuidado personal. Un conjunto diseñado para mejorar tu experiencia después de un baño. <ul class="texto-item fw-bold fs-5" style="list-style-type: circle;"><li>Turbante para cabello</li><li>Toalla de mano</li><li>Pads quita maquillaje</li><li>Vincha de pelo</li></ul>' },
     { id: 2, disponible: true, titulo: 'Bata de toalla para baño', precio: 10500, fotos: ['./img/products/product_bata.jpg', './img/products/product_bata02.jpg', './img/products/product_bata03.jpg', './img/products/product_bata04.jpg'], descripcion: '<span style="text-decoration: underline;">Absorción superior</span>: La bata de baño está hecha de materiales altamente absorbentes que te ayudarán a secarte rápidamente después de bañarte. <br><span style="text-decoration: underline;">Comodidad en el diseño</span>: Su diseño espacioso y corte relajado brindan una sensación de comodidad y libertad de movimiento. <br> <span style="text-decoration: underline;">Durabilidad</span>: Utilizamos materiales de alta calidad para garantizar que nuestras batas sean duraderas y resistan el desgaste constante. Puedes confiar en la calidad y la resistencia de nuestras batas para que te acompañen durante mucho tiempo.' },
     { id: 3, disponible: false, titulo: 'Funda de toalla almohada', precio: 2900, fotos: ['./img/products/product_almohada.jpg', './img/products/product_almohada.jpg', './img/products/product_almohada.jpg', './img/products/product_almohada.jpg'], descripcion: '<span style="text-decoration: underline;">Compatibilidad rizado</span>: Recomendada especialmente para cabello rizado y ondulado, estas fundas son la respuesta al frizz no deseado. Ayudan a que tus rizos mantengan su forma y evitan el envejecimiento prematuro de tu cabello, preservando la integridad de tu peinado mientras se seca. <br><span style="text-decoration: underline;">Protección nocturna</span>: Nuestra funda de almohada está cuidadosamente diseñada para proteger tanto tu cabello como tu almohada mientras disfrutas de un sueño reparador con el cabello mojado.' },
 ];
+*/
 
 // ===================================== LOGIN =====================================
+
 
 // Recibe el modal del login y sus botones
 const modalLogin = document.querySelector("#modal-login");
@@ -50,36 +175,80 @@ btnAbrirModalLogin.addEventListener("click", () => {
     modalLogin.showModal();
 });
 
-// Espera el evento para cerrar el modal
-btnCerrarModalLogin.addEventListener("click", () => {
-    modalLogin.close();
-});
-
-// Espera el evento para iniciar sesion
-document.getElementById("form-login").addEventListener("submit", function (event) {
-
+// Espera el evento para iniciar sesión
+document.getElementById("form-login").addEventListener("submit", async function (event) {
     // Evitar el envío del formulario
     event.preventDefault();
 
     // Recibe los valores de los input usuario y contrasenia
     var user = document.getElementById("usuario").value;
     var password = document.getElementById("clave").value;
+
     // Recibe el elemento de estado informativo
     var info = document.getElementById("info-login");
 
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>> MODIFICAR PARA BASE DE DATOS <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    try {/*
+        // Envía una solicitud POST al servidor para la autenticación
+        const response = await fetch('http://localhost:3500/admin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ usuario: user, clave: password }),
+        });*/
+        //-----------borrrar---------------------
+        function simularInicioSesion() {
+            // Simula una respuesta exitosa del servidor
+            const fakeResponse = {
+                success: true,
+                message: "Inicio de sesión exitoso",
+            };
+        
+            // Simula un retardo de 1 segundo (puedes ajustar este valor)
+            setTimeout(() => {
+                // Almacena la información de inicio de sesión en el localStorage
+                localStorage.setItem("usuarioSession", "true");
+        
+                // Redirige al usuario a admin.html después de la autenticación
+                window.location.href = "admin.html";
+            }, 1000); // 1000 milisegundos = 1 segundo
+        
+            return fakeResponse;
+        }
+        const response = await simularInicioSesion();
+//-------------------borrar----------------------------------------
+        const data = await response.json();
 
-    // Si los valores ingresados son iguales a los valores del administrador
-    if (administrador.usuario == user && administrador.clave == password) {
-        // Registra localmente que esta logueado
-        localStorage.setItem("usuarioSession", "true");
-        // Redirige al usuario a admin.html después de la autenticación
-        window.location.href = "admin.html";
-    } else {
-        // Sino se emite un mensaje informativo    
+        if (data.success) {
+            // Usuario autenticado
+            localStorage.setItem("usuarioSession", "true");
+            // Redirige al usuario a admin.html después de la autenticación
+            window.location.href = "admin.html";
+        } else {
+            // Usuario no autenticado
+            info.style.color = 'red';
+            info.innerText = data.message || "Usuario o contraseña incorrectos.";
+        }
+    } catch (error) {
+        console.error('Error en la solicitud:', error);
         info.style.color = 'red';
-        info.innerText = "Usuario o contraseña incorrectos.";
+        info.innerText = 'Error en la conexión con el servidor';
     }
+});
+
+// Función para cerrar el modal
+function cerrarModal(modal) {
+    if ('close' in modal) {
+        modal.close();
+    } else {
+        // Si la propiedad close no está disponible, puedes ocultar el modal manualmente
+        modal.style.display = 'none';
+    }
+}
+
+// Asociar la función a eventos de cierre del modal
+btnCerrarModalLogin.addEventListener("click", function () {
+    cerrarModal(modalLogin);
 });
 
 // ============================ HEADER ADMINISTRACION ============================

@@ -5,78 +5,84 @@
 // --------------------------------------------------------------
 
 // =================================== PRODUCTOS ===================================
+// Variable global para almacenar los productos
 
-// Función para mostrar productos en la página
-function mostrarProductos() {
-
-    // Recibe el elemento contenedor
+// Función para mostrar un producto en el DOM
+function mostrarProductoEnDOM(producto) {
     const contenedorProductos = document.getElementById('main-productos');
 
-    // Va insertando cada producto alojado en el array 'productos'
-    productos.forEach(producto => {
-        let productoHTML = ``;
-
-        if (producto.disponible) {
-            // VISTA DE PRODUCTO DISPONIBLE 
-            productoHTML = `
-                <div id="producto-item">
-                    <div class="producto-caja-info">
-                        <h2 class="titulo-item fw-normal lh-1">${producto.titulo}</h2>
-                        <p class="texto-item lead">${producto.descripcion}</p>
-                    </div>
-                    <div class="producto-caja-vista">
-                        <div class="producto-vista">
-                            <div class="producto-vista-precio">$${producto.precio}</div>
-                            <img src="${producto.fotos[0]}" alt="${producto.titulo}" class="marco-disponible 
-                            producto-vista-imagen featurette-image img-fluid mx-auto" role="img"
-                                preserveAspectRatio="xMidYMid slice" focusable="false" width="500" height="500"></img>
-                            <div class="producto-botones">
-                                <button onclick="modalDetalles(${producto.id});" class="boton-producto boton-producto-ver"><i
-                                            class="fa-solid fa-circle-info"></i> Detalles</button>
-                                <button onclick="agregarAlCarrito(${producto.id}); notificacionCarrito(this, ${producto.id}); actualizarContadorCarrito();" 
-                                    class="boton-producto boton-producto-carrito">
-                                        <i class="fa-solid fa-cart-plus"></i></button>
-                            </div>
-                        </div>
-                    </div>
+    const productoHTML = `
+    <div id="producto-item">
+        <div class="producto-caja-info">
+            <h2 class="titulo-item fw-normal lh-1">${producto.titulo}</h2>
+            <p class="texto-item lead">${producto.descripcion}</p>
+        </div>
+        <div class="producto-caja-vista">
+            <div class="producto-vista">
+                <div class="producto-vista-precio">$${producto.precio}</div>
+                <img src="${producto.fotos[0]}" alt="${producto.titulo}" class="marco-disponible 
+                producto-vista-imagen featurette-image img-fluid mx-auto" role="img"
+                    preserveAspectRatio="xMidYMid slice" focusable="false" width="500" height="500"></img>
+                <div class="producto-botones">
+                    <button onclick="modalDetalles(${producto.id});" class="boton-producto boton-producto-ver">
+                        <i class="fa-solid fa-circle-info"></i> Detalles
+                    </button>
+                    <button onclick="agregarAlCarrito(${producto.id}); notificacionCarrito(this, ${producto.id}); actualizarContadorCarrito();" 
+                        class="boton-producto boton-producto-carrito">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
                 </div>
+            </div>
+        </div>
+    </div>
+    <hr class="featurette-divider">
+`;
 
-                <hr class="featurette-divider">
-            `;
-        } else {
-            // VISTA DE PRODUCTO NO DISPONIBLE 
-            productoHTML = `
-                <div id="producto-item">
-                    <div class="producto-caja-info">
-                        <h2 class="titulo-item fw-normal lh-1 text-secondary">${producto.titulo}</h2>
-                        <h3 class="subtitulo-item fw-normal lh-1 mb-3 text-secondary">(No disponible)</h3>
-                        <p class="texto-item lead">${producto.descripcion}</p>
-                    </div>
-                    <div class="producto-caja-vista">
-                        <div class="producto-vista">
-                            <img src="${producto.fotos[0]}" alt="${producto.titulo}" class="marco-no-disponible 
-                            producto-vista-imagen featurette-image img-fluid mx-auto" role="img"
-                                preserveAspectRatio="xMidYMid slice" focusable="false" width="500" height="500"></img>
-                            <div class="producto-botones">
-                                <button class="boton-producto boton-producto-ver boton-no-disponible"><i
-                                            class="fa-solid fa-circle-info"></i> Detalles</button>
-                                <button 
-                                    class="boton-producto boton-producto-carrito boton-no-disponible">
-                                        <i class="fa-solid fa-cart-plus"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <hr class="featurette-divider">
-            `;
-        }
-
-        // CONCATENA AL CONTENEDOR EL PRODUCTO
-        contenedorProductos.innerHTML += productoHTML;
-    });
+   // Inserta el producto en el contenedor
+   contenedorProductos.innerHTML += productoHTML;
 }
 
+// Función para mostrar todos los productos en la página
+function mostrarProductos() {
+    // Verificar si productos está definido antes de intentar acceder a él
+    if (!productos) {
+        console.error('La variable productos no está definida. Esperando a que se obtengan los datos del servidor.');
+        return;
+    }
+
+    // Llama a la función mostrarProductoEnDOM para cada producto
+    productos.forEach(producto => {
+        mostrarProductoEnDOM(producto);
+    });
+}
+/*
+// Función para obtener datos del servidor y mostrar productos en la página
+async function init() {
+    try {
+        const response = await fetch('http://localhost:3500/products');
+
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log('Respuesta del servidor:', data);
+        productos = transformarDatos(data.data);
+
+        // Llama a la función mostrarProductos después de obtener los datos
+        mostrarProductos();
+    } catch (error) {
+        console.error('Error en la solicitud:', error);
+        
+    }
+    
+}
+
+// Llama a la función init al cargar la página
+window.onload = init;
+
+*/
 // Función para agregar productos al carrito
 function agregarAlCarrito(id) {
     // Busca el producto por ID
@@ -190,7 +196,7 @@ window.onload = function () {
     // Se actualiza el contador del carrito ubicado en la esquina superior derecha
     actualizarContadorCarrito();
     // Se refresca y muestra la lista de productos guardados en la base de datos
-    mostrarProductos();
+    //mostrarProductos();
     // Comprueba si el usuario esta logueado como ADMIN y evalua si debe mostrar o no la barra de administracion
     comprobarSesion();
 };

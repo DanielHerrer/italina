@@ -5,7 +5,7 @@
 // --------------------------------------------------------------
 
 // ============================ Catalogo de Productos ============================ 
-
+//      ver esto
 // Funcion para mostrar el catalogo de productos almacenados en la base de datos
 function mostrarCatalogo() {
 
@@ -38,54 +38,53 @@ function mostrarCatalogo() {
 
 // =================================== MODAL CREAR PRODUCTO ===================================
 
-// Funcion para mostrar el modal de crear producto
+// Función para mostrar el modal de crear producto
 function abrirProductoCrear() {
-    const modal = document.getElementById("modal-producto-create");
+    const modal = document.getElementById("modal-producto-create")
     modal.showModal();
 }
 
 // Función que recibe el formulario como argumento para crear un producto
 function agregarProducto(formulario) {
-
-    // Genera un nuevo ID acumulativo // MODIFICAR PARA BASE DE DATOS
-    // const nuevoId = productos.length > 0 ? productos[productos.length - 1].id + 1 : 1; 
-
-    // Crea una lista que almacenara las url de las imagenes a guardar
-    const urls = [];
-    // Obtiene los elementos donde se cargan las fotos
-    const foto1 = document.getElementById("foto-c1");
-    const foto2 = document.getElementById("foto-c2");
-    const foto3 = document.getElementById("foto-c3");
-    const foto4 = document.getElementById("foto-c4");
-
-    // Obtiene las url por cada elemento 'input file' y las guarda dentro de la lista de urls
-    //const url1 = "./img/products/" + foto1.files[0].name; MODIFICAR PARA BASE DE DATOS
-    //urls.push(url1);
-    //const url2 = "./img/products/" + foto2.files[0].name; MODIFICAR PARA BASE DE DATOS
-    //urls.push(url2);
-    //const url3 = "./img/products/" + foto3.files[0].name; MODIFICAR PARA BASE DE DATOS
-    //urls.push(url3);
-    //const url4 = "./img/products/" + foto4.files[0].name; MODIFICAR PARA BASE DE DATOS
-    //urls.push(url4);
-
-    // Obtiene los datos del formulario y las urls previamente cargadas
+    // Obtiene los datos del formulario
     const nuevoProducto = {
-        //id: nuevoId,  MODIFICAR PARA BASE DE DATOS
         disponible: formulario.disponible.checked,
         titulo: formulario.titulo.value,
         precio: parseFloat(formulario.precio.value),
-        fotos: urls,
-        descripcion: formulario.descripcion.value
+        descripcion: formulario.descripcion.value,
     };
 
-    // Agrega el nuevo producto a la lista actual
-    productos.push(nuevoProducto);
+    // Obtiene las rutas de las imágenes desde los campos de entrada del formulario
+    const foto1 = document.getElementById("foto-c1").files[0];
+    const foto2 = document.getElementById("foto-c2").files[0];
+    const foto3 = document.getElementById("foto-c3").files[0];
+    const foto4 = document.getElementById("foto-c4").files[0];
 
-    // Actualiza la lista de productos en el localStorage // MODIFICAR PARA BASE DE DATOS
-    //localStorage.setItem('productos', JSON.stringify(productos));
+    // Guarda las imágenes usando FormData junto con otros datos del producto
+    const formData = new FormData();
+    formData.append('disponible', nuevoProducto.disponible);
+    formData.append('titulo', nuevoProducto.titulo);
+    formData.append('precio', nuevoProducto.precio);
+    formData.append('file', foto1);
+    formData.append('file', foto2);
+    formData.append('file', foto3);
+    formData.append('file', foto4);
+    formData.append('descripcion', nuevoProducto.descripcion);
 
-    console.log("Producto " + formulario.titulo.value + " (id =  ) agregado con exito.");
-
+    // Realiza una solicitud para subir las imágenes y obtener las rutas dinámicas
+    fetch('http://localhost:3500/admin/products', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Respuesta del servidor:', data);
+        // Puedes realizar más acciones después de agregar el producto
+    })
+    .catch(error => {
+        console.error('Error al agregar el producto:', error);
+        // Manejar el error si es necesario
+    });
 }
 
 // Espera recibir el evento SUBMIT de CREAR PRODUCTO
@@ -101,12 +100,92 @@ formProductoCreate.addEventListener('submit', function (event) {
     cerrarModal(modal);
     // Limpia los input del formulario
     formProductoCreate.reset();
-    // Refresca el catalogo de productos en el contenedor de tarjetas
+    // Refresca el catálogo de productos en el contenedor de tarjetas
     mostrarCatalogo();
 });
-
+// ver correccions
 // =================================== MODAL EDITAR PRODUCTO ===================================
+// Función para editar un producto
+function editarProducto(formulario) {
+    // Obtén el ID del producto a editar desde el formulario
+    const productoId = formulario.productoId.value;
 
+    // Busca el producto con el ID proporcionado desde el formulario
+    const productoParaEditar = productos.find(producto => producto.id == productoId);
+
+    // Si el producto no se encuentra, puedes manejar el caso de error o salir de la función
+    if (!productoParaEditar) {
+        console.error(`No se encontró el producto con ID ${productoId}`);
+        return;
+    }
+
+    // Función auxiliar para obtener url de la foto por input
+    function obtenerURL(fotoElement, index) {
+        // Si el elemento existe y tiene al menos una foto cargada
+        if (fotoElement && fotoElement.files.length > 0) {
+            // Genera una url nueva para la foto
+            return fotoElement.files[0].name; // MODIFICAR PARA BASE DE DATOS
+        } else {
+            // Si no hay foto cargada entonces retorna la url ya guardada en la base de datos
+            return productoParaEditar.fotos[index];
+        }
+    }
+
+    // Obtén las URLs de las imágenes con ayuda de la función auxiliar
+    const urls = [];
+    urls.push(obtenerURL(document.getElementById("foto-u1"), 0));
+    urls.push(obtenerURL(document.getElementById("foto-u2"), 1));
+    urls.push(obtenerURL(document.getElementById("foto-u3"), 2));
+    urls.push(obtenerURL(document.getElementById("foto-u4"), 3));
+
+    // Construye el objeto con los datos del producto a editar
+    const productoActualizado = {
+        id: productoParaEditar.id,
+        disponible: formulario.disponible.checked,
+        titulo: formulario.titulo.value,
+        precio: formulario.precio.value,
+        descripcion: formulario.descripcion.value,
+        fotos: urls,
+    };
+
+    // Realiza la solicitud de actualización al servidor
+    fetch(`http://localhost:3500/admin/products/${productoId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(productoActualizado),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Producto actualizado con éxito:', data);
+        // Puedes realizar más acciones después de actualizar el producto
+        mostrarCatalogo();
+    })
+    .catch(error => {
+        console.error('Error al actualizar el producto:', error);
+        // Manejar el error si es necesario
+    });
+}
+
+// Función para eliminar un producto
+function eliminarProducto(idProductoAEliminar) {
+    // Realiza la solicitud de eliminación al servidor
+    fetch(`http://localhost:3500/admin/products/${idProductoAEliminar}`, {
+        method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Producto eliminado con éxito:', data);
+        // Puedes realizar más acciones después de eliminar el producto
+        mostrarCatalogo();
+    })
+    .catch(error => {
+        console.error('Error al eliminar el producto:', error);
+        // Manejar el error si es necesario
+    });
+}
+//ver fin
 // Funcion para mostrar el modal de editar producto por su ID Producto
 function abrirProductoEditar(id) {
     const modal = document.getElementById("modal-producto-update");
@@ -274,7 +353,46 @@ function abrirContactoEditar() {
     const modal = document.getElementById("modal-contacto-update");
     modal.showModal();
 }
+document.getElementById('form-contacto-update').addEventListener('submit', function (event) {
+    event.preventDefault(); // Evitar que el formulario se envíe normalmente
 
+    const form = event.target;
+    const formData = new FormData(form);
+
+     // Convertir FormData a objeto
+     const data = {};
+     formData.forEach((value, key) => {
+       data[key] = value;
+     });
+ 
+     // Ajustar el formato del objeto JSON 
+     const formattedData = {
+       telefono: data.telefono,
+       hrInicio: data.hrInicio,
+       hfFin: data.hrFin,
+       direccion: data.ubicacion, // Cambié el nombre para que coincida con el campo en la base de datos
+     };
+    // Realizar la petición fetch
+    fetch('http://localhost:3500/admin/contact/1', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formattedData),
+     
+    })
+      .then(response => response.json())
+      .then(result => {
+        console.log('Éxito:', result);
+        console.log('datos a enviar'+formattedData);
+        cerrarModal();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        
+      });
+  });
+/*
 function cargarDatosContacto(formulario) {
 
     // Verificar si hay un contacto guardado
@@ -318,7 +436,7 @@ formContactoUpdate.addEventListener('submit', function (event) {
     const modal = document.getElementById("modal-contacto-update");
     cerrarModal(modal);
 });
-
+*/
 // =================================== BOTON cerrar modal ===================================
 
 function cerrarModal(modal) {
