@@ -23,14 +23,6 @@ let administrador = { // MODIFICAR BASE DE DATOS
     nombre: "Mabel Hortensia Medina"
 };
 
-/*let contacto = { // MODIFICAR BASE DE DATOS
-    id: "5678",
-    telefono: "+54 9 223 590-1382",
-    horaInicio: '11:00',
-    horaFin: '17:00',
-    ubicacion: "Buenos Aires, Mar del Plata, Gascón 2169",
-    id_admin: "444"
-};*/
 
 // Variable global para almacenar los productos
 let productos = [];

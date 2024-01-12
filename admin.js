@@ -1,41 +1,119 @@
 // ============================ BASE DE DATOS ============================
 
-// La informacion de productos, administrador y contacto viene desde index.js !!!!!!
+ let productosAdmin = []; // Variable para almacenar los productos
 
-// --------------------------------------------------------------
+document.getElementById('obtenerDatosBtn').addEventListener('click', obtenerDatosDeLaBaseDeDatosAdmin);
 
-// ============================ Catalogo de Productos ============================ 
-//      ver esto
-// Funcion para mostrar el catalogo de productos almacenados en la base de datos
-function mostrarCatalogo() {
+async function obtenerDatosDeLaBaseDeDatosAdmin() {
+    console.log('Iniciando obtención de datos...');
+    try {
+        // Obtener la respuesta del servidor para la parte de administrador
+        const response = await fetch('http://localhost:3500/admin/products');
 
-    // Recibe el elemento contenedor de tarjetas de productos
-    const contenedor = document.querySelector(".contenedor-cards");
-    // Limpia el contenedor
-    contenedor.innerHTML = ``;
-    // Recorre la lista de productos
-    productos.forEach(producto => {
-        let productoHTML = ``;
-        productoHTML = `
-            <div class="card">
-                <h1 class="card-title">${producto.titulo}</h1>
-                <img class="card-image" src="${producto.fotos[0]}" alt="Imagen del producto">
-                <p class="card-description">${producto.descripcion}</p>
-                <div class="card-buttons">
-                    <button onclick="abrirProductoEditar(${producto.id});" class="edit-button"><i class="fa-solid fa-pen"></i>
-                        Editar</button>
-                    <button onclick="abrirProductoEliminar(${producto.id});" class="delete-button"><i class="fa-solid fa-trash"></i>
-                        Eliminar</button>
-                </div>
-            </div>
-            `;
-        // Concatena el elemento dentro del contenedor
-        contenedor.innerHTML += productoHTML;
-    });
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
+        }
 
+        // Transformar los datos y asignar a productos
+        const data = await response.json();
+        console.log('Respuesta del servidor (Admin):', data);
 
+        if (data.data) {
+            productosAdmin = transformarDatos(data.data);
+            console.log('Productos transformados:', productosAdmin);
+
+            // Mostrar los productos en la página de administrador
+            mostrarCatalogoAdmin();
+        } else {
+            console.error('La respuesta del servidor no contiene datos esperados:', data);
+        }
+
+        return productosAdmin;
+    } catch (error) {
+        console.error('Error en la solicitud (Admin):', error);
+    }
 }
 
+// Función para transformar los datos del servidor al nuevo formato
+function transformarDatos(datos) {
+    return datos.map(producto => {
+        return {
+            id: producto.id,
+            disponible: producto.disponible,
+            titulo: producto.titulo,
+            precio: producto.precio,
+            fotos: [
+                `http://localhost:3500/${producto.imagen1}`,
+                `http://localhost:3500/${producto.imagen2}`,
+                `http://localhost:3500/${producto.imagen3}`,
+                `http://localhost:3500/${producto.imagen4}`
+            ],
+            descripcion: producto.descripcion,
+        };
+    });
+}
+
+// Función para mostrar productos en la página de administrador
+function mostrarCatalogoAdmin() {
+    // Obtener el contenedor donde mostrar los productos
+    const contenedorAdmin = document.getElementById("admin-productos");
+
+    // Limpiar el contenedor
+    contenedorAdmin.innerHTML = '';
+
+    // Recorrer la lista de productos y agregarlos al contenedor
+    productosAdmin.forEach(producto => {
+        let productoHTML = `
+            <div id="producto-item">
+                <div class="producto-caja-info">
+                    <h2 class="titulo-item fw-normal lh-1">${producto.titulo}</h2>
+                    <p class="texto-item lead">${producto.descripcion}</p>
+                </div>
+                <div class="producto-caja-vista">
+                    <div class="producto-vista">
+                        <div class="producto-vista-precio">$${producto.precio}</div>
+                        <img src="${producto.fotos[0]}" alt="${producto.titulo}" class="marco-disponible 
+                            producto-vista-imagen featurette-image img-fluid mx-auto" role="img"
+                            preserveAspectRatio="xMidYMid slice" focusable="false" width="500" height="500"></img>
+                        <div class="producto-botones">
+                            <button onclick="eliminarProduct(${producto.id});" class="boton-producto boton-producto-ver">
+                                Eliminar
+                            </button>
+                            <button onclick="abrirProductoEditar(${producto.id});" class="boton-producto boton-producto-ver">
+                                Modificar
+                            </button>
+                        </div>
+                        `;
+
+        // Si el producto no está disponible
+        if (producto.disponible == 0) {
+            productoHTML += `
+                        <div class="producto-lema">
+                            <p class="texto-rojo">Producto no disponible</p>
+                        </div>
+                        `;
+        }
+
+        
+        productoHTML += `
+                    </div>
+                </div>
+            </div>
+            <hr class="featurette-divider">
+        `;
+
+        // Concatenar el elemento dentro del contenedor
+        contenedorAdmin.innerHTML += productoHTML;
+    });
+}
+
+
+// Esperar a que la ventana (página) se cargue antes de llamar a obtenerDatosDeLaBaseDeDatosAdmin
+window.onload = function () {
+    obtenerDatosDeLaBaseDeDatosAdmin();
+};
+
+//
 // =================================== MODAL CREAR PRODUCTO ===================================
 
 // Función para mostrar el modal de crear producto
@@ -168,122 +246,118 @@ function editarProducto(formulario) {
     });
 }
 
-// Función para eliminar un producto
-function eliminarProducto(idProductoAEliminar) {
-    // Realiza la solicitud de eliminación al servidor
-    fetch(`http://localhost:3500/admin/products/${idProductoAEliminar}`, {
-        method: 'DELETE',
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Producto eliminado con éxito:', data);
-        // Puedes realizar más acciones después de eliminar el producto
-        mostrarCatalogo();
-    })
-    .catch(error => {
-        console.error('Error al eliminar el producto:', error);
-        // Manejar el error si es necesario
-    });
+
+// Función para eliminar un producto por ID
+async function eliminarProduct(id) {
+    try {
+        // Pregunta al usuario si realmente quiere eliminar el producto
+        const confirmacion = window.confirm('¿Estás seguro de que deseas eliminar este producto?');
+
+        if (!confirmacion) {
+            
+            return;
+        }
+        const response = await fetch(`http://localhost:3500/admin/products/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                // Puedes agregar más encabezados según sea necesario
+            },
+            
+            body: JSON.stringify({})
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud de eliminación: ${response.statusText}`);
+        }
+
+        
+        console.log('Producto eliminado correctamente');
+       
+
+        // Actualizar la lista de productos después de la eliminación
+        obtenerDatosDeLaBaseDeDatosAdmin();
+    } catch (error) {
+        console.error('Error al intentar eliminar el producto:', error);
+    }
 }
-//ver fin
+
+
+
+// Definir la variable id en un ámbito más amplio
+let id;
+
 // Funcion para mostrar el modal de editar producto por su ID Producto
-function abrirProductoEditar(id) {
+function abrirProductoEditar(productoId) {
     const modal = document.getElementById("modal-producto-update");
     modal.showModal();
     // Recibe el elemento formulario de EDITAR PRODUCTO
     const formulario = document.getElementById('form-producto-update');
     // Carga el formulario con los datos correspondientes segun el ID de producto
-    cargarDatosEditar(formulario, id);
+    cargarDatosEditar(formulario, productoId);
 }
 
-// Funcion para cargar los datos del formulario de editar segun el ID Producto
-function cargarDatosEditar(formulario, productoId) {
-
-    // Busca el producto con el ID proporcionado
-    const productoParaEditar = productos.find(producto => producto.id == productoId);
-
-    // Llena el formulario pasado por parametro con los datos del producto
-    formulario.productoId.value = productoParaEditar.id;
-    formulario.disponible.checked = productoParaEditar.disponible;
-    formulario.titulo.value = productoParaEditar.titulo;
-    formulario.precio.value = productoParaEditar.precio;
-    formulario.descripcion.value = productoParaEditar.descripcion;
-
-    // Recibe los elementos de fotos vista previa y luego almacena la url correspondiente segun la foto
-    const foto1 = document.getElementById("foto-min-1");
-    foto1.src = productoParaEditar.fotos[0]; // url foto 1
-    const foto2 = document.getElementById("foto-min-2");
-    foto2.src = productoParaEditar.fotos[1]; // url foto 2
-    const foto3 = document.getElementById("foto-min-3");
-    foto3.src = productoParaEditar.fotos[2]; // url foto 3
-    const foto4 = document.getElementById("foto-min-4");
-    foto4.src = productoParaEditar.fotos[3]; // url foto 4
-
-}
-
-// Función para editar un producto
-function editarProducto(formulario) {
-
-    // Busca el producto con el ID producto proporcionado desde el formulario
-    const productoParaEditar = productos.find(producto => producto.id == formulario.productoId.value);
-
-    // Busca el índice en la lista de productos buscando por el ID producto proporcionado desde el formulario 
-    const indexProductoParaEditar = productos.findIndex(producto => producto.id == formulario.productoId.value);
-
-    // Si el indice del producto no se encuentra, puedes manejar el caso de error o salir de la función
-    if (indexProductoParaEditar === -1) {
-        console.error(`No se encontró el producto con ID ${formulario.productoId.value}`);
-        console.log('Lista de productos:', productos);
-        console.log('Producto a editar:', productoParaEditar);
-        // Finaliza la funcion
-        return;
-    }
-
-    // Funcion auxiliar para obtener url de la foto por input
-    function obtenerURL(fotoElement, index) {
-        // Si el elemento existe y tiene al menos una foto cargada
-        if (fotoElement && fotoElement.files.length > 0) {
-            // Genera una url nueva para la foto
-            return fotoElement.files[0].name; // MODIFICAR PARA BASE DE DATOS
-        } else {
-            // Si no hay foto cargada entonces retorna la url ya guardada en la base de datos
-            return productoParaEditar.fotos[index];
+async function cargarDatosEditar(formulario, productoId) {
+    try {
+        // Realizar una solicitud al servidor para obtener todos los productos
+        const response = await fetch('http://localhost:3500/admin/products');
+        
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
         }
+
+        const productos = (await response.json()).data;
+
+        // Filtrar el producto deseado por su ID
+        const producto = productos.find(producto => producto.id == productoId);
+
+        if (!producto) {
+            console.error(`Producto con ID ${productoId} no encontrado`);
+            return;
+        }
+        formulario.querySelector('#disponibleSi').checked = producto.disponible === 1;
+        formulario.querySelector('#disponibleNo').checked = producto.disponible === 0;
+        formulario.querySelector('#precio').value = producto.precio;
+        formulario.querySelector('#titulo').value = producto.titulo;
+        formulario.querySelector('#descripcion').value = producto.descripcion;
+
+        // Asignar el valor a la variable id en el ámbito más amplio
+        id = productoId;
+
+    } catch (error) {
+        console.error('Error al cargar datos para editar:', error);
     }
-
-    // Obtén las URLs de las imágenes con ayuda de la funcion auxiliar
-    const urls = [];
-    urls.push(obtenerURL(document.getElementById("foto-u1"), 0));
-    urls.push(obtenerURL(document.getElementById("foto-u2"), 1));
-    urls.push(obtenerURL(document.getElementById("foto-u3"), 2));
-    urls.push(obtenerURL(document.getElementById("foto-u4"), 3));
-
-    // Reasigna los valores del producto a editar con los datos del formulario
-    productoParaEditar.disponible = formulario.disponible.checked;
-    productoParaEditar.titulo = formulario.titulo.value;
-    productoParaEditar.precio = formulario.precio.value;
-    productoParaEditar.descripcion = formulario.descripcion.value;
-    productoParaEditar.fotos = urls;
-
-    // Reemplaza el producto a editar en el indice indicado de la lista de productos
-    productos[indexProductoParaEditar] = productoParaEditar;
-
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>> MODIFICAR PARA BASE DE DATOS <<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    // Actualiza la lista de productos en el localStorage
-    // localStorage.setItem('productos', JSON.stringify(productos));  
-
-    // Muestra un mensaje de éxito
-    console.log(`Producto "${formulario.titulo.value}" (id=${formulario.productoId.value}) editado con éxito.`);
 }
 
-const formProductoUpdate = document.getElementById('form-producto-update');
-formProductoUpdate.addEventListener('submit', function (event) {
-    event.preventDefault(); // Evita el comportamiento predeterminado del formulario
-    editarProducto(formProductoUpdate);
-    const modal = document.getElementById("modal-producto-update");
-    cerrarModal(modal);
-    formProductoUpdate.reset();
-    mostrarCatalogo();
+document.getElementById('form-producto-update').addEventListener('submit', function (event) {
+    event.preventDefault(); 
+    
+    const formData = new FormData(this);
+    
+    
+    fetch(`http://localhost:3500/admin/products/${id}`, {
+        method: 'PUT', 
+        headers: {
+            'Content-Type': 'application/json',
+            
+        },
+        body: JSON.stringify(Object.fromEntries(formData)),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data && !data.error) {
+            console.log('Producto actualizado correctamente');
+            // Cierra el modal después de la actualización
+            document.getElementById('modal-producto-update').close();
+            // Actualiza la lista de productos después de la actualización, si es necesario
+            obtenerDatosDeLaBaseDeDatosAdmin();
+        } else {
+            console.error('Error al actualizar el producto:', data.message || 'Error desconocido');
+        }
+    })
+    .catch(error => {
+        console.error('Error al intentar actualizar el producto:', error);
+    });
 });
 
 // =================================== MODAL ELIMINAR PRODUCTO ===================================
@@ -392,51 +466,7 @@ document.getElementById('form-contacto-update').addEventListener('submit', funct
         
       });
   });
-/*
-function cargarDatosContacto(formulario) {
 
-    // Verificar si hay un contacto guardado
-    if (contacto != null) {
-
-        // Llena el formulario con los datos del contacto
-        formulario.telefono.value = contacto.telefono || "";
-        formulario.hrInicio.value = contacto.horaInicio || "";
-        formulario.hrFin.value = contacto.horaFin || "";
-        formulario.ubicacion.value = contacto.ubicacion || "";
-
-    } else {
-        console.error("No hay contacto guardado");
-    }
-}
-
-function editarContacto(formulario) {
-
-    // Verificar si hay un contacto guardado
-    if (contactoGuardado) {
-
-        contacto.telefono = formulario.telefono.value;
-        contacto.hrInicio = formulario.hrInicio.value;
-        contacto.hrFin = formulario.hrFin.value;
-        contacto.ubicacion = formulario.ubicacion.value;
-
-        // Actualiza contacto en localStorage
-        //localStorage.setItem('contacto', JSON.stringify(contacto)); MODIFICAR PARA BASE DE DATOS
-
-        // Muestra un mensaje de éxito
-        console.log(`Contacto editado con éxito.`);
-    } else {
-        console.log(`No hay ningun contacto almacenado.`);
-    }
-}
-
-const formContactoUpdate = document.getElementById('form-contacto-update');
-formContactoUpdate.addEventListener('submit', function (event) {
-    event.preventDefault(); // Evita el comportamiento predeterminado del formulario
-    editarContacto(formContactoUpdate);
-    const modal = document.getElementById("modal-contacto-update");
-    cerrarModal(modal);
-});
-*/
 // =================================== BOTON cerrar modal ===================================
 
 function cerrarModal(modal) {

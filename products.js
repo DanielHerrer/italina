@@ -1,8 +1,8 @@
 // ============================ BASE DE DATOS ============================
 
-// La informacion de productos, administrador y contacto viene desde index.js !!!!!!
 
-// --------------------------------------------------------------
+
+
 
 // =================================== PRODUCTOS ===================================
 // Variable global para almacenar los productos
@@ -56,33 +56,7 @@ function mostrarProductos() {
         mostrarProductoEnDOM(producto);
     });
 }
-/*
-// Función para obtener datos del servidor y mostrar productos en la página
-async function init() {
-    try {
-        const response = await fetch('http://localhost:3500/products');
 
-        if (!response.ok) {
-            throw new Error(`Error en la solicitud: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        console.log('Respuesta del servidor:', data);
-        productos = transformarDatos(data.data);
-
-        // Llama a la función mostrarProductos después de obtener los datos
-        mostrarProductos();
-    } catch (error) {
-        console.error('Error en la solicitud:', error);
-        
-    }
-    
-}
-
-// Llama a la función init al cargar la página
-window.onload = init;
-
-*/
 // Función para agregar productos al carrito
 function agregarAlCarrito(id) {
     // Busca el producto por ID

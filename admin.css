@@ -106,7 +106,18 @@
     background-color: var(--secondary);
     transition: 0.3s;
 }
+.texto-rojo {
+    color: red;
+}
 
+.producto-lema {
+    background-color: black;
+    color: red; 
+    margin-top: 1px; 
+    border-radius: 50px; 
+    text-align: center;
+    align-items: center;
+}
 /* --------------------------- modal --------------------------- */
 
 #addProductModal {

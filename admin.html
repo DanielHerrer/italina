@@ -8,6 +8,7 @@
     <link rel="website icon" type="png" href="./img/logo_marca.png">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="products.css">
     <meta http-equiv="Content-Security-Policy" content="img-src 'self' http://localhost:3500;">
 
     <!-- Bootstrap -->
@@ -52,27 +53,25 @@
             <h3 id="usuario-nombre" class="encabezado-titulo">Hola de nuevo</h3>
         </div>
         <div class="encabezado-botones">
-            <button onclick="abrirProductoCrear();" id="agregar-producto">Agregar Producto <i
-                    class="fa-solid fa-file-circle-plus"></i></button>
-            <button onclick="abrirContactoEditar();" id="modificar-contacto">Modificar Contacto <i
-                    class="fa-solid fa-address-book"></i></button>
+            <button id="obtenerDatosBtn">Productos</button><!--<i
+                class="fa-solid fa-file-circle-plus"></i>--> 
+            <button onclick="abrirProductoCrear();" id="agregar-producto">Agregar Producto</button>
+            <!-- <iclass="fa-solid fa-file-circle-plus"></i>--> 
+            <button onclick="abrirContactoEditar();" id="modificar-contacto">Modificar Contacto </button><!--<i
+                class="fa-solid fa-address-book"></i>--> 
             <button onclick="cerrarSesion();" id="cerrar-sesion">Cerrar sesion <i
-                    class="fa-solid fa-door-open"></i></button>
+                    class="fa-solid fa-door-open"></i></button><!----> 
         </div>
     </header>
 
     <div id="contenido-admin">
 
         <!-- =========================== CATALOGO DE PRODUCTOS =========================== -->
-
-        <div class="contenedor-cards">
-<p>hhh</p>
-            <!-- Nueva tarjeta -->
-
+        <div id="admin-producto">
+            <div class="container w-90" id="admin-productos">
+                <!-- Aquí se mostrarán los productos -->
+            </div>
         </div>
-
-    </div>
-
     <!-- =========================== PIE DE PAGINA =========================== -->
 
     <footer
@@ -151,12 +150,15 @@
                 <input type="text" id="productoId" name="productoId" hidden>
 
                 <div class="label-stack">
+                    
                     <div class="d-flex gap-3">
-                        <label class="label-text" for="disponible">Disponible:</label>
-                        <input type="checkbox" id="disponible" name="disponible">
+                        <label class="label-text" for="disponibleSi">Disponible:</label>
+                        <input type="checkbox" id="disponibleSi" name="disponible" value="1">
+                        <label class="label-text" for="disponibleNo">No Disponible:</label>
+                        <input type="checkbox" id="disponibleNo" name="disponible" value="0">
                     </div>
-
-                    <div class="d-flex gap-3 align-items-center">
+                    
+                     <div class="d-flex gap-3 align-items-center">
                         <label class="label-text" for="precio">Precio:</label>
                         <div class="input-group">
                             <span class="input-group-text">$</span>
@@ -245,7 +247,7 @@
         </div>
 
     </dialog>
-
+    <script src="products.js" defer></script>
     <script src="index.js" defer></script>
     <script src="admin.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
