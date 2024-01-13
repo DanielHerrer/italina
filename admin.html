@@ -57,7 +57,7 @@
                 class="fa-solid fa-file-circle-plus"></i>--> 
             <button onclick="abrirProductoCrear();" id="agregar-producto">Agregar Producto</button>
             <!-- <iclass="fa-solid fa-file-circle-plus"></i>--> 
-            <button onclick="abrirContactoEditar();" id="modificar-contacto">Modificar Contacto </button><!--<i
+            <button onclick="abrirContactoEditar();" id="modificar-contacto">Crezcosiendo</button><!--<i
                 class="fa-solid fa-address-book"></i>--> 
             <button onclick="cerrarSesion();" id="cerrar-sesion">Cerrar sesion <i
                     class="fa-solid fa-door-open"></i></button><!----> 
@@ -203,8 +203,8 @@
         <button onclick="cerrarModal(this);" class="cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
 
         <div class="modal-content">
-            <h2 class="modal-title">Editar Contacto</h2>
-            <form id="form-contacto-update" action=""> <!--  formulario para editar contacto  -->
+            <h2 class="modal-title">Editar Datos del Negocio</h2>
+            <form id="form-contacto-update" action="http://localhost:3500/admin/contact/1" method="PUT">
                 <label class="label-text" for="telefono">Telefono:</label>
                 <input type="tel" class="label-input" id="telefono" name="telefono" required>
                 <div class="label-stack">

@@ -443,12 +443,11 @@ document.getElementById('form-contacto-update').addEventListener('submit', funct
      const formattedData = {
        telefono: data.telefono,
        hrInicio: data.hrInicio,
-       hfFin: data.hrFin,
-       direccion: data.ubicacion, // Cambié el nombre para que coincida con el campo en la base de datos
-     };
-    // Realizar la petición fetch
+       hfFinal: data.hrFin,
+       direccion: data.ubicacion, 
+     }
     fetch('http://localhost:3500/admin/contact/1', {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
