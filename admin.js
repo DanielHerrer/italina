@@ -250,7 +250,7 @@ function editarProducto(formulario) {
 // Función para eliminar un producto por ID
 async function eliminarProduct(id) {
     try {
-        // Pregunta al usuario si realmente quiere eliminar el producto
+        
         const confirmacion = window.confirm('¿Estás seguro de que deseas eliminar este producto?');
 
         if (!confirmacion) {
@@ -261,7 +261,7 @@ async function eliminarProduct(id) {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                // Puedes agregar más encabezados según sea necesario
+                
             },
             
             body: JSON.stringify({})
@@ -284,7 +284,7 @@ async function eliminarProduct(id) {
 
 
 
-// Definir la variable id en un ámbito más amplio
+
 let id;
 
 // Funcion para mostrar el modal de editar producto por su ID Producto
@@ -405,17 +405,30 @@ function abrirProductoEliminar(idProducto) {
 
 function eliminarProducto(idProductoAEliminar) {
 
-    // Filtra la lista para excluir el producto con el ID específico
     const nuevaListaProductos = productos.filter(producto => producto.id != idProductoAEliminar);
-
-    // Actualiza la lista de productos en el localStorage con la nueva lista filtrada
-    // localStorage.setItem('productos', JSON.stringify(nuevaListaProductos));  MODIFICAR PARA BASE DE DATOS
 
     mostrarCatalogo();
 }
 
-// =================================== MODAL EDITAR INFORMACION DE CONTACTO ===================================
+// Función para cerrar la modal
+function cerrarModal1() {
+    const modal = document.getElementById("modal-contacto-update");
+    if (modal) {
+        modal.close();
+    }
+}
 
+// Función para limpiar el formulario
+function limpiarFormulario(formulario) {
+    // Recorrer todos los elementos del formulario y restablecer sus valores
+    Array.from(formulario.elements).forEach(element => {
+        if (element.type !== 'hidden') {
+            element.value = '';
+        }
+    });
+}
+
+// = MODAL EDITAR INFORMACION DE CONTACTO 
 // Llena el contacto con los datos del formulario
 document.addEventListener('DOMContentLoaded', function () {
     const formulario = document.getElementById('form-contacto-update');
@@ -423,50 +436,47 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function abrirContactoEditar() {
-
     const modal = document.getElementById("modal-contacto-update");
     modal.showModal();
 }
-document.getElementById('form-contacto-update').addEventListener('submit', function (event) {
-    event.preventDefault(); // Evitar que el formulario se envíe normalmente
 
+document.getElementById('form-contacto-update').addEventListener('submit', function (event) {
+    event.preventDefault(); 
     const form = event.target;
     const formData = new FormData(form);
 
-     // Convertir FormData a objeto
-     const data = {};
-     formData.forEach((value, key) => {
-       data[key] = value;
-     });
- 
-     // Ajustar el formato del objeto JSON 
-     const formattedData = {
-       telefono: data.telefono,
-       hrInicio: data.hrInicio,
-       hfFinal: data.hrFin,
-       direccion: data.ubicacion, 
-     }
-    fetch('http://localhost:3500/admin/contact/1', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formattedData),
-     
-    })
-      .then(response => response.json())
-      .then(result => {
-        console.log('Éxito:', result);
-        console.log('datos a enviar'+formattedData);
-        cerrarModal();
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        
-      });
-  });
+    // Convertir FormData a objeto
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
 
-// =================================== BOTON cerrar modal ===================================
+    // Ajustar el formato del objeto JSON 
+    const formattedData = {
+        telefono: data.telefono,
+        hrInicio: data.hrInicio,
+        hfFinal: data.hrFin,
+        direccion: data.ubicacion, 
+    }
+
+    fetch('http://localhost:3500/admin/contact/1', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formattedData),
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log('Éxito:', result);
+        console.log('datos a enviar' + formattedData);
+        cerrarModal1(); 
+        limpiarFormulario(form); 
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
 
 function cerrarModal(modal) {
     const modalElement = modal.closest('dialog');
@@ -485,3 +495,4 @@ window.onload = function () {
     // Refresca el catalogo de productos almacenados en la base de datos
     mostrarCatalogo();
 };
+

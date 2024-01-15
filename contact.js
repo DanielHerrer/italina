@@ -121,59 +121,85 @@ formulario.addEventListener('submit', (event) => {
     }, 3000);
 });
 */
-// =================================== INFORMACION DE CONTACTO ===================================
-// Llena el formulario de contacto con los datos del servidor
+// Modificacion de los datos de la tienda
 document.addEventListener('DOMContentLoaded', function () {
     const formulario = document.getElementById('form-contacto-update');
     cargarDatosContacto(formulario);
 });
 
-// Función para cargar datos de contacto en el formulario
-async function cargarDatosContacto(formulario) {
+function abrirContactoEditar() {
+    const modal = document.getElementById("modal-contacto-update");
+    modal.showModal();
+}
+
+document.getElementById('form-contacto-update').addEventListener('submit', function (event) {
+    event.preventDefault(); // Evitar que el formulario se envíe normalmente
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    // Convertir FormData a objeto
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+
+    // Ajustar el formato del objeto JSON 
+    const formattedData = {
+        telefono: data.telefono,
+        hrInicio: data.hrInicio,
+        hfFinal: data.hrFin,
+        direccion: data.ubicacion,
+    }
+
+    fetch('http://localhost:3500/admin/contact/1', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formattedData),
+    })
+        .then(response => response.json())
+        .then(result => {
+            console.log('Éxito:', result);
+            console.log('datos a enviar' + formattedData);
+            cerrarModal();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+});
+
+
+// Función para cargar datos de contacto en los elementos HTML
+async function cargarDatosContacto() {
     try {
         // Realizar una solicitud al servidor para obtener los datos de contacto
-        fetch('http://localhost:3500/datostienda/:1')
-    .then(response => {
+        const response = await fetch('http://localhost:3500/datostienda/1');
+
         if (!response.ok) {
             throw new Error(`Error en la solicitud: ${response.statusText}`);
         }
-        return response.json();
-    })
-    .then(contacto => {
-        // Manejar la respuesta del servidor
-        console.log(contacto);
-    })
-    .catch(error => {
-        console.error('Error en la solicitud:', error);
-    });
-
 
         // Obtener los datos de contacto del servidor
         const contacto = await response.json();
-console.log('contacto llega asi', contacto );
-        // Rellenar el formulario con los datos obtenidos
-        formulario.querySelector('#telefono').value = contacto.telefono || '';
-        formulario.querySelector('#hrInicio').value = contacto.horaInicio || '';
-        formulario.querySelector('#hrFin').value = contacto.horaFin || '';
-        formulario.querySelector('#ubicacion').value = contacto.ubicacion || '';
+
+        
+        // Rellenar los elementos HTML con los datos obtenidos
+        document.getElementById('contact-telefono').innerText = contacto.data.telefono || '';
+        document.getElementById('contact-hrAtencion').innerText = `${contacto.data.hrInicio.substring(0, 5) || ''} A ${contacto.data.hfFinal.substring(0, 5) || ''}`;
+        document.getElementById('contact-ubicacion').innerText = contacto.data.direccion || '';
 
     } catch (error) {
         console.error('Error al cargar datos de contacto:', error);
     }
 }
-// Funcion para mostrar la informacion de contacto
-function mostrarInformacion() {
 
-    // Recibe los elementos que muestran la informacion
-    const elementTelefono = document.getElementById("contact-telefono");
-    const elementHoras = document.getElementById("contact-hrAtencion");
-    const elementUbicacion = document.getElementById("contact-ubicacion");}
-/*
-    // Almacena en los elementos los valores de contacto
-    elementTelefono.innerText = contacto.telefono;
-    elementHoras.innerText = contacto.horaInicio + 'hs - ' + contacto.horaFin + 'hs';
-    elementUbicacion.innerText = contacto.ubicacion;
-}*/
+window.onload = function () {
+    const formulario = document.getElementById('form-contacto-update');
+    cargarDatosContacto(formulario);
+};
+
 
 // =================================== EVENTOS al CARGAR PAGINA =================================== 
 
