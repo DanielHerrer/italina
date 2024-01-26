@@ -53,6 +53,7 @@
             <h3 id="usuario-nombre" class="encabezado-titulo">Hola</h3>
         </div>
         <div class="encabezado-botones">
+            <button onclick="abrirContactos();" id="contactos">Contactos</button>
             <button id="obtenerDatosBtn">Productos</button><!--<i
                 class="fa-solid fa-file-circle-plus"></i>--> 
             <button onclick="abrirProductoCrear();" id="agregar-producto">Agregar Producto</button>
@@ -88,54 +89,79 @@
             <img src="img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
         </ul>
     </footer>
+<!--=================================MODAL CONTACTOS===================================-->
+<!--<div class="container mt-4">
+    <h1>Lista de Pedidos</h1>-->
 
-    <!-- =========================== MODAL AÑADIR PRODUCTO =========================== -->
+    <!-- Encabezado de la tabla -->
+   <!-- <div class="row order-row bg-light">
+      <div class="col">Nombre</div>
+      <div class="col">Correo Electrónico</div>
+      <div class="col">Número de Teléfono</div>
+      <div class="col">Detalles del Pedido</div>
+      <div class="col">Estado</div>
+      <div class="col">Acciones</div>
+    </div>-->
 
-    <dialog id="modal-producto-create" class="modal-admin">
+    <!-- Fila -->
+   <!-- <div class="row order-row">
+      <div class="col">clientname1</div>
+      <div class="col">correo@ejemplo.com</div>
+      <div class="col">123456</div>
+      <div class="col">Detalles del pedido</div>
+      <div class="col">Estado Pendiente</div>
+      <div class="col">
+        <button class="btn btn-danger btn-sm" onclick="eliminarPedido(this)">Eliminar</button>
+      </div>
+    </div>-->
 
-        <button onclick="cerrarModal(this);" class="cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
 
-        <div class="modal-content">
-            <h2>Agregar Producto</h2>
-            <form id="form-producto-create" enctype="multipart/form-data" action="">
-                <!--  formulario para agregar producto  -->
-                <div class="label-stack">
-                    <div class="d-flex gap-3">
-                        <label class="label-text" for="disponible">Disponible:</label>
-                        <input type="checkbox" id="disponible" name="disponible" checked>
-                    </div>
+<!-- =========================== MODAL AÑADIR PRODUCTO =========================== -->
+<dialog id="modal-producto-create" class="modal-admin">
 
-                    <div class="d-flex gap-3 align-items-center">
-                        <label class="label-text" for="precio">Precio:</label>
-                        <div class="input-group">
-                            <span class="input-group-text">$</span>
-                            <input class="form-control" type="number" class="label-input" id="precio" name="precio"
-                                required>
-                        </div>
-                    </div>
+    <button onclick="cerrarModal(this);" class="cerrar-modal"><i class="fa-solid fa-xmark"></i></button>
+
+    <div class="modal-content">
+        <h2>Agregar Producto</h2>
+        <form id="form-producto-create" enctype="multipart/form-data" action="">
+            <!--  formulario para agregar producto  -->
+            <div class="label-stack">
+                <div class="d-flex gap-3">
+                    <label class="label-text" for="disponible">Disponible:</label>
+                    <input type="checkbox" id="disponible" name="disponible" checked>
                 </div>
 
-                <label class="label-modal label-text" for="titulo">Título:</label>
-                <input type="text" class="label-input" id="titulo" name="titulo" required>
+                <div class="d-flex gap-3 align-items-center">
+                    <label class="label-text" for="precio">Precio:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input class="form-control" type="number" class="label-input" id="precio" name="precio"
+                            required>
+                    </div>
+                </div>
+            </div>
 
-                <label class="label-modal label-text" for="descripcion">Descripción:</label>
-                <textarea id="descripcion" class="label-input label-textarea" name="descripcion" maxlength="800"
-                    style="resize: none;" required></textarea>
+            <label class="label-modal label-text" for="titulo">Título:</label>
+            <input type="text" class="label-input" id="titulo" name="titulo" required>
 
-                <label class="label-modal label-text">Fotos del Producto:</label>
-                <ul class="input-lista-fotos">
-                    <li><input type="file" id="foto-c1" name="fotos[]" accept="image/*" required></li>
-                    <li><input type="file" id="foto-c2" name="fotos[]" accept="image/*" required></li>
-                    <li><input type="file" id="foto-c3" name="fotos[]" accept="image/*" required></li>
-                    <li><input type="file" id="foto-c4" name="fotos[]" accept="image/*" required></li>
-                </ul>
+            <label class="label-modal label-text" for="descripcion">Descripción:</label>
+            <textarea id="descripcion" class="label-input label-textarea" name="descripcion" maxlength="800"
+                style="resize: none;" required></textarea>
 
-                <button class="boton-form" onclick="" type="submit"><i class="fa-solid fa-file-circle-plus"></i>
-                    Agregar</button>
-            </form>
-        </div>
+            <label class="label-modal label-text">Fotos del Producto:</label>
+            <ul class="input-lista-fotos">
+                <li><input type="file" id="foto-c1" name="fotos[]" accept="image/*" required></li>
+                <li><input type="file" id="foto-c2" name="fotos[]" accept="image/*" required></li>
+                <li><input type="file" id="foto-c3" name="fotos[]" accept="image/*" required></li>
+                <li><input type="file" id="foto-c4" name="fotos[]" accept="image/*" required></li>
+            </ul>
 
-    </dialog>
+            <button class="boton-form" onclick="" type="submit"><i class="fa-solid fa-file-circle-plus"></i>
+                Agregar</button>
+        </form>
+    </div>
+
+</dialog>
 
     <!-- =========================== MODAL EDITAR PRODUCTO =========================== -->
 

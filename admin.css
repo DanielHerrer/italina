@@ -1,6 +1,6 @@
-#contenido-admin {
+/*#contenido-admin {
     display: none;
-}
+}*/
 
 /* --------------------------- encabezado admin --------------------------- */
 
@@ -34,6 +34,7 @@
 #encabezado-admin .encabezado-botones {
     display: flex;
     gap: 7px;
+    justify-content: flex-end;
 }
 
 #encabezado-admin button {

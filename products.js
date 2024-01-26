@@ -162,6 +162,7 @@ function cerrarDetalles() {
     modalProducto.close();
 }
 
+
 // =================================== EVENTOS al CARGAR PAGINA =================================== 
 
 window.onload = function () {

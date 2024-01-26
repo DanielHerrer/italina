@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   formulario.addEventListener('submit', function (event) {
       event.preventDefault();
-
+      
       const nombre = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const telefono = document.getElementById('number').value;
@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(response => response.json())
       .then(data => {
-          console.log(data);
-          limpiarFormulario(); // Llama a la función después de enviar los datos
+         
+          limpiarFormulario();
       })
       .catch(error => {
           console.error('Error:', error);
@@ -82,7 +82,7 @@ function isMobile() {
     var mobile = ['iphone', 'ipad', 'android', 'blackberry', 'nokia', 'opera mini', 'windows mobile', 'windows phone', 'iemobile'];
 
     for (var i in mobile) {
-        console.log(navigator.userAgent);
+        //console.log(navigator.userAgent);
         if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0) {
             return true;
         }
@@ -151,6 +151,7 @@ document.getElementById('form-contacto-update').addEventListener('submit', funct
         hfFinal: data.hrFin,
         direccion: data.ubicacion,
     }
+    console.log('Datos a enviar:', formattedData);
 
     fetch('http://localhost:3500/admin/contact/1', {
         method: 'PUT',
@@ -161,8 +162,7 @@ document.getElementById('form-contacto-update').addEventListener('submit', funct
     })
         .then(response => response.json())
         .then(result => {
-            console.log('Éxito:', result);
-            console.log('datos a enviar' + formattedData);
+            
             cerrarModal();
         })
         .catch(error => {
@@ -172,6 +172,8 @@ document.getElementById('form-contacto-update').addEventListener('submit', funct
 
 
 // Función para cargar datos de contacto en los elementos HTML
+//let telefonoContacto = '';
+
 async function cargarDatosContacto() {
     try {
         // Realizar una solicitud al servidor para obtener los datos de contacto
@@ -184,9 +186,13 @@ async function cargarDatosContacto() {
         // Obtener los datos de contacto del servidor
         const contacto = await response.json();
 
+
+        // Asignar el valor de teléfono a la variable
+        let telefonoContacto = contacto.data.telefono || '';
         
+
         // Rellenar los elementos HTML con los datos obtenidos
-        document.getElementById('contact-telefono').innerText = contacto.data.telefono || '';
+        document.getElementById('contact-telefono').innerText = telefonoContacto;
         document.getElementById('contact-hrAtencion').innerText = `${contacto.data.hrInicio.substring(0, 5) || ''} A ${contacto.data.hfFinal.substring(0, 5) || ''}`;
         document.getElementById('contact-ubicacion').innerText = contacto.data.direccion || '';
 
@@ -196,10 +202,8 @@ async function cargarDatosContacto() {
 }
 
 window.onload = function () {
-    const formulario = document.getElementById('form-contacto-update');
-    cargarDatosContacto(formulario);
+    cargarDatosContacto();
 };
-
 
 // =================================== EVENTOS al CARGAR PAGINA =================================== 
 

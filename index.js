@@ -39,7 +39,7 @@ async function obtenerDatosDeLaBaseDeDatos() {
 
         // Transformar los datos y asignar a productos
         const data = await response.json();
-        console.log('Respuesta del servidor:', data);
+        //console.log('Respuesta del servidor:', data);
         productos = transformarDatos(data.data);
 
         return productos;
@@ -172,7 +172,7 @@ document.getElementById("form-login").addEventListener("submit", async function 
 
     try {
         // Envía una solicitud POST al servidor para la autenticación
-        const response = await fetch('http://localhost:3500/admin', {
+        const response = await fetch('http://localhost:3500/adminlogin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -181,11 +181,14 @@ document.getElementById("form-login").addEventListener("submit", async function 
         });
 
         const data = await response.json();
-
         if (data.success) {
             // Usuario autenticado
-            localStorage.setItem("usuarioSession", "true");
+            const token = data.token;
 
+             
+            // Almacena el token en localStorage
+            localStorage.setItem("accessToken", token);
+            localStorage.setItem("usuarioSession", true);
             // Redirige al usuario a admin.html después de la autenticación
             window.location.href = "admin.html";
 
@@ -199,9 +202,10 @@ document.getElementById("form-login").addEventListener("submit", async function 
     } catch (error) {
         console.error('Error en la solicitud:', error);
         info.style.color = 'red';
-        info.innerText = 'Error en la conexión con el servidor';
+        info.innerText = 'Error en la solicitud. Por favor, intenta nuevamente más tarde.';
     }
 });
+
 // Función para cerrar el modal
 function cerrarModal(modal) {
     if ('close' in modal) {
@@ -215,11 +219,13 @@ function cerrarModal(modal) {
 // Asociar la función a eventos de cierre del modal
 btnCerrarModalLogin.addEventListener("click", function () {
     cerrarModal(modalLogin);
-});
 
     // Limpia el formulario al cerrar el modal
     document.getElementById("form-login").reset();
+});
 
+// Llama a comprobarSesion para ajustar la visualización de la barra administrativa
+comprobarSesion();
 
 // ============================ HEADER ADMINISTRACION ============================
 
@@ -239,10 +245,11 @@ function comprobarSesion() {
     const headerAdmin = document.getElementById("encabezado-admin");
     const userAdmin = document.getElementById("usuario-nombre");
     const contenidoAdmin = document.getElementById("contenido-admin");
-
+    const token = localStorage.getItem("accessToken");
     // Si esta logueado
     // Verificar si la clave "usuarioSession" existe en localStorage
     if (localStorage.getItem("usuarioSession") == "true") {
+      
         // Se oculta el boton de login
         btnLogin.style.display = "none";
 
@@ -260,13 +267,12 @@ function comprobarSesion() {
         contenidoAdmin.style.display = "block";
     }
 }
-
 // Funcion para cerrar sesión
 function cerrarSesion() {
     // Remover el estado de "logueado" del localStorage
     localStorage.removeItem("usuarioSession");
     window.location.href = "home.html";
-    console.log("Sesión cerrada correctamente.");
+    //console.log("Sesión cerrada correctamente.");
 }
 
 // ============================ CARRITO DE COMPRAS ============================

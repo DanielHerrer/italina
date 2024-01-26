@@ -5,7 +5,7 @@
 document.getElementById('obtenerDatosBtn').addEventListener('click', obtenerDatosDeLaBaseDeDatosAdmin);
 
 async function obtenerDatosDeLaBaseDeDatosAdmin() {
-    console.log('Iniciando obtención de datos...');
+    //console.log('Iniciando obtención de datos...');
     try {
         // Obtener la respuesta del servidor para la parte de administrador
         const response = await fetch('http://localhost:3500/admin/products');
@@ -16,11 +16,11 @@ async function obtenerDatosDeLaBaseDeDatosAdmin() {
 
         // Transformar los datos y asignar a productos
         const data = await response.json();
-        console.log('Respuesta del servidor (Admin):', data);
+        //console.log('Respuesta del servidor (Admin):', data);
 
         if (data.data) {
             productosAdmin = transformarDatos(data.data);
-            console.log('Productos transformados:', productosAdmin);
+            //console.log('Productos transformados:', productosAdmin);
 
             // Mostrar los productos en la página de administrador
             mostrarCatalogoAdmin();
@@ -156,7 +156,7 @@ function agregarProducto(formulario) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Respuesta del servidor:', data);
+        //console.log('Respuesta del servidor:', data);
         // Puedes realizar más acciones después de agregar el producto
     })
     .catch(error => {
@@ -179,9 +179,9 @@ formProductoCreate.addEventListener('submit', function (event) {
     // Limpia los input del formulario
     formProductoCreate.reset();
     // Refresca el catálogo de productos en el contenedor de tarjetas
-    mostrarCatalogo();
+    mostrarCatalogoAdmin();//posiblefalla
 });
-// ver correccions
+
 // =================================== MODAL EDITAR PRODUCTO ===================================
 // Función para editar un producto
 function editarProducto(formulario) {
@@ -236,9 +236,9 @@ function editarProducto(formulario) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Producto actualizado con éxito:', data);
+        //console.log('Producto actualizado con éxito:', data);
         // Puedes realizar más acciones después de actualizar el producto
-        mostrarCatalogo();
+        mostrarCatalogoAdmin();//posible falla
     })
     .catch(error => {
         console.error('Error al actualizar el producto:', error);
@@ -272,7 +272,7 @@ async function eliminarProduct(id) {
         }
 
         
-        console.log('Producto eliminado correctamente');
+        //console.log('Producto eliminado correctamente');
        
 
         // Actualizar la lista de productos después de la eliminación
@@ -285,7 +285,7 @@ async function eliminarProduct(id) {
 
 
 
-let id;
+//let id;
 
 // Funcion para mostrar el modal de editar producto por su ID Producto
 function abrirProductoEditar(productoId) {
@@ -346,7 +346,7 @@ document.getElementById('form-producto-update').addEventListener('submit', funct
     .then(response => response.json())
     .then(data => {
         if (data && !data.error) {
-            console.log('Producto actualizado correctamente');
+            //console.log('Producto actualizado correctamente');
             // Cierra el modal después de la actualización
             document.getElementById('modal-producto-update').close();
             // Actualiza la lista de productos después de la actualización, si es necesario
@@ -407,7 +407,7 @@ function eliminarProducto(idProductoAEliminar) {
 
     const nuevaListaProductos = productos.filter(producto => producto.id != idProductoAEliminar);
 
-    mostrarCatalogo();
+    mostrarCatalogoAdmin();//posiblefalla
 }
 
 // Función para cerrar la modal
@@ -428,7 +428,7 @@ function limpiarFormulario(formulario) {
     });
 }
 
-// = MODAL EDITAR INFORMACION DE CONTACTO 
+// MODAL EDITAR INFORMACION DE CONTACTO 
 // Llena el contacto con los datos del formulario
 document.addEventListener('DOMContentLoaded', function () {
     const formulario = document.getElementById('form-contacto-update');
@@ -468,8 +468,8 @@ document.getElementById('form-contacto-update').addEventListener('submit', funct
     })
     .then(response => response.json())
     .then(result => {
-        console.log('Éxito:', result);
-        console.log('datos a enviar' + formattedData);
+        //console.log('Éxito:', result);
+        //console.log('datos a enviar' + formattedData);
         cerrarModal1(); 
         limpiarFormulario(form); 
     })
@@ -485,6 +485,7 @@ function cerrarModal(modal) {
     }
 }
 
+
 // =================================== EVENTOS al CARGAR PAGINA =================================== 
 
 window.onload = function () {
@@ -493,6 +494,6 @@ window.onload = function () {
     // Comprueba si el usuario esta logueado como ADMIN y evalua si debe mostrar o no la barra de administracion
     comprobarSesion();
     // Refresca el catalogo de productos almacenados en la base de datos
-    mostrarCatalogo();
+    mostrarCatalogoAdmin();//posiblefalla
 };
 

@@ -1,12 +1,34 @@
-// ============================ BASE DE DATOS ============================
-
-// La informacion de productos, administrador y contacto viene desde index.js !!!!!!
-
-// --------------------------------------------------------------
 
 // Recibe el atributo 'telefono' alojado en el Contacto de la base de datos
-const phone = contacto.telefono;
+//const phone = telefonoContacto;//contacto.telefono;
+// Recibe el atributo 'telefono' alojado en el Contacto de la base de datos
+let phone = ''; // Inicializamos phone
 
+// Función para cargar datos de contacto en los elementos HTML
+async function cargarDatosContacto() {
+    try {
+        // Realizar una solicitud al servidor para obtener los datos de contacto
+        const response = await fetch('http://localhost:3500/datostienda/1');
+
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
+        }
+
+        // Obtener los datos de contacto del servidor
+        const contacto = await response.json();
+
+        // Asignar el valor de teléfono a la variable
+        phone = contacto.data.telefono || '';
+
+        // Rellenar los elementos HTML con los datos obtenidos
+        document.getElementById('contact-telefono').innerText = phone;
+        document.getElementById('contact-hrAtencion').innerText = `${contacto.data.hrInicio.substring(0, 5) || ''} A ${contacto.data.hfFinal.substring(0, 5) || ''}`;
+        document.getElementById('contact-ubicacion').innerText = contacto.data.direccion || '';
+
+    } catch (error) {
+        console.error('Error al cargar datos de contacto:', error);
+    }
+}
 // =================================== FUNCIONES CARRITO DE COMPRAS ===================================
 
 // Función para agregar productos al carrito
@@ -77,6 +99,7 @@ function cargarCarritoDesdeLocalStorage() {
 
 // Función para mostrar el carrito en la lista
 function mostrarCarrito() {
+    //console.log('Mostrando carrito:', carrito);
     // Recibe el elemento contenedor del carrito de compras
     const contenedorCarrito = document.getElementById('listaCarrito');
     // Limpia el contenedor
@@ -240,7 +263,7 @@ function isMobile() {
     var mobile = ['iphone', 'ipad', 'android', 'blackberry', 'nokia', 'opera mini', 'windows mobile', 'windows phone', 'iemobile'];
 
     for (var i in mobile) {
-        console.log(navigator.userAgent);
+        //console.log(navigator.userAgent);
         if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0) {
             return true;
         }
@@ -253,6 +276,9 @@ function enviarOrden() {
 
     const urlDesktop = 'https://web.whatsapp.com/';
     const urlMobile = 'whatsapp://';
+
+ //verificar el valor de phone
+ console.log('Número de teléfono para enviar orden:', phone);
 
     const buttonComprar = document.querySelector('.btn-comprar');
 
@@ -270,7 +296,7 @@ function enviarOrden() {
             mensaje += `%0A- *${item.titulo}* Cantidad (${item.cantidad})`;
         }
 
-        mensaje += `%0A_*Precio sujeto a modificaciones_ %0A Aguardo atentx su respuesta. :)`;
+        mensaje += `%0A_*Precio sujeto a modificaciones_ %0A Aguardo su respuesta. :)`;
 
 
         // condicion ternaria, si es movil o escritorio se genera un url distinto
@@ -286,7 +312,21 @@ function enviarOrden() {
 }
 
 // =================================== EVENTOS al CARGAR PAGINA =================================== 
-
+window.onload = function () {
+    cargarDatosContacto().then(() => {
+        // Se actualiza la lista de carrito almacenada en localStorage
+        cargarCarritoDesdeLocalStorage();
+        // Se actualiza el contador del carrito ubicado en la esquina superior derecha
+        actualizarContadorCarrito();
+        // Se refresca y muestra la lista del carrito de compras guardada en localStorage
+        mostrarCarrito();
+        // Refresca el precio total según los items del carrito
+        actualizarPrecioTotal();
+        // Comprueba si el usuario está logueado como ADMIN y evalúa si debe mostrar o no la barra de administración
+        comprobarSesion();
+    });
+};
+/*
 window.onload = function () {
     // Se actualiza la lista de carrito almacenada en localStorage
     cargarCarritoDesdeLocalStorage();
@@ -298,4 +338,4 @@ window.onload = function () {
     actualizarPrecioTotal();
     // Comprueba si el usuario esta logueado como ADMIN y evalua si debe mostrar o no la barra de administracion
     comprobarSesion();
-};
+};*/
