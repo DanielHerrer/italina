@@ -392,3 +392,12 @@
 
 /* Pantallas grandes (escritorio): Consultas para pantallas con un ancho igual o superior a 992 píxeles. */
 @media (min-width: 992px) {}
+
+
+.datos-container {
+    display: none;
+  }
+  
+  .datos-container.mostrar {
+    display: block;
+  }

@@ -53,7 +53,8 @@
             <h3 id="usuario-nombre" class="encabezado-titulo">Hola</h3>
         </div>
         <div class="encabezado-botones">
-            <button onclick="abrirContactos();" id="contactos">Contactos</button>
+            <button onclick="mostrarDatos();" id="botonMostrar" class="btn btn-primary">Contactos</button>
+           
             <button id="obtenerDatosBtn">Productos</button><!--<i
                 class="fa-solid fa-file-circle-plus"></i>--> 
             <button onclick="abrirProductoCrear();" id="agregar-producto">Agregar Producto</button>
@@ -67,54 +68,44 @@
 
     <div id="contenido-admin">
 
-        <!-- =========================== CATALOGO DE PRODUCTOS =========================== -->
+<!-- =========================== CATALOGO DE PRODUCTOS =========================== -->
         <div id="admin-producto">
             <div class="container w-90" id="admin-productos">
                 <!-- Aquí se mostrarán los productos -->
             </div>
         </div>
-    <!-- =========================== PIE DE PAGINA =========================== -->
-
-    <footer
-        class="footer-crezcosiendo d-flex flex-wrap justify-content-between align-items-center py-3 px-4 my-4 border-top">
-        <span class="footer-info d-flex col-md-7 mb-0 text-body-secondary">
-            <button id="btn-modal-login"><i class="fa-solid fa-key"></i> Login</button>
-            <p class="info-creador"></p>
-        </span>
-
-        <ul class="footer-navegador col-md-4 justify-content-end">
-            <li class="navegador-item"><a href="#" class="navegador-link px-2">Inicio</a></li>
-            <li class="navegador-item"><a href="products.html" class="navegador-link px-2">Productos</a></li>
-            <li class="navegador-item"><a href="contact.html" class="navegador-link px-2">Contacto</a></li>
-            <img src="img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
-        </ul>
-    </footer>
+    
 <!--=================================MODAL CONTACTOS===================================-->
-<!--<div class="container mt-4">
-    <h1>Lista de Pedidos</h1>-->
 
-    <!-- Encabezado de la tabla -->
-   <!-- <div class="row order-row bg-light">
+  <div class="container mt-4 datos-container" id="contenedorDatos">
+   
+    <div class="row order-row bg-dark text-white">
       <div class="col">Nombre</div>
       <div class="col">Correo Electrónico</div>
       <div class="col">Número de Teléfono</div>
-      <div class="col">Detalles del Pedido</div>
-      <div class="col">Estado</div>
+      <div class="col-4">Detalles del Pedido</div>
       <div class="col">Acciones</div>
-    </div>-->
+    </div>
+  
+    
+    <div id="tablaContactosBody"></div>
+  </div>
+<!-- =========================== PIE DE PAGINA =========================== -->
 
-    <!-- Fila -->
-   <!-- <div class="row order-row">
-      <div class="col">clientname1</div>
-      <div class="col">correo@ejemplo.com</div>
-      <div class="col">123456</div>
-      <div class="col">Detalles del pedido</div>
-      <div class="col">Estado Pendiente</div>
-      <div class="col">
-        <button class="btn btn-danger btn-sm" onclick="eliminarPedido(this)">Eliminar</button>
-      </div>
-    </div>-->
+<footer
+class="footer-crezcosiendo d-flex flex-wrap justify-content-between align-items-center py-3 px-4 my-4 border-top">
+<span class="footer-info d-flex col-md-7 mb-0 text-body-secondary">
+    <button id="btn-modal-login"><i class="fa-solid fa-key"></i> Login</button>
+    <p class="info-creador"></p>
+</span>
 
+<ul class="footer-navegador col-md-4 justify-content-end">
+    <li class="navegador-item"><a href="#" class="navegador-link px-2">Inicio</a></li>
+    <li class="navegador-item"><a href="products.html" class="navegador-link px-2">Productos</a></li>
+    <li class="navegador-item"><a href="contact.html" class="navegador-link px-2">Contacto</a></li>
+    <img src="img/logo_marca.png" class="footer-logo" alt="Logo Crezcosiendo">
+</ul>
+</footer>
 
 <!-- =========================== MODAL AÑADIR PRODUCTO =========================== -->
 <dialog id="modal-producto-create" class="modal-admin">

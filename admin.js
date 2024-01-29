@@ -1,11 +1,39 @@
+/*// Función para limpiar la sección de productos
+function limpiarProductos() {
+    const contenedorProductos = document.getElementById('admin-productos');
+    // Elimina el contenido actual del contenedor de productos
+    contenedorProductos.innerHTML = '';
+  }
+  
+  // Función para limpiar la sección de contactos
+  function limpiarContactos() {
+    const contenedorDatos = document.getElementById('contenedorDatos');
+    // Elimina el contenido actual del cuerpo de la tabla de contactos
+    contenedorDatos.innerHTML = '';
+  }*/
+  // Función para ocultar la sección de productos
+function limpiarProductos() {
+    const contenedorProductos = document.getElementById('admin-productos');
+    // Oculta el contenedor de productos
+    contenedorProductos.style.display = 'none';
+  }
+  
+  // Función para ocultar la sección de contactos
+  function limpiarContactos() {
+    const contenedorDatos = document.getElementById('contenedorDatos');
+    // Oculta el cuerpo de la tabla de contactos
+    contenedorDatos.style.display = 'none';
+  }
+  
 // ============================ BASE DE DATOS ============================
 
- let productosAdmin = []; // Variable para almacenar los productos
+let productosAdmin = []; // Variable para almacenar los productos
 
 document.getElementById('obtenerDatosBtn').addEventListener('click', obtenerDatosDeLaBaseDeDatosAdmin);
 
 async function obtenerDatosDeLaBaseDeDatosAdmin() {
-    //console.log('Iniciando obtención de datos...');
+    limpiarContactos()//errorposible
+    
     try {
         // Obtener la respuesta del servidor para la parte de administrador
         const response = await fetch('http://localhost:3500/admin/products');
@@ -236,8 +264,7 @@ function editarProducto(formulario) {
     })
     .then(response => response.json())
     .then(data => {
-        //console.log('Producto actualizado con éxito:', data);
-        // Puedes realizar más acciones después de actualizar el producto
+        
         mostrarCatalogoAdmin();//posible falla
     })
     .catch(error => {
@@ -247,7 +274,7 @@ function editarProducto(formulario) {
 }
 
 
-// Función para eliminar un producto por ID
+// ===================Función para eliminar un producto por ID
 async function eliminarProduct(id) {
     try {
         
@@ -266,7 +293,7 @@ async function eliminarProduct(id) {
             
             body: JSON.stringify({})
         });
-
+           //console.log('el body delete',body);
         if (!response.ok) {
             throw new Error(`Error en la solicitud de eliminación: ${response.statusText}`);
         }
@@ -428,7 +455,7 @@ function limpiarFormulario(formulario) {
     });
 }
 
-// MODAL EDITAR INFORMACION DE CONTACTO 
+// ==================MODAL EDITAR INFORMACION DE CONTACTO==========================
 // Llena el contacto con los datos del formulario
 document.addEventListener('DOMContentLoaded', function () {
     const formulario = document.getElementById('form-contacto-update');
@@ -485,7 +512,92 @@ function cerrarModal(modal) {
     }
 }
 
+//=============================CARGAR CONTACTOS===========================
+function mostrarDatos() {
+    
+    // Mostrar el contenedor de datos
+    const contenedorDatos = document.getElementById('contenedorDatos');
+    const botonMostrar = document.getElementById('botonMostrar');
+  
+    // Agrega la clase 'mostrar' al contenedor
+    contenedorDatos.classList.add('mostrar');
+    botonMostrar.style.display = 'none'; // Ocultar el botón después de hacer clic
+ 
+    // Cargar datos al hacer clic
+    cargarDatos();
+  }
 
+
+  function cargarDatos() {
+    // Hacer la solicitud GET a tu endpoint
+    fetch('http://localhost:3500/admin/order')
+      .then(response => response.json())
+      .then(data => {
+        
+        if (data.error === false && data.data) {
+          
+          const tablaContactosBody = document.getElementById('tablaContactosBody');
+          tablaContactosBody.innerHTML = ''; 
+
+          data.data.forEach(contacto => {
+            console.log('ID del contacto:', contacto.id); 
+            const filaContacto = document.createElement('div');
+            filaContacto.className = 'row order-row';
+          
+            filaContacto.style.marginTop = '10px'; 
+            filaContacto.style.backgroundColor = '#f8f9fa';
+            filaContacto.style.marginBottom = '10px'
+
+            filaContacto.innerHTML = `
+              <div class="col">${contacto.name}</div>
+              <div class="col">${contacto.email}</div>
+              <div class="col">${contacto.number}</div>
+              <div class="col-4">${contacto.message}</div>
+              
+              <div class="col">
+                <button class="btn btn-danger btn-sm" onclick="confirmarEliminarContacto(${contacto.id})">Eliminar</button>
+              </div>
+            `;
+            tablaContactosBody.appendChild(filaContacto);
+          });
+        } else {
+          console.error('Error al obtener datos de contactos');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+      botonMostrar.style.display = '';
+  }
+  
+//=======================ELIMINAR CONTACTO============================================
+
+function confirmarEliminarContacto(contactoId) {
+    const confirmacion = confirm('¿Estás seguro de eliminar este contacto?');
+  
+    if (confirmacion) {
+      // Hacer la solicitud DELETE a tu endpoint de eliminación
+      fetch(`http://localhost:3500/admin/order/${contactoId}`, {
+        method: 'DELETE'
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Verificar si se eliminó correctamente
+          if (data.error === false) {
+            // Volver a cargar la tabla después de la eliminación
+            cargarDatos();
+          } else {
+            console.error('Error al eliminar el contacto');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  }
+  
+
+ 
 // =================================== EVENTOS al CARGAR PAGINA =================================== 
 
 window.onload = function () {
