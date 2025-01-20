@@ -30,7 +30,11 @@ body {
 
 /* ------------------------------------------ ESTILOS PERSONALIZADOS (index) ----------------------------------------------------- */
 
-.encabezado-titulo,
+.encabezado-titulo {
+  font-family: 'Dancing Script', serif;
+  /*font-family: 'Comfortaa', sans-serif;*/
+}
+
 h1,
 h2,
 h3 {
@@ -150,7 +154,7 @@ h3 {
   text-align: center;
 }
 
-.footer-crezcosiendo {
+.footer-italina {
   background-color: var(--white);
   border-top: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
   display: flex !important;

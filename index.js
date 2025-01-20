@@ -20,15 +20,15 @@ let administrador = { // MODIFICAR BASE DE DATOS
     id: "444",
     usuario: "admin",
     clave: "admin",
-    nombre: "Mabel Hortensia Medina"
+    nombre: "Pau"
 };
 
 let contacto = { // MODIFICAR BASE DE DATOS
     id: "5678",
-    telefono: "+54 9 223 590-1382",
-    horaInicio: '11:00',
+    telefono: "+54 9 3812 15-0565",
+    horaInicio: '10:00',
     horaFin: '17:00',
-    ubicacion: "Buenos Aires, Mar del Plata, Gascón 2169",
+    ubicacion: "Tucumán, San Miguel de Tucumán",
     id_admin: "444"
 };
 
@@ -169,4 +169,4 @@ const textoCreador = document.querySelector(".info-creador");
 // Recibe el año actual
 const añoActual = new Date().getFullYear();
 // Muestra la informacion del equipo de desarrolladores
-textoCreador.innerHTML = `&copy; ${añoActual} Crezcosiendo, <a href="https://biolink.website/MDP_Programa_Crezcosiendo" target="_blank" rel="noopener noreferrer">MDP Programa</a>`;
+textoCreador.innerHTML = `&copy; ${añoActual} Italina, <a href="https://github.com/DanielHerrer" target="_blank" rel="noopener noreferrer">GitHub Developer</a>`;
