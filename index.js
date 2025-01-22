@@ -41,7 +41,7 @@ const productos = [ // MODIFICAR BASE DE DATOS
 */
 
 const productos = [ // MODIFICAR BASE DE DATOS
-    { id: 1, disponible: true, titulo: 'Pronto se añadirán Diseños', precio: 0, fotos: ['./img/products/product_unknown.jpg', './img/products/product_unknown.jpg', './img/products/product_unknown.jpg', './img/products/product_unknown.jpg'], descripcion: 'Proximamente...' },
+    { id: 1, disponible: false, titulo: 'Pronto se añadirán Diseños', precio: 0, fotos: ['./img/products/product_unknown.jpg', './img/products/product_unknown.jpg', './img/products/product_unknown.jpg', './img/products/product_unknown.jpg'], descripcion: 'Proximamente...' },
 ];
 
 // ===================================== LOGIN =====================================
