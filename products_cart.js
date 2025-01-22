@@ -94,15 +94,15 @@ function mostrarCarrito() {
                     <p class="item-titulo">${item.titulo}</p>
                 </div>
                 <div class="item-carrito-precio">
-                    <p class="item-precio">$${item.precio} ARS</p>
+                    <p class="item-precio">$ ${item.precio} ARS</p>
                 </div>
                 <div class="item-carrito-cantidad">
-                    <button class="btn-carrito btn-mas" onclick="agregarAlCarrito(${item.id})"><i class="fa-solid fa-plus"></i></button>
-                    <p class="num-cantidad">Cantidad: ${item.cantidad}</p>
                     <button class="btn-carrito btn-menos" onclick="reducirAlCarrito(${item.id})"><i class="fa-solid fa-minus"></i></button>
+                    <p class="num-cantidad">${item.cantidad}</p>
+                    <button class="btn-carrito btn-mas" onclick="agregarAlCarrito(${item.id})"><i class="fa-solid fa-plus"></i></button>
                 </div>
                 <div class="item-carrito-subtotal">
-                    <p class="item-subtotal">$${item.precio * item.cantidad} ARS</p>
+                    <b><p class="item-subtotal">$ ${item.precio * item.cantidad} ARS</p></b>
                 </div>
                 <div class="item-carrito-borrar">
                     <button class="btn-carrito item-btn-remover" onclick="quitarDelCarrito(${item.id})"><i class="fa-solid fa-trash-can"></i></button>
@@ -120,18 +120,18 @@ function mostrarCarrito() {
                     <img class="item-sin-img" src="./img/question-secondary.png" style="filter: brightness(1.1);" alt="Item producto">
                 </div>
                 <div class="item-carrito-producto">
-                    <p class="item-titulo">Ingrese aquí su producto</p>
+                    <p class="item-titulo">Su carrito está vacio</p>
                 </div>
                 <div class="item-carrito-precio">
-                    <p class="item-precio">ARS</p>
+                    <p class="item-precio">-</p>
                 </div>
                 <div class="item-carrito-cantidad">
-                    <button class="btn-carrito btn-mas" style="background-color: #ddd;"><i class="fa-solid fa-plus"></i></button>
-                    <p class="num-cantidad">Cantidad: ?</p>
                     <button class="btn-carrito btn-menos" style="background-color: #ddd;"><i class="fa-solid fa-minus"></i></button>
+                    <p class="num-cantidad">?</p>
+                    <button class="btn-carrito btn-mas" style="background-color: #ddd;"><i class="fa-solid fa-plus"></i></button>
                 </div>
                 <div class="item-carrito-subtotal">
-                    <p class="item-subtotal">ARS</p>
+                    <p class="item-subtotal">-</p>
                 </div>
                 <div class="item-carrito-borrar">
                     <button class="btn-carrito item-btn-remover" style="background-color: #ddd;"><i class="fa-solid fa-trash-can"></i></button>
@@ -171,10 +171,10 @@ function actualizarPrecioTotal() {
             // Acumula el valor total segun el item * cantidad
             valor += item.precio * item.cantidad;
         });
-        precio.innerText = '$ ' + valor + ' ARS*';
+        precio.innerText = '$ ' + valor + ' ARS *';
     } else {
         // Sino hay items entonces $ 0
-        precio.innerText = '$ 0 ARS';
+        precio.innerText = '-';
     }
 }
 
