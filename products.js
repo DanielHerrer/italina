@@ -12,10 +12,23 @@ function mostrarProductos() {
     // Recibe el elemento contenedor
     const contenedorProductos = document.getElementById('main-productos');
 
+    let productosDisp = [];
+    let productosNoDisp = [];
+
+    // Filtrar y mover los productos disponibles y no disponibles
+    productos.forEach(producto => {
+        if (producto.disponible) {
+            productosDisp.push(producto); // Agregar producto disponible
+        } else {
+            productosNoDisp.push(producto); // Agregar producto no disponible
+        }
+    });
+
+    /*
     // Va insertando cada producto alojado en el array 'productos'
     productos.forEach(producto => {
         let productoHTML = ``;
-
+        
         if (producto.disponible) {
             // VISTA DE PRODUCTO DISPONIBLE 
             productoHTML = `
@@ -71,6 +84,75 @@ function mostrarProductos() {
                 <hr class="featurette-divider">
             `;
         }
+        
+
+
+        // CONCATENA AL CONTENEDOR EL PRODUCTO
+        contenedorProductos.innerHTML += productoHTML;
+    });
+*/
+
+    productosDisp.forEach(producto => {
+        let productoHTML = ``;
+        
+        productoHTML = `
+                <div id="producto-item">
+                    <div class="producto-caja-info">
+                        <h2 class="titulo-item fw-normal lh-1">${producto.titulo}</h2>
+                        <p class="texto-item lead">${producto.descripcion}</p>
+                    </div>
+                    <div class="producto-caja-vista">
+                        <div class="producto-vista">
+                            <div class="producto-vista-precio">$${producto.precio}</div>
+                            <img src="${producto.fotos[0]}" alt="${producto.titulo}" class="marco-disponible 
+                            producto-vista-imagen featurette-image img-fluid mx-auto" role="img"
+                                preserveAspectRatio="xMidYMid slice" focusable="false" width="500" height="500"></img>
+                            <div class="producto-botones">
+                                <button onclick="modalDetalles(${producto.id});" class="boton-producto boton-producto-ver"><i
+                                            class="fa-solid fa-circle-info"></i> Detalles</button>
+                                <button onclick="agregarAlCarrito(${producto.id}); notificacionCarrito(this, ${producto.id}); actualizarContadorCarrito();" 
+                                    class="boton-producto boton-producto-carrito">
+                                        <i class="fa-solid fa-cart-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="featurette-divider">
+            `;
+
+        // CONCATENA AL CONTENEDOR EL PRODUCTO
+        contenedorProductos.innerHTML += productoHTML;
+    });
+
+
+    productosNoDisp.forEach(producto => {
+        let productoHTML = ``;
+        productoHTML = `
+            <div id="producto-item">
+                <div class="producto-caja-info">
+                    <h2 class="titulo-item fw-normal lh-1 text-secondary">${producto.titulo}</h2>
+                    <h3 class="subtitulo-item fw-normal lh-1 mb-3 text-secondary">(No disponible)</h3>
+                    <p class="texto-item lead">${producto.descripcion}</p>
+                </div>
+                <div class="producto-caja-vista">
+                    <div class="producto-vista">
+                        <img src="${producto.fotos[0]}" alt="${producto.titulo}" class="marco-no-disponible 
+                        producto-vista-imagen featurette-image img-fluid mx-auto" role="img"
+                            preserveAspectRatio="xMidYMid slice" focusable="false" width="500" height="500"></img>
+                        <div class="producto-botones">
+                            <button class="boton-producto boton-producto-ver boton-no-disponible"><i
+                                        class="fa-solid fa-circle-info"></i> Detalles</button>
+                            <button 
+                                class="boton-producto boton-producto-carrito boton-no-disponible">
+                                    <i class="fa-solid fa-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+            `;
 
         // CONCATENA AL CONTENEDOR EL PRODUCTO
         contenedorProductos.innerHTML += productoHTML;
