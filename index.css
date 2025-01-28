@@ -71,8 +71,8 @@ h3 {
 
 #encabezado .encabezado-marca .encabezado-titulo {
   color: var(--white);
-  font-weight: 600 !important;
-  font-size: calc(1.3rem + .6vw) !important;
+  font-weight: 1000 !important;
+  font-size: calc(1.5rem + .6vw) !important;
 }
 
 .navegador {
